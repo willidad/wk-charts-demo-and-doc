@@ -1,5 +1,5 @@
 {
-  "name": "brunch-basic-template",
+  "name": "Angular-Brunch-Basic Template",
   "version": "0.1.0",
   "dependencies": {
     "express": "latest"
