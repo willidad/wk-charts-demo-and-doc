@@ -2,7 +2,6 @@
   "name": "Angular-Brunch-Basic Template",
   "version": "0.1.0",
   "dependencies": {
-    "express": "latest"
   },
   "devDependencies": {
     "jade": "~0.33",
