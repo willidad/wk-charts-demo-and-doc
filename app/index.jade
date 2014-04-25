@@ -1,0 +1,25 @@
+html(lang='en', ng-app='app')
+    head
+        meta(charset='utf-8')
+        meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+        meta(name='viewport', content='width=device-width', initial-scale='1.0')
+        meta(name='description', content='d3 Experiments')
+        meta(name='author', content='Willi Klenk')
+        title d3 Experiments
+        link(rel='stylesheet', href='css/app.css')
+    body
+        .container-fluid
+            div(ui-view="top")
+            div.col-lg-2(ui-view="left")
+            div.col-lg-8(ui-view="content")
+            div.col-lg-2(ui-view="right")
+            div(ui-view="footer")
+        script.
+            window.brunch = window.brunch || {};
+            window.brunch['auto-reload'] = {
+              enabled: true
+            };
+        script(src='js/vendor.js')
+        script(src='js/app.templates.js')
+        script(src='js/app.js')
+
