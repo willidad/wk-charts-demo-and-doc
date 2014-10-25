@@ -1,3 +1,4 @@
 .leftArea
-    p left pane
-
+    ul.nav.nav-pills.nav-stacked
+        li(ng-repeat="item in menuItems", ui-sref-active="active")
+            a(ui-sref="{{item.url}}{{initial[$index]}}") {{item.name}}

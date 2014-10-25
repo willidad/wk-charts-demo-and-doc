@@ -1,12 +1,18 @@
-angular.module('app', ['ui.router','ui.bootstrap','app.templates'])
-  .config(($stateProvider, $urlRouterProvider) ->
-  #$locationProvider.html5Mode(true)
+angular.module('app', ['ui.router','ui.bootstrap','app.templates', 'wk.chart', 'hljs'])
+  .config(($stateProvider, $urlRouterProvider, menu) ->
 
     $urlRouterProvider
       .otherwise "/"
 
-    $stateProvider
-      .state 'content',
+    camelCase = (word) ->
+      f = word.substr(0,1).toUpperCase()
+      return f + word.substr(1)
+
+    for i in [0..menu.length - 1]
+      pName = menu[i].url
+      pPath = if menu[i].page then pName else 'default'
+
+      view =
         views:
           'top':
             templateUrl: 'app/topnav/top.jade'
@@ -15,13 +21,41 @@ angular.module('app', ['ui.router','ui.bootstrap','app.templates'])
             templateUrl: 'app/left/left.jade'
             controller: 'LeftCtrl'
           'content':
-            templateUrl: 'app/content/content.jade'
-            controller: 'ContentCtrl'
-          'right':
-            templateUrl: 'app/right/right.jade'
-            controller: 'RightCtrl'
+            templateUrl: "app/pages/#{pPath}/page.jade"
+            controller: "PageCtrl"
           'footer':
             templateUrl: 'app/footer/footer.jade'
             controller: 'FooterCtrl'
-        url: '/'
+        url: "/#{menu[i].url}"
+      $stateProvider.state("#{pName}", view)
+      if menu[i].tabs
+        for j in [0 .. menu[i].tabs.length - 1]
+          tab = menu[i].tabs[j].url
+          if menu[i].ctrl and menu[i].ctrl[j]
+            ctrl = camelCase(pName) + camelCase(tab) + 'Ctrl'
+          else
+            ctrl = 'ChartCtrl'
+          $stateProvider
+            .state("#{pName}.#{tab}",
+              {
+                templateUrl:  "app/pages/default/chart.jade"
+                url: '/' + tab
+                controller: ctrl
+                data: {pageIdx:i, chartIdx:j,  menuItem:menu[i]}
+              })
 )
+
+angular.module('app').constant 'menu',
+  [
+    {url: 'home', name: 'Home', page:true},
+    {url: 'linecharts', name: 'Line Charts', tabs:[{url:'horizontal',name:'Horizontal'}, {url:'vertical', name:'Vertical'}]},
+    {url: 'areacharts', name: 'Area Charts', tabs:[{url:'zero',name:'Zero-based Area'}, {url:'wiggle',name:'Wiggle Area'}, {url:'expand',name:'Expanded Area'}]}
+    {url: 'barcharts', name: 'Bar Charts'},
+    {url: 'gauges', name: 'Gauges'},
+    {url: 'spidercharts', name: 'Spider Charts'},
+    {url: 'scattercharts', name: 'Scatter Charts'}
+    {url: 'maps', name: 'Maps'},
+    {url: 'combocharts', name: 'Combocharts'},
+    {url: 'brushing', name: 'Brushing and Selection'},
+    {url: 'more', name: 'more'}
+  ]

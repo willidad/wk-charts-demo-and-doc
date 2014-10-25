@@ -1,10 +1,10 @@
 {
-  "name": "Angular-Brunch-Basic Template",
+  "name": "wk-chart-demo",
   "version": "0.1.0",
   "authors": [
-    "williklenk <willi@klenk-bondorf.de>"
+    "Willi Klenk <willi@klenk-bondorf.de>"
   ],
-  "main": "index.html",
+  "main": "app.js",
   "license": "MIT",
   "private": true,
   "ignore": [
@@ -17,7 +17,15 @@
   "dependencies": {
     "angular-bootstrap": "~0.10.0",
     "angular-ui-router": "~0.2.9",
-    "angular": "~1.2.14",
-    "bootstrap": "~3.0.0"
+    "angular": "~1.3.x",
+    "angular-animate": "~1.3.x",
+    "bootstrap": "~3.x.x",
+    "d3": "~3.4.11",
+    "lodash": "~2.4.1",
+    "wk-charts": "*",
+    "angular-highlightjs": "~0.3.1"
+  },
+  "resolutions": {
+    "angular": "1.3.0"
   }
 }

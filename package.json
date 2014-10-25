@@ -1,6 +1,6 @@
 {
-  "name": "Angular-Brunch-Basic-Template",
-  "version": "0.1.0",
+  "name": "wk-chart-demo",
+  "version": "0.0.1",
   "dependencies": {
   },
   "devDependencies": {
@@ -9,13 +9,13 @@
     "coffee-script-brunch": ">= 1.0 < 1,8",
     "css-brunch": ">= 1.0 < 1,8",
     "auto-reload-brunch": ">= 1.0 < 1.8",
-    "ngmin-uglify-js-brunch": ">= 1.0 < 1.8",
+    "ng-annotate-uglify-js-brunch": ">= 1.0 < 1.8",
     "jade-angularjs-brunch": "~1.1.1"
   },
   "engines": {
-    "node": ">=0.8.0"
+    "node": ">=10.0.0"
   },
-  "description": "basic structure for the brunch build backage",
+  "description": "Demo and documentation site for wk-charts",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

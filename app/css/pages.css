@@ -1,0 +1,13 @@
+svg, .d3-chart {
+    width: 100%;
+    height: 50%;
+    font-size: 10px;
+}
+.d3-chart {
+    border: solid 1px lightgrey;
+}
+
+.code-block {
+    height:250px;
+    overflow: hidden;
+}
