@@ -1,2 +1,21 @@
-p this is the options file
+h4 Options
+table.table.table-condensed
+    thead
+        tr
+            th Scope Variable
+            th Value
+            th Remarks
 
+    tbody
+        tr
+            td options.areaStyle
+            td
+                select(ng-model="options.areaStyle")
+                    option
+                    option zero
+                    option silhouette
+                    option expand
+                    option wiggle
+            td
+                p Defines how the layers are stacked. For more details please see
+                    a(href="https://github.com/mbostock/d3/wiki/Stack-Layout#offset") d3 Documentation

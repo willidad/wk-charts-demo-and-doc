@@ -2,7 +2,7 @@ angular.module('app', ['ui.router','ui.bootstrap','app.templates', 'wk.chart', '
   .config(($stateProvider, $urlRouterProvider, menu) ->
 
     $urlRouterProvider
-      .otherwise "/"
+      .otherwise "/home"
 
     camelCase = (word) ->
       f = word.substr(0,1).toUpperCase()
@@ -49,12 +49,16 @@ angular.module('app').constant 'menu',
   [
     {url: 'home', name: 'Home', page:true},
     {url: 'linecharts', name: 'Line Charts', tabs:[{url:'horizontal',name:'Horizontal'}, {url:'vertical', name:'Vertical'}]},
-    {url: 'areacharts', name: 'Area Charts', tabs:[{url:'zero',name:'Zero-based Area'}, {url:'wiggle',name:'Wiggle Area'}, {url:'expand',name:'Expanded Area'}]}
-    {url: 'barcharts', name: 'Bar Charts'},
+    {url: 'areacharts', name: 'Area Charts', tabs:[{url:'horizontal',name:'Horizontal', options:true}, {url:'vertical',name:'Vertical'}]}
+    {url: 'barcharts', name: 'Bar Charts', tabs:[{url:'vert-stacked',name:'Vertically Stacked'}, {url:'vert-clustered', name:'Vertically Clustered'}, {url:'vert-simple', name:'Vertically Simple'}]},
     {url: 'gauges', name: 'Gauges'},
     {url: 'spidercharts', name: 'Spider Charts'},
     {url: 'scattercharts', name: 'Scatter Charts'}
     {url: 'maps', name: 'Maps'},
+    {url: 'dimensions', name: 'Dimensions', tabs:[{url:'x', name:'Horizontal'},{url:'y', name:'Vertical'},{url:'Color', name:'Color'},{url:'size', name:'Size'},{url:'shape', name:'Shape'}]},
+    {url: 'scales', name: 'Scales', tabs:[{url:'quantitative', name:'Quantitative'},{url:'Ordinal', name:'Ordinal'},{url:'threshold', name:'Threshold'},{url:'quantize', name:'Quantize'}, {url:'quantile', name:'Quantile'}]},
+    {url: 'axis', name: 'Axis Styling', tabs:[{url:'x', name:'X-Axis'},{url:'y', name:'y-Axis'}]},
+    {url: 'legend', name: 'Legends', tabs:[{url:'layer', name:'Layer Legends'},{url:'data', name:'Data Legends'}]},
     {url: 'combocharts', name: 'Combocharts'},
     {url: 'brushing', name: 'Brushing and Selection'},
     {url: 'more', name: 'more'}

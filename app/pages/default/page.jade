@@ -1,8 +1,6 @@
 tabset
-   tab(ng-repeat="tab in tabs", heading="{{tab.name}}", ui-sref="{{pageUrl}}.{{tab.url}}")
-.col-lg-6
-   div(ui-view)
-.col-lg-6
-   h4 Options
-   ng-include(src="optionsUrl")
+   tab(ng-repeat="tab in tabs", heading="{{tab.name}}", ui-sref="{{pageUrl}}.{{tab.url}}", active="tabIsActive($index)")
+
+div(ui-view)
+
 

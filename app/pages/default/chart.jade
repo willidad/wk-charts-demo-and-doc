@@ -1,6 +1,9 @@
-ng-include(src="chartUrl")
-tabset
-   tab(heading="HTML")
-      div(hljs language="html", source='chartCode', class="code-block")
-   tab(heading="Data")
-      div(hljs language="javascript", source='data', class="code-block")
+.col-lg-6
+   ng-include(src="chartUrl")
+   tabset
+      tab(heading="HTML")
+         div(hljs language="html", source='chartCode', class="code-block")
+      tab(heading="Data")
+         div(hljs language="json", source='data', class="data-block")
+.col-lg-6
+   ng-include(src="optionsUrl")

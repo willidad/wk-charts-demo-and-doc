@@ -1,0 +1,50 @@
+h4 Options
+table.table.table-condensed
+    thead
+        tr
+            th Scope Variable
+            th Value
+            th Remarks
+
+    tbody
+        tr
+            td options.scaleType
+            td
+                select(ng-model="options.scaleType")
+                    option
+                    option linear
+                    option log
+                    option sqrt
+                    option pow
+                    option identity
+            td
+                p Defines how the data is maped to the visual dimension. For more details please see
+                    a(href="https://github.com/mbostock/d3/wiki/API-Reference#d3scale-scales") d3 Documentation
+        tr(ng-show="options.scaleType=='pow'")
+            td options.exponent
+            td
+                input(type="number", ng-model="options.exponent", min="0", max="10", step="0.1")
+        tr
+            td options.domainRange
+            td
+                select(ng-model="options.domainRange")
+                    option
+                    option max
+                    option min
+                    option extent
+                    option total
+                    option totalExtent
+                    option use explicit values
+
+            td
+                p Calculation rule for the data range that gets mapped to the dimension. For more details please see
+                    a(href="https://github.com/mbostock/d3/wiki/API-Reference#d3scale-scales") d3 Documentation
+        tr(ng-show="options.domainRange == 'use explicit values'")
+            td options.domain
+            td
+                span min:
+                input(ng-model="options.domain[0]", type="number")
+                span max:
+                input(ng-model="options.domain[1]", type="number")
+            td
+                p defines the minimum and maximum value that gets mapped. If defined, takes preference over the calulation rule specified in "domainRange" attribute

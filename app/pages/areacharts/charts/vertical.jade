@@ -1,0 +1,6 @@
+chart(data="chartData", tooltips)
+   layout(horizontal-area)
+      y(type="ordinal", property="Altersgruppe", axis, show-label, label="Altersgruppe", grid, ticks="10")
+      x(property="maennlich,weiblich,diff", axis, tick-format=".2s", domain-range="extent", legend, grid)
+      color(type="category10")
+

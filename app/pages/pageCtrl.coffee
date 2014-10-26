@@ -5,3 +5,6 @@ angular.module('app').controller 'PageCtrl', ($log, $scope, $state, menu) ->
     $scope.pageUrl = page.menuItem.url
     $scope.tabs = page.menuItem.tabs
 
+  $scope.tabIsActive = (idx) ->
+    idx is $state.current.data.chartIdx
+

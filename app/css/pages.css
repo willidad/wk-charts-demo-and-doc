@@ -8,6 +8,10 @@ svg, .d3-chart {
 }
 
 .code-block {
-    height:250px;
-    overflow: hidden;
+    height:260px;
+}
+
+.data-block {
+    height:260px;
+    overflow:scroll;
 }
