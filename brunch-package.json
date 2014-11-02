@@ -1,0 +1,25 @@
+{
+  "name": "wk-chart-demo-and-doc-brunch-build",
+  "version": "0.0.1",
+  "dependencies": {},
+  "devDependencies": {
+    "auto-reload-brunch": ">= 1.0 < 1.8",
+    "coffee-script-brunch": ">= 1.0 < 1,8",
+    "css-brunch": ">= 1.0 < 1,8",
+    "jade": "~0.33",
+    "jade-angularjs-brunch": "~1.1.1",
+    "javascript-brunch": ">= 1.0 < 1,8",
+    "markdown-brunch": "^1.7.2",
+    "ng-annotate-uglify-js-brunch": ">= 1.0 < 1.8"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "description": "Demo and documentation site for wk-charts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Willi Klenk",
+  "license": "MIT"
+}

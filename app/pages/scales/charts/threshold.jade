@@ -1,0 +1,6 @@
+chart(data="chartData")
+   layout(simple-bar)
+      x(axis, type='ordinal', property="Product")
+      y(axis, property="Market Growth", format="%")
+      color(type="threshold", property="Market Growth", range="{{options.thresholdRange}}", domain="{{options.thresholdDomain}}")
+

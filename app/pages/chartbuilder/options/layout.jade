@@ -1,0 +1,28 @@
+button(ng-click="draw()") draw chart
+table.fixed.table
+   tr
+      td data source
+      td
+         ui-select(ng-model="options.chartFile")
+            ui-select-match(placeholder="data file...") {{$select.selected}}
+            ui-select-choices(repeat="d in dataList | filter:$select.search") {{d}}
+      td show tooltips
+         td
+            input(type="checkbox", ng-model="options.tooltip")
+      td deep watch
+         td
+            input(type="checkbox", ng-model="options.deepWatch")
+
+   tr
+      td layout
+      td
+         ui-select(ng-model="options.layout")
+            ui-select-match(placeholder="layout...") {{$select.selected.type}}
+            ui-select-choices(repeat="l in layoutList | filter:$select.search") {{l.type}}
+      td show markers
+      td
+         input(type="checkbox", ng-model="options.markers")
+
+dimension(ng-repeat="dim in dimensions", name="{{dim}}", data="record", definition="options[dim]", primary="{{options.layout.prime}}")
+
+#external-div

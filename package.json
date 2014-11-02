@@ -1,22 +1,27 @@
 {
-  "name": "wk-chart-demo",
+  "name": "wk-chart-demo-and-doc-gulp-build",
   "version": "0.0.1",
-  "dependencies": {
-  },
+  "main": "index.js",
   "devDependencies": {
-    "jade": "~0.33",
-    "javascript-brunch": ">= 1.0 < 1,8",
-    "coffee-script-brunch": ">= 1.0 < 1,8",
-    "css-brunch": ">= 1.0 < 1,8",
-    "auto-reload-brunch": ">= 1.0 < 1.8",
-    "ng-annotate-uglify-js-brunch": ">= 1.0 < 1.8",
-    "jade-angularjs-brunch": "~1.1.1"
+    "gulp": "~3.5.5",
+    "gulp-angular-templatecache": "^1.1.0",
+    "gulp-coffee": "~1.4.1",
+    "gulp-concat": "~2.1.7",
+    "gulp-connect": "^1.0.7",
+    "gulp-if": "~0.0.5",
+    "gulp-jade": "~0.4.2",
+    "gulp-jshint": "~1.5.0",
+    "gulp-less": "~1.2.3",
+    "gulp-util": "~2.2.14",
+    "karma": "^0.12.1",
+    "karma-chrome-launcher": "^0.1.2",
+    "karma-jasmine": "^0.1.5",
+    "main-bower-files": "^2.1.0"
   },
   "engines": {
     "node": ">=10.0.0"
   },
   "description": "Demo and documentation site for wk-charts",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

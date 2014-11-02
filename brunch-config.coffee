@@ -22,4 +22,7 @@ exports.config =
       pretty: yes # Adds pretty-indentation whitespaces to output (false by default)
     jade_angular:
       locals: {}
+    marked:
+      sanitize: true
+
   minify: true

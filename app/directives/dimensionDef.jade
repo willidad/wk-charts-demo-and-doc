@@ -1,0 +1,79 @@
+table.table.table-condensed.dimension
+    tr.dimension-header
+        td(colspan="6") {{name}} Dimension {{primary}}
+    tr
+        td(colspan="2")
+            ui-select(ng-hide="isPrimary", multiple,ng-model="def.properties")
+                ui-select-match(placeholder="Select Properties...") {{$item}}
+                ui-select-choices(repeat="prop in dataProperties | filter:$select.search") {{prop}}
+            ui-select(ng-show="isPrimary",ng-model="def.property")
+                ui-select-match(placeholder="Select Property...") {{$select.selected}}
+                ui-select-choices(repeat="prop in dataProperties | filter:$select.search") {{prop}}
+
+        td Type
+        td
+            ui-select(ng-model="def.type")
+                ui-select-match(placeholder="Scale Type...") {{$select.selected}}
+                ui-select-choices(repeat="st in scaleTypes | filter:$select.search") {{st}}
+        td(colspan="2", ng-hide="showFormat || showExponent")
+        td(ng-show="showFormat") Date-Format
+        td(ng-show="showFormat")
+            input(ng-model="def.dateFormat")
+        td(ng-show="showExponent") Exponent
+        td(ng-show="showExponent")
+            input(ng-model="def.exponent")
+
+    tr(ng-show="showRange")
+        td Range
+        td(colspan="5")
+            input(class="fill",ng-model="def.range")
+    tr
+        td Domain-Range
+        td
+            select(ng-model="def.domainRange",ng-options="dRange for dRange in domainRanges")
+        td Domain
+        td(colspan="3")
+            input(ng-model="def.domain")
+
+    tr(ng-show="hasAxis")
+        td Show Axis
+        td
+            select(ng-model="def.axis",ng-options="axis for axis in axisPositions")
+        td(ng-show="showAxis") ticks
+        td(ng-show="showAxis")
+            input(ng-model="def.ticks")
+        td(ng-show="showAxis") tick-format
+        td(ng-show="showAxis")
+            input(ng-model="def.tickFormat")
+    tr
+        td(ng-show="showAxis") show Grid
+        td(ng-show="showAxis")
+            input(type="checkbox",ng-model="def.grid")
+
+        td(ng-show="showAxis") show Label
+        td(ng-show="showAxis")
+            input(type="checkbox",ng-model="def.showLabel")
+    tr(ng-show="hasLegend")
+        td Legend
+        td(colspan="2")
+            input(type="radio",ng-model="def.legendType",value="category")
+            span Category
+            input(type="radio",ng-model="def.legendType",value="data")
+            span Data
+        td position
+        td
+            select(ng-model="def.legendPos")
+                option top-left
+                option bottom-left
+                option top-right
+                option bottom-right
+                option div
+        td
+            input(ng-model="def.legendDiv",ng-disabled="def.legendPos!='div'")
+    tr
+        td Label
+        td(colspan="2")
+            input(ng-model="def.label")
+        td Legend Title
+            td(colspan="2")
+                input(ng-model="def.legendTitle")

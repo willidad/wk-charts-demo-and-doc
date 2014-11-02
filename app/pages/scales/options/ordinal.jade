@@ -1,0 +1,49 @@
+p
+p.
+    In contrast to quantitative scales, which map a continous data domain like time or numbers, ordinal scales map a discrete set of values, like names or categories, to the output range.
+    Typical uses for ordinal scales is to map data categories to colors or names to ranges on an x or y axis.
+
+p.
+    This page demonstrates the use of ordinal scales with the charts x-axis as well as the category coloring of the bars
+
+
+h4 Options
+h5 x-axis
+p.
+    In this example the state codes are mapped to bands on the x-dimension through an ordinal scale. The ordering of the dimension is by the sequence of values in the data.
+p
+    button(ng-click="shuffleData()") Shuffle x-axis values
+h5 Color
+p.
+    Coloring categories is a typical use case for ordinal scales. There are several predefined ordinal scale types that define color sets. The 'plain' ordinal example demonstrates how to define an arbitrary
+    set of colors
+table.table.table-condensed
+    thead
+        tr
+            th Scope Variable
+            th Value
+            th Remarks
+
+    tbody
+        tr
+            td options.colorScaleType
+            td
+                select(ng-model="options.colorScale")
+                    option category10
+                    option category20
+                    option category20b
+                    option category20c
+                    option ordinal
+            td
+                p For details on the pre-defined color scales see  &nbsp;
+                    span
+                        a(href="https://github.com/mbostock/d3/wiki/Ordinal-Scales#categorical-colors") d3 Documentation on categorial colors
+
+        tr(ng-show="options.colorScale=='ordinal'")
+            td options.range
+            td
+                textarea(ng-model="options.colorRange")
+            td
+                p List of color values. Colors will be mapped in the sequence of the data values. If there are less range values than categories the colors are reused
+                p Please Note: x and y dimensions force the range to be the hight resp. width of the chart container. The values provided in the range attribute are ignored
+

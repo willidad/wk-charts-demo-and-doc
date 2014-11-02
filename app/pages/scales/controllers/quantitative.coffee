@@ -1,7 +1,6 @@
-angular.module('app').controller 'ChartCtrl', ($log, $scope, $templateCache, $state) ->
+angular.module('app').controller 'ScalesQuantitativeCtrl', ($log, $scope, $templateCache, $state) ->
 
   menu = $state.current.data.menuItem
-
   $scope.options = {
     areaStyle:'zero'
     scaleType:''
@@ -11,17 +10,13 @@ angular.module('app').controller 'ChartCtrl', ($log, $scope, $templateCache, $st
     dateFormat:'%Y%m%d'
     colorScale:'category20'
     colorRange:'#1f77b4,#ff7f0e,blue,yellow,orange,brown, red'
-    thresholdRange:'red, yellow,lightblue,green'
-    thresholdDomain:'-1,1,4'
   }
   $scope.chartUrl = "app/pages/#{menu.url}/charts#{$state.current.url}.jade"
-  options = $state.current.data.tab.options
-  if options
-    $scope.optionsUrl = "app/pages/#{menu.url}/options#{$state.current.url}.#{if options is 'md' then 'md' else 'jade'}"
+  $scope.optionsUrl = "app/pages/#{menu.url}/options#{$state.current.url}.jade"
 
 
   d3.csv("/app/pages/#{menu.url}/data#{$state.current.url}.csv", (rows) ->
-    $scope.chartData = rows
+    $scope.chartData = rows.map((d) -> {date:d.date,'New York':(d['New York']-32)*5/9, 'San Francisco':(d['San Francisco']-32)*5/9, Austin:(d['Austin']-32)*5/9 })
     $scope.data = JSON.stringify(rows, null, 3)
     $scope.$apply()
   )
@@ -29,6 +24,3 @@ angular.module('app').controller 'ChartCtrl', ($log, $scope, $templateCache, $st
   template = $templateCache.get($scope.chartUrl).substr(1)
 
   $scope.chartCode = template
-
-
-

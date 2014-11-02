@@ -4,7 +4,8 @@ angular.module('app').controller 'PageCtrl', ($log, $scope, $state, menu) ->
   if page
     $scope.pageUrl = page.menuItem.url
     $scope.tabs = page.menuItem.tabs
+    $scope.tabIsActive = []
+    $scope.tabIsActive[$state.current.data.chartIdx] = true
 
-  $scope.tabIsActive = (idx) ->
-    idx is $state.current.data.chartIdx
+  $scope.tabActive = []
 

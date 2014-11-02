@@ -1,17 +1,105 @@
-svg, .d3-chart {
+.d3-chart {
     width: 100%;
-    height: 50%;
+    height: 100%;
     font-size: 10px;
 }
+svg {
+    height:100%;
+    width:100%
+}
+
+.chartArea {
+    height:50%;
+}
+
+.col-lg-6 {
+    height: calc(100vh - 120px);
+}
+
 .d3-chart {
     border: solid 1px lightgrey;
 }
 
 .code-block {
-    height:260px;
+    height:calc(50vh - 131px);
 }
 
 .data-block {
-    height:260px;
+    height:calc(50vh - 131px);
     overflow:scroll;
+}
+
+input.short {
+    width:110px;
+}
+input.long {
+    width:130px;
+}
+input.two-col {
+    width:355px;
+}
+input.three-col {
+    width:605px;
+}
+
+select {
+    height:26px;
+    width:110px;
+}
+.dimTitle {
+    background-color:lightgrey;
+    text-align: center;
+}
+table.fixed {
+    table-layout: fixed;
+    width:750px;
+}
+
+table.fixed tr td {
+    height:30px;
+    padding:2px;
+    vertical-align: middle;
+}
+table.fixed td:nth-of-type(1) {
+    width:120px;
+}
+table.fixed td:nth-of-type(2) {
+    width:120px;
+}
+table.fixed td:nth-of-type(3) {
+    width:100px;
+}
+table.fixed td:nth-of-type(4) {
+    width:120px;
+}
+table.fixed td:nth-of-type(5) {
+    width:80px;
+}
+table.fixed td:nth-of-type(6) {
+    width:120px;
+}
+
+table.dimension {
+    table-layout:  fixed;
+    width: 100%;
+    border: 2px solid darkgrey;
+}
+table.dimension tr td {
+    height:30px;
+    padding:2px;
+    vertical-align: middle;
+}
+table.dimension  tr.dimension-header {
+    background-color:lightgrey;
+    text-align: center;
+}
+table.dimension td input {
+    width:100%;
+}
+table.dimension td select {
+    width:100%;
+}
+table.dimension td input[type=radio] {
+    display: inline;
+    width:30px;
 }

@@ -1,3 +1,16 @@
+p
+p.
+    Quantitive scales are used to map "naturally ordered" data types (numbers, dates, ...) into a chart dimension.
+    The scale type determines the mapping function (linear, log, ...), the domain attribute determines the data rage that gets mapped.
+    The range atttributes determines the range that gets mapped to. For a x or y dimension this is typically the x or y pixel offset of the drawing container.
+    The line chart type used in the examples ignores the range attrobute for x and y dimension and always maps to the container pixel width and height respectively.
+
+p.
+    This page demonstrates the use of linear, logarithmic, exponential/square root and identity scale types with the y-axis of the chart.
+    Other quantitative scle types are time, threshold, quantize and quantile scales. T
+    Their use and characteristics will be demonstrated on other tabs.
+
+
 h4 Options
 table.table.table-condensed
     thead
@@ -13,17 +26,18 @@ table.table.table-condensed
                 select(ng-model="options.scaleType")
                     option
                     option linear
-                    option log
                     option sqrt
                     option pow
                     option identity
             td
-                p Defines how the data is maped to the visual dimension. For more details please see
-                    a(href="https://github.com/mbostock/d3/wiki/API-Reference#d3scale-scales") d3 Documentation
+                p Defines how the data is mapped to the visual dimension. For detailed discussions on the mapping functions used please see the&nbsp;
+                    a(href="https://github.com/mbostock/d3/wiki/API-Reference#d3scale-scales") d3 Documentation on scales
+                p Default : linear
         tr(ng-show="options.scaleType=='pow'")
             td options.exponent
             td
                 input(type="number", ng-model="options.exponent", min="0", max="10", step="0.1")
+            td the exponent to the power function. Default: 1 (identity function)
         tr
             td options.domainRange
             td
@@ -39,6 +53,7 @@ table.table.table-condensed
             td
                 p Calculation rule for the data range that gets mapped to the dimension. For more details please see
                     a(href="https://github.com/mbostock/d3/wiki/API-Reference#d3scale-scales") d3 Documentation
+                p Default: depends on chart type - see chart type documentation
         tr(ng-show="options.domainRange == 'use explicit values'")
             td options.domain
             td
@@ -47,4 +62,7 @@ table.table.table-condensed
                 span max:
                 input(ng-model="options.domain[1]", type="number")
             td
-                p defines the minimum and maximum value that gets mapped. If defined, takes preference over the calulation rule specified in "domainRange" attribute
+                p Defines the minimum and maximum value that gets mapped. If defined, takes preference over the calulation rule specified in "domainRange" attribute.
+                p.
+                    Values can be defined as a javascript array like [min,max]
+                    or, for conveniance, as a comma-seperated list like  min,max.

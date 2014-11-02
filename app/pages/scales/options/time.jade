@@ -1,0 +1,28 @@
+p
+p.
+    A time scale is a special case of quantitative scale representing a time dimension. Unless the time data is represented as a Javascript Date object it requires the definition of an input format.
+p.
+    This page demonstrates the use of the time scale type with the x-axis of the chart.
+
+
+h4 Options
+table.table.table-condensed
+    thead
+        tr
+            th Scope Variable
+            th Value
+            th Remarks
+
+    tbody
+        tr
+            td options.dateFormat
+            td
+                input(ng-model="options.dateFormat")
+            td
+                p For details on defining the date format please see &nbsp;
+                    span
+                        a(href="https://github.com/mbostock/d3/wiki/Time-Scales") d3 Documentation on time scale
+                    span &nbsp; and &nbsp;
+                        a(href="https://github.com/mbostock/d3/wiki/Time-Formatting") d3 Documentation on formatting date/time values
+
+

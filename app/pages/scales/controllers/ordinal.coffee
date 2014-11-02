@@ -1,7 +1,6 @@
-angular.module('app').controller 'ChartCtrl', ($log, $scope, $templateCache, $state) ->
+angular.module('app').controller 'ScalesOrdinalCtrl', ($log, $scope, $templateCache, $state, $filter) ->
 
   menu = $state.current.data.menuItem
-
   $scope.options = {
     areaStyle:'zero'
     scaleType:''
@@ -11,13 +10,9 @@ angular.module('app').controller 'ChartCtrl', ($log, $scope, $templateCache, $st
     dateFormat:'%Y%m%d'
     colorScale:'category20'
     colorRange:'#1f77b4,#ff7f0e,blue,yellow,orange,brown, red'
-    thresholdRange:'red, yellow,lightblue,green'
-    thresholdDomain:'-1,1,4'
   }
   $scope.chartUrl = "app/pages/#{menu.url}/charts#{$state.current.url}.jade"
-  options = $state.current.data.tab.options
-  if options
-    $scope.optionsUrl = "app/pages/#{menu.url}/options#{$state.current.url}.#{if options is 'md' then 'md' else 'jade'}"
+  $scope.optionsUrl = "app/pages/#{menu.url}/options#{$state.current.url}.jade"
 
 
   d3.csv("/app/pages/#{menu.url}/data#{$state.current.url}.csv", (rows) ->
@@ -30,5 +25,6 @@ angular.module('app').controller 'ChartCtrl', ($log, $scope, $templateCache, $st
 
   $scope.chartCode = template
 
-
-
+  $scope.shuffleData = () ->
+    $scope.chartData = d3.shuffle($scope.chartData)
+    $scope.data = JSON.stringify($scope.chartData, null, 3)
