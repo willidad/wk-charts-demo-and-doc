@@ -1,20 +1,23 @@
-var gulp      = require('gulp');
-var gutil     = require('gulp-util');
-var connect   = require('gulp-connect');
-var gulpif    = require('gulp-if');
-var coffee    = require('gulp-coffee');
-var concat    = require('gulp-concat');
-var tplCache  = require('gulp-angular-templatecache');
-var jade      = require('gulp-jade');
-var less      = require('gulp-less');
+var gulp        = require('gulp');
+var gutil       = require('gulp-util');
+var connect     = require('gulp-connect');
+var gulpif      = require('gulp-if');
+var coffee      = require('gulp-coffee');
+var sourcemaps  = require('gulp-sourcemaps');
+var concat      = require('gulp-concat');
+var tplCache    = require('gulp-angular-templatecache');
+var jade        = require('gulp-jade');
+var less        = require('gulp-less');
 var mainBowerFiles = require('main-bower-files');
 
 gulp.task('appJS', function() {
   // concatenate compiled .coffee files and js files
   // into build/app.js
   gulp.src(['!./app/**/*_test.js','./app/**/*.js','!./app/**/*_test.coffee','./app/**/*.coffee'])
+    .pipe(sourcemaps.init())
     .pipe(gulpif(/[.]coffee$/, coffee({bare: true}).on('error', gutil.log)))
     .pipe(concat('app.js'))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('./build'))
 });
 
@@ -70,7 +73,9 @@ gulp.task('appCSS', function() {
 
 gulp.task('libJS', function() {
   gulp.src(mainBowerFiles({filter:/\.js$/}))
+      .pipe(sourcemaps.init())
       .pipe(concat('vendor.js'))
+      .pipe(sourcemaps.write())
       .pipe(gulp.dest('./build'))
 });
 gulp.task('libCSS',
@@ -108,10 +113,12 @@ gulp.task('watch',function() {
   gulp.watch(['./app/index.jade', './app/index.html'], ['index']);
 });
 
-gulp.task('connect', connect.server({
-  root: ['build'],
-  port: 3333,
-  livereload: true
-}));
+gulp.task('connect', function() {
+    connect.server({
+        root: 'build',
+        port: 3333,
+        livereload: false
+    })
+});
 
 gulp.task('default', ['connect', 'appJS', 'testJS', 'templates', 'appCSS', 'index', 'libJS', 'libCSS', 'watch']);
