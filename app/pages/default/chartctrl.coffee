@@ -26,7 +26,7 @@ angular.module('app').controller 'ChartCtrl', ($log, $scope, $templateCache, $st
     $scope.$apply()
   )
 
-  template = $templateCache.get($scope.chartUrl).substr(1)
+  template = $templateCache.get($scope.chartUrl)?.substr(1)
 
   $scope.chartCode = template
 

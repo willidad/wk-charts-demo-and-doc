@@ -7,4 +7,4 @@ angular.module 'app'
     $scope.menuItems = menu
 
     $scope.isActive = (idx) ->
-      if idx is $state.current.data.pageIdx then 'active' else ''
+      if idx is $state.current.data?.pageIdx then 'active' else ''
