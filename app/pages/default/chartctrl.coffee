@@ -14,10 +14,11 @@ angular.module('app').controller 'ChartCtrl', ($log, $scope, $templateCache, $st
     thresholdRange:'red, yellow,lightblue,green'
     thresholdDomain:'-1,1,4'
   }
-  $scope.chartUrl = "app/pages/#{menu.url}/charts#{$state.current.url}.jade"
+  $scope.chartUrl = "pages/#{menu.url}/charts#{$state.current.url}.html"
   options = $state.current.data.tab.options
   if options
-    $scope.optionsUrl = "app/pages/#{menu.url}/options#{$state.current.url}.#{if options is 'md' then 'md' else 'jade'}"
+    $scope.optionsUrl = "pages/#{menu.url}/options#{$state.current.url}.html"
+  $log.log $scope.chartUrl, $scope.optionsUrl
 
 
   d3.csv("/app/pages/#{menu.url}/data#{$state.current.url}.csv", (rows) ->

@@ -1,8 +1,8 @@
 angular.module('app').controller 'ChartbuilderLayoutCtrl', ($log, $scope, $state, $templateCache, $compile, $rootScope) ->
 
   menu = $state.current.data.menuItem
-  $scope.chartUrl = "app/pages/#{menu.url}/charts#{$state.current.url}.jade"
-  $scope.optionsUrl = "app/pages/#{menu.url}/options#{$state.current.url}.jade"
+  $scope.chartUrl = "htmlpages/#{menu.url}/charts#{$state.current.url}', dim:['x','y','color','size','shape']}"
+  $scope.optionsUrl = "htmlpages/#{menu.url}/options#{$state.current.url}.html"
   
 
   $scope.dataList = ['temperatures.csv', 'populationByStateAndAge.csv', 'altersstruktur.csv', 'populationAge.csv']
@@ -36,7 +36,7 @@ angular.module('app').controller 'ChartbuilderLayoutCtrl', ($log, $scope, $state
   $scope.$watch 'options.chartFile', (name) ->
     _.assign($scope.options, optionsDefaut)
     if name
-      d3.csv("/app/pages/#{menu.url}/data/#{name}", (rows) ->
+      d3.csv("/htmlpages/#{menu.url}/data/#{name}", (rows) ->
         if rows
           dataRows = rows
           $scope.data = JSON.stringify(rows, null, 3)
@@ -54,7 +54,7 @@ angular.module('app').controller 'ChartbuilderLayoutCtrl', ($log, $scope, $state
   $scope.$watch 'options.layout', (descriptor) ->
     _.assign($scope.options, optionsDefaut)
     if descriptor
-      #$scope.options.templateFile =  "app/pages/#{menu.url}/templates/#{name}.jade"
+      #$scope.options.templateFile =  "htmlpages/#{menu.url}/templates/#{name}.html"
       #template = $templateCache.get($scope.options.templateFile).substr(1)
 
       #$scope.chartCode = template
