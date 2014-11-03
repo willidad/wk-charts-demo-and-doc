@@ -47,6 +47,7 @@ angular.module('app', ['ui.router','ui.bootstrap','templates', 'wk.chart', 'hljs
                 controller: ctrl
                 data: {pageIdx:i, chartIdx:j,  menuItem:menu[i], tab:menu[i].tabs[j]}
               })
+          null
 )
 
 angular.module('app').constant 'menu',

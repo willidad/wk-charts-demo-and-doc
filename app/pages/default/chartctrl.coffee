@@ -21,7 +21,7 @@ angular.module('app').controller 'ChartCtrl', ($log, $scope, $templateCache, $st
   $log.log $scope.chartUrl, $scope.optionsUrl
 
 
-  d3.csv("/app/pages/#{menu.url}/data#{$state.current.url}.csv", (rows) ->
+  d3.csv("data/pages/#{menu.url}/data#{$state.current.url}.csv", (rows) ->
     $scope.chartData = rows
     $scope.data = JSON.stringify(rows, null, 3)
     $scope.$apply()
