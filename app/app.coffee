@@ -1,4 +1,4 @@
-angular.module('app', ['ui.router','ui.bootstrap','app.templates', 'wk.chart', 'hljs', 'ui.select'])
+angular.module('app', ['ui.router','ui.bootstrap','templates', 'wk.chart', 'hljs', 'ui.select'])
   .config(($stateProvider, $urlRouterProvider, menu) ->
 
     $urlRouterProvider
@@ -15,16 +15,16 @@ angular.module('app', ['ui.router','ui.bootstrap','app.templates', 'wk.chart', '
       view =
         views:
           'top':
-            templateUrl: 'app/topnav/top.jade'
+            templateUrl: 'topnav/top.html'
             controller: 'TopCtrl'
           'left':
-            templateUrl: 'app/left/left.jade'
+            templateUrl: 'left/left.html'
             controller: 'LeftCtrl'
           'content':
-            templateUrl: "app/pages/#{pPath}/page.jade"
+            templateUrl: "pages/#{pPath}/page.html"
             controller: "PageCtrl"
           'footer':
-            templateUrl: 'app/footer/footer.jade'
+            templateUrl: 'footer/footer.html'
             controller: 'FooterCtrl'
         url: "/#{menu[i].url}"
       $stateProvider.state("#{pName}", view)
@@ -36,9 +36,9 @@ angular.module('app', ['ui.router','ui.bootstrap','app.templates', 'wk.chart', '
           else
             ctrl = 'ChartCtrl'
           if menu[i].tabs[j].page
-            page = "app/pages/#{pName}/chart.jade"
+            page = "pages/#{pName}/chart.html"
           else
-            page = "app/pages/default/chart.jade"
+            page = "pages/default/chart.html"
           $stateProvider
             .state("#{pName}.#{tab}",
               {
@@ -47,6 +47,7 @@ angular.module('app', ['ui.router','ui.bootstrap','app.templates', 'wk.chart', '
                 controller: ctrl
                 data: {pageIdx:i, chartIdx:j,  menuItem:menu[i], tab:menu[i].tabs[j]}
               })
+          null
 )
 
 angular.module('app').constant 'menu',

@@ -2,7 +2,7 @@ angular.module('app').directive 'dimension', ($log) ->
 
   return {
     restrict:'E'
-    templateUrl:'app/directives/dimensionDef.jade'
+    templateUrl:'htmldirectives/dimensionDef.html'
     scope:
       name: '@'
       data: '='
