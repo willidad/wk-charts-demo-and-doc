@@ -13,6 +13,7 @@ angular.module('app').controller 'ChartCtrl', ($log, $scope, $templateCache, $st
     colorRange:'#1f77b4,#ff7f0e,blue,yellow,orange,brown, red'
     thresholdRange:'red, yellow,lightblue,green'
     thresholdDomain:'-1,1,4'
+    markers:false
   }
   $scope.chartUrl = "pages/#{menu.url}/charts#{$state.current.url}.html"
   options = $state.current.data.tab.options

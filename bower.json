@@ -20,24 +20,36 @@
     "angular-bootstrap": "~0.11.2",
     "angular-ui-router": "~0.2.11",
     "angular-highlightjs": "~0.3.1",
+    "angular-sanitize": "~3.1.x",
     "angular-ui-select": "*",
     "bootstrap": "~3.x.x",
+    "showdown": "~0.3.1",
     "d3": "~3.4.11",
     "lodash": "~2.4.1",
-    "wk-charts": "*"
+    "wk-charts": "*",
+    "github-markdown-css": "~1.2.0",
+    "marked": "~0.3.2"
   },
   "overrides": {
-    "jquery":{
-      "ignore":true
+    "jquery": {
+      "ignore": true
     },
     "bootstrap": {
-      "main":"dist/css/bootstrap.css"
+      "main": "dist/css/bootstrap.css"
     },
     "highlightjs": {
       "main": [
-          "highlight.pack.js",
-          "styles/github.css"
-        ]
+        "highlight.pack.js",
+        "styles/github.css"
+      ]
+    },
+    "showdown": {
+      "main": [
+        "src/showdown.js"
+      ]
+    },
+    "marked": {
+      "main" : ["lib/marked.js"]
     }
 
   },

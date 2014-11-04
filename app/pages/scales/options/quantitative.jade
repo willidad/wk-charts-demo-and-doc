@@ -1,17 +1,12 @@
-p
-p.
-    Quantitive scales are used to map "naturally ordered" data types (numbers, dates, ...) into a chart dimension.
-    The scale type determines the mapping function (linear, log, ...), the domain attribute determines the data rage that gets mapped.
-    The range atttributes determines the range that gets mapped to. For a x or y dimension this is typically the x or y pixel offset of the drawing container.
-    The line chart type used in the examples ignores the range attrobute for x and y dimension and always maps to the container pixel width and height respectively.
-
-p.
+md.
     This page demonstrates the use of linear, logarithmic, exponential/square root and identity scale types with the y-axis of the chart.
-    Other quantitative scle types are time, threshold, quantize and quantile scales. T
+    Other quantitative scle types are time, threshold, quantize and quantile scales.
     Their use and characteristics will be demonstrated on other tabs.
 
+    ----
 
-h4 Options
+    #### Options
+
 table.table.table-condensed
     thead
         tr
@@ -30,9 +25,13 @@ table.table.table-condensed
                     option pow
                     option identity
             td
-                p Defines how the data is mapped to the visual dimension. For detailed discussions on the mapping functions used please see the&nbsp;
-                    a(href="https://github.com/mbostock/d3/wiki/API-Reference#d3scale-scales") d3 Documentation on scales
-                p Default : linear
+                md.
+                    Defines how the data is mapped to the visual dimension. For detailed discussions on the mapping functions used please see the
+                    [d3 Documentation on scales](https://github.com/mbostock/d3/wiki/API-Reference#d3scale-scales)
+
+                    Default : linear
+
+
         tr(ng-show="options.scaleType=='pow'")
             td options.exponent
             td
@@ -47,14 +46,25 @@ table.table.table-condensed
                     option min
                     option extent
                     option total
-                    option totalExtent
-                    option use explicit values
+                    option use domain attribute values
 
             td
-                p Calculation rule for the data range that gets mapped to the dimension. For more details please see
-                    a(href="https://github.com/mbostock/d3/wiki/API-Reference#d3scale-scales") d3 Documentation
-                p Default: depends on chart type - see chart type documentation
-        tr(ng-show="options.domainRange == 'use explicit values'")
+                md.
+                    Calculation rule for the data range used to map values to the dimension.
+
+                    options are:
+
+                    * max :     `[0 .. Maximun Value]`
+                    * min:      `[0 .. Minimum Value]`
+                    * extent:   `[Minimum value .. Maximum Value]`
+                    * total:    `[0 .. Maximum of data point totals]`
+
+                    If an explicit domain value is specified the calulation rule is ignored
+
+                    Default: depends on the chart type.
+
+
+        tr(ng-show="options.domainRange == 'use domain attribute values'")
             td options.domain
             td
                 span min:
@@ -62,7 +72,8 @@ table.table.table-condensed
                 span max:
                 input(ng-model="options.domain[1]", type="number")
             td
-                p Defines the minimum and maximum value that gets mapped. If defined, takes preference over the calulation rule specified in "domainRange" attribute.
-                p.
-                    Values can be defined as a javascript array like [min,max]
-                    or, for conveniance, as a comma-seperated list like  min,max.
+                md.
+                    Defines the minimum and maximum value that gets mapped. If defined, takes preference over the calulation rule specified in "domainRange" attribute.
+
+                    Values can be defined as a javascript array like `[minimum value, max maximum value]`
+                    or, for conveniance, as a comma-seperated list like  `min,max`.

@@ -15,7 +15,7 @@ angular.module('app').controller 'ScalesOrdinalCtrl', ($log, $scope, $templateCa
   $scope.optionsUrl = "pages/#{menu.url}/options#{$state.current.url}.html"
 
 
-  d3.csv("/app/pages/#{menu.url}/data#{$state.current.url}.csv", (rows) ->
+  d3.csv("data/pages/#{menu.url}/data#{$state.current.url}.csv", (rows) ->
     $scope.chartData = rows
     $scope.data = JSON.stringify(rows, null, 3)
     $scope.$apply()

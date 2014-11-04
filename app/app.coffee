@@ -1,4 +1,4 @@
-angular.module('app', ['ui.router','ui.bootstrap','templates', 'wk.chart', 'hljs', 'ui.select'])
+angular.module('app', ['ngSanitize','ui.router','ui.bootstrap','templates', 'wk.chart', 'hljs', 'ui.select','wk.markdown'])
   .config(($stateProvider, $urlRouterProvider, menu) ->
 
     $urlRouterProvider
@@ -53,15 +53,15 @@ angular.module('app', ['ui.router','ui.bootstrap','templates', 'wk.chart', 'hljs
 angular.module('app').constant 'menu',
   [
     {url: 'home', name: 'Home', page:true},
-    {url: 'linecharts', name: 'Line Charts', tabs:[{url:'horizontal',name:'Horizontal', options:'md'}, {url:'vertical', name:'Vertical'}]},
+    {url: 'linecharts', name: 'Line Charts', tabs:[{url:'horizontal',name:'Horizontal', options:true}, {url:'vertical', name:'Vertical'}]},
     {url: 'areacharts', name: 'Area Charts', tabs:[{url:'horizontal',name:'Horizontal', options:true}, {url:'vertical',name:'Vertical'}]}
-    {url: 'barcharts', name: 'Bar Charts', tabs:[{url:'vert-stacked',name:'Vertically Stacked'}, {url:'vert-clustered', name:'Vertically Clustered'}, {url:'vert-simple', name:'Vertically Simple'}]},
+    {url: 'barcharts', name: 'Bar Charts', tabs:[{url:'vert-stacked',name:'Vertically Stacked', options:true}, {url:'vert-clustered', name:'Vertically Clustered', options:true}, {url:'vert-simple', name:'Vertically Simple', options:true}]},
     {url: 'gauges', name: 'Gauges'},
     {url: 'spidercharts', name: 'Spider Charts'},
     {url: 'scattercharts', name: 'Scatter Charts'}
     {url: 'maps', name: 'Maps'},
     {url: 'dimensions', name: 'Dimensions', tabs:[{url:'x', name:'Horizontal'},{url:'y', name:'Vertical'},{url:'Color', name:'Color'},{url:'size', name:'Size'},{url:'shape', name:'Shape'}]},
-    {url: 'scales', name: 'Scales', tabs:[{url:'quantitative', name:'Quantitative', ctrl:true}, {url:'time', name:'Time'}, {url:'ordinal', name:'Ordinal', ctrl:true},{url:'threshold', name:'Threshold'},{url:'quantize', name:'Quantize'}, {url:'quantile', name:'Quantile'}]},
+    {url: 'scales', name: 'Scales', tabs:[{url:'quantitative', name:'Quantitative', ctrl:true}, {url:'time', name:'Time', options:true}, {url:'ordinal', name:'Ordinal', ctrl:true},{url:'threshold', name:'Threshold', options:true},{url:'quantize', name:'Quantize'}, {url:'quantile', name:'Quantile'}]},
     {url: 'axis', name: 'Axis Styling', tabs:[{url:'x', name:'X-Axis'},{url:'y', name:'y-Axis'}]},
     {url: 'legend', name: 'Legends', tabs:[{url:'layer', name:'Layer Legends'},{url:'data', name:'Data Legends'}]},
     {url: 'combocharts', name: 'Combocharts'},

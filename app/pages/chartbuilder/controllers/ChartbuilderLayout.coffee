@@ -1,8 +1,8 @@
 angular.module('app').controller 'ChartbuilderLayoutCtrl', ($log, $scope, $state, $templateCache, $compile, $rootScope) ->
 
   menu = $state.current.data.menuItem
-  $scope.chartUrl = "htmlpages/#{menu.url}/charts#{$state.current.url}', dim:['x','y','color','size','shape']}"
-  $scope.optionsUrl = "htmlpages/#{menu.url}/options#{$state.current.url}.html"
+  $scope.chartUrl = "pages/#{menu.url}/charts#{$state.current.url}', dim:['x','y','color','size','shape']}"
+  $scope.optionsUrl = "pages/#{menu.url}/options#{$state.current.url}.html"
   
 
   $scope.dataList = ['temperatures.csv', 'populationByStateAndAge.csv', 'altersstruktur.csv', 'populationAge.csv']
@@ -36,7 +36,7 @@ angular.module('app').controller 'ChartbuilderLayoutCtrl', ($log, $scope, $state
   $scope.$watch 'options.chartFile', (name) ->
     _.assign($scope.options, optionsDefaut)
     if name
-      d3.csv("/htmlpages/#{menu.url}/data/#{name}", (rows) ->
+      d3.csv("data/pages/#{menu.url}/data/#{name}", (rows) ->
         if rows
           dataRows = rows
           $scope.data = JSON.stringify(rows, null, 3)

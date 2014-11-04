@@ -4,7 +4,7 @@ chart(data="chartData", tooltips)
       y( type="{{options.scaleType}}",
          exponent="{{options.exponent}}",
          domain-range="{{options.domainRange}}",
-         domain="{{options.domainRange=='use explicit values'?options.domain:undefined}}",
+         domain="{{options.domainRange=='use domain attribute values'?options.domain:undefined}}",
          axis, show-label, label="Temperature (Celsius)", grid, legend="bottom-right", legend-title="City")
       color(type="category10", legend-title="City" )
 

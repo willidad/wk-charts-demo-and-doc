@@ -15,7 +15,7 @@ angular.module('app').controller 'ScalesQuantitativeCtrl', ($log, $scope, $templ
   $scope.optionsUrl = "pages/#{menu.url}/options#{$state.current.url}.html"
 
 
-  d3.csv("/app/pages/#{menu.url}/data#{$state.current.url}.csv", (rows) ->
+  d3.csv("data/pages/#{menu.url}/data#{$state.current.url}.csv", (rows) ->
     $scope.chartData = rows.map((d) -> {date:d.date,'New York':(d['New York']-32)*5/9, 'San Francisco':(d['San Francisco']-32)*5/9, Austin:(d['Austin']-32)*5/9 })
     $scope.data = JSON.stringify(rows, null, 3)
     $scope.$apply()
