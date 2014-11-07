@@ -53,19 +53,41 @@ angular.module('app', ['ngSanitize','ui.router','ui.bootstrap','templates', 'wk.
 angular.module('app').constant 'menu',
   [
     {url: 'home', name: 'Home', page:true},
-    {url: 'linecharts', name: 'Line Charts', tabs:[{url:'horizontal',name:'Horizontal', options:true}, {url:'vertical', name:'Vertical'}]},
-    {url: 'areacharts', name: 'Area Charts', tabs:[{url:'horizontal',name:'Horizontal', options:true}, {url:'vertical',name:'Vertical'}]}
-    {url: 'barcharts', name: 'Bar Charts', tabs:[{url:'vert-stacked',name:'Vertically Stacked', options:true}, {url:'vert-clustered', name:'Vertically Clustered', options:true}, {url:'vert-simple', name:'Vertically Simple', options:true}]},
+    {url: 'linecharts', name: 'Line Charts', tabs:[
+      {url:'horizontal',name:'Horizontal', options:true},
+      {url:'vertical', name:'Vertical', options:true}
+    ]},
+    {url: 'areacharts', name: 'Area Charts', tabs:[
+      {url:'horizontal',name:'Horizontal'},
+      {url:'vertical',name:'Vertical'},
+      {url:'stacked-horizontal',name:'Stacked Horizontal', options:true},
+      {url:'stacked-vertical',name:'Stacked Vertical'}]}
+    {url: 'barcharts', name: 'Bar Charts', tabs:[
+      {url:'hor-simple', name:'Horizontally Simple', options:true},
+      {url:'hor-stacked',name:'Horizontally Stacked', options:true},
+      {url:'hor-clustered', name:'Horizontally Clustered', options:true},
+      {url:'vert-simple', name:'Vertically Simple', options:true},
+      {url:'vert-stacked',name:'Vertically Stacked', options:true},
+      {url:'vert-clustered', name:'Vertically Clustered', options:true}
+    ]},
     {url: 'gauges', name: 'Gauges'},
     {url: 'spidercharts', name: 'Spider Charts'},
-    {url: 'scattercharts', name: 'Scatter Charts'}
+    {url: 'scattercharts', name: 'Scatter Charts', tabs: [
+      {url:'bubble', name:'Bubble Chart', options:true, ctrl:true},
+    ]}
     {url: 'maps', name: 'Maps'},
     {url: 'dimensions', name: 'Dimensions', tabs:[{url:'x', name:'Horizontal'},{url:'y', name:'Vertical'},{url:'Color', name:'Color'},{url:'size', name:'Size'},{url:'shape', name:'Shape'}]},
     {url: 'scales', name: 'Scales', tabs:[{url:'quantitative', name:'Quantitative', ctrl:true}, {url:'time', name:'Time', options:true}, {url:'ordinal', name:'Ordinal', ctrl:true},{url:'threshold', name:'Threshold', options:true},{url:'quantize', name:'Quantize'}, {url:'quantile', name:'Quantile'}]},
     {url: 'axis', name: 'Axis Styling', tabs:[{url:'x', name:'X-Axis'},{url:'y', name:'y-Axis'}]},
     {url: 'legend', name: 'Legends', tabs:[{url:'layer', name:'Layer Legends'},{url:'data', name:'Data Legends'}]},
     {url: 'combocharts', name: 'Combocharts'},
-    {url: 'brushing', name: 'Brushing and Selection'},
+    {url: 'brushing', name: 'Brushing and Selection', tabs:[
+      {url:'axisbrush', name:'Axis Brushing', options:true},
+      {url:'areabrush', name:'Area Brushing', ctrl: true},
+      {url:'selection', name:'Individual Object Selection', options:true},
+      {url:'applybrush', name:'Applying Brush to Chart', options:true},
+      {url:'multi', name:'Brushing Multiple Charts', ctrl:true}
+    ]},
     {url: 'more', name: 'more'}
     {url: 'chartbuilder', name: 'Chart Builder', tabs:[{url:'layout' , name:'Layout Type and Data', ctrl:true, page:true}]}
   ]

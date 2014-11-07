@@ -5,16 +5,22 @@ angular.module('app').controller 'ChartbuilderLayoutCtrl', ($log, $scope, $state
   $scope.optionsUrl = "pages/#{menu.url}/options#{$state.current.url}.html"
   
 
-  $scope.dataList = ['temperatures.csv', 'populationByStateAndAge.csv', 'altersstruktur.csv', 'populationAge.csv']
-    
+  $scope.dataList = ['temperatures.csv', 'populationByStateAndAge.csv', 'altersstruktur.csv', 'populationAge.csv','cars-co2-emissions-trends-by-manufacturer.csv', 'browsershare.csv', 'browsershareTransposed.csv','DE Public Spent.csv']
+
   $scope.layoutList =
     [
       {type: 'line', dim:['x','y','color'], prime:'x'},
+      {type: 'area', dim:['x','y','color'], prime:'x'},
       {type: 'stacked-bar', dim:['x','y','color'], prime:'x'},
       {type: 'stacked-area', dim:['x','y','color'], prime:'x'},
+      {type: 'clustered-bar', dim:['x','y','color'], prime:'x'},
       {type: 'horizontal-area', dim:['x','y','color'], prime:'y'},
       {type: 'pie', dim:['color','size'], prime:'size'},
-      {type: 'simple-bar', dim:['x','y','color'], prime:'x'}]
+      {type: 'simple-bar', dim:['x','y','color'], prime:'x'},
+      {type: 'bubble', dim:['x','y','color', 'size'], prime:'x'}
+      {type: 'scatter', dim:['x','y','color', 'size', 'shape'], prime:'x'}
+      {type: 'spider', dim:['x','y','color'], prime:'x'}
+    ]
   
   $scope.options = {}
   optionsDefaut = {

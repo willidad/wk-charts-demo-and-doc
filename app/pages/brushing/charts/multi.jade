@@ -1,0 +1,19 @@
+.height80percent
+   .height50percent
+      chart(data="chartData", tooltips)
+         x(axis, brushed="b1", type="time", property="date", grid)
+         color(type="category10")
+         layout(line)
+            y(axis, layer-property="close", grid, legend)
+   .height50percent
+      chart(data="chartData", tooltips)
+         layout(line)
+            y(axis, layer-property="volume", domain-range="max", ticks="3", tick-format=".2s")
+            x(axis, brushed="b1", type="time", property="date", grid)
+            color(type="category10")
+.height20percent
+   chart(data="chartData", class="show-brush-handles")
+      layout(area)
+         y(property="msft", layer-property="close", ticks="3")
+         x(axis, brush="b1", type="time", property="date")
+         color(type="category10")

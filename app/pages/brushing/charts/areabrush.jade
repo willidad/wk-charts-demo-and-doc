@@ -1,0 +1,7 @@
+chart(data="chartData", tooltips, deep-watch)
+    layout(scatter, brush, selected-domain="options.domain")
+        x(axis, property="x", show-label, label="abc", grid)
+        y(axis, property="y",grid)
+        color(property="group", label="Scatter Group Values")
+        size(property="size", range="2,30", domain-range="extent")
+        shape(property="shape", label="Scatter Shape Values")

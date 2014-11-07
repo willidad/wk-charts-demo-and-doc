@@ -1,0 +1,8 @@
+chart(data="chartData")
+   layout(line, markers)
+      x(type="ordinal", property="Months", axis, brush,
+         selected-domain="options.selection",
+         selected-values="options.xBrushValues",
+         brush-extent="options.xBrushExtent")
+      y(axis, grid, ticks="5")
+      color(type="category10", legend)
