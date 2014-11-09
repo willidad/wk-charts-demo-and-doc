@@ -1,0 +1,6 @@
+chart(data="chartData", tooltips, title="This is the chart title", subtitle="subtitle")
+   layout(simple-bar)
+      x(axis="{{options.axis}}", property="age", type="ordinal", label="{{options.label}}", rotate-tick-labels="{{options.rotation}}", show-label="{{options.showLabel}}")
+      y(axis, tick-format=".2s", show-label, label="Population", property="population")
+      color(type="category20", property="age", values-legend="top-left", legend-title="Age")
+

@@ -1,5 +1,5 @@
 .col-lg-9
-   chart(data="filteredData", tooltips)
+   chart(data="chartData", tooltips, filter="options.year")
       layout(bubble)
          x(property="Average mass (Kg)",domain-range="extent",axis, show-label)
          y(property="Average CO2 emissions (g/Km)",domain-range="extent",axis, show-label)

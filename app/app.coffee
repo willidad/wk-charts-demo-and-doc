@@ -78,7 +78,10 @@ angular.module('app').constant 'menu',
     {url: 'maps', name: 'Maps'},
     {url: 'dimensions', name: 'Dimensions', tabs:[{url:'x', name:'Horizontal'},{url:'y', name:'Vertical'},{url:'Color', name:'Color'},{url:'size', name:'Size'},{url:'shape', name:'Shape'}]},
     {url: 'scales', name: 'Scales', tabs:[{url:'quantitative', name:'Quantitative', ctrl:true}, {url:'time', name:'Time', options:true}, {url:'ordinal', name:'Ordinal', ctrl:true},{url:'threshold', name:'Threshold', options:true},{url:'quantize', name:'Quantize'}, {url:'quantile', name:'Quantile'}]},
-    {url: 'axis', name: 'Axis Styling', tabs:[{url:'x', name:'X-Axis'},{url:'y', name:'y-Axis'}]},
+    {url: 'axis', name: 'Axis Styling', tabs:[
+      {url:'xaxis', name:'X-Axis', options:true},
+      {url:'yaxis', name:'y-Axis'}
+    ]},
     {url: 'legend', name: 'Legends', tabs:[{url:'layer', name:'Layer Legends'},{url:'data', name:'Data Legends'}]},
     {url: 'combocharts', name: 'Combocharts'},
     {url: 'brushing', name: 'Brushing and Selection', tabs:[

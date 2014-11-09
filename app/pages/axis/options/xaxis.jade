@@ -1,0 +1,38 @@
+md.
+   ####Options
+
+   ------
+
+table.table.table-condensed
+   thead
+      tr
+         th Scope Variable
+         th Value
+         th Remarks
+
+   tbody
+      tr
+         td options.axis
+         td
+            select(ng-model="options.axis")
+               option
+               option true
+               option false
+               option top
+               option bottom
+         td Select the x-axis position
+      tr
+         td options.tickRotation
+         td
+            input(type="number", ng-model="options.rotation", min="-90", max="90", step="1")
+         td sets the rotaion angle of the x axis tick labels in Degrees
+      tr
+         td options.label
+         td
+            input(ng-model="options.label")
+         td sets the the axis label text
+      tr
+         td options.showLabel
+         td
+            input(type="checkbox",ng-model="options.showLabel")
+         td Switches label display on the axis on or off

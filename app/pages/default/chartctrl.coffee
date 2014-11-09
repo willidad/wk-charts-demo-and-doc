@@ -16,6 +16,10 @@ angular.module('app').controller 'ChartCtrl', ($log, $scope, $templateCache, $st
     thresholdDomain:'-1,1,4'
     markers:false
     year:2013
+    axis:'false'
+    rotation: 0
+    label: ''
+    showLabel: false
   }
   $scope.chartUrl = "pages/#{menu.url}/charts#{$state.current.url}.html"
   options = $state.current.data.tab.options

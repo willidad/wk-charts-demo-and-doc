@@ -14,7 +14,7 @@ angular.module('app').controller 'ScatterchartsBubbleCtrl', ($log, $scope, $temp
   d3.csv("data/pages/#{menu.url}/data#{$state.current.url}.csv", (rows) ->
     $scope.chartData = rows
     $scope.data = JSON.stringify(rows, null, 3)
-    $scope.filteredData = _.where($scope.chartData, {Year:'2013'})
+    #$scope.filteredData = _.where($scope.chartData, {Year:'2013'})
     $scope.$apply()
   )
 
@@ -23,5 +23,5 @@ angular.module('app').controller 'ScatterchartsBubbleCtrl', ($log, $scope, $temp
   $scope.chartCode = template
 
   $scope.$watch 'options.year', (val) ->
-    $scope.filteredData = _.where($scope.chartData, {Year:val.toString()})
+    #$scope.filteredData = _.where($scope.chartData, {Year:val.toString()})
     $log.log $scope.filteredData, val

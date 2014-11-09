@@ -22,11 +22,11 @@ var webserver       = require('gulp-webserver');
 gulp.task('appJS', function() {
     // concatenate compiled .coffee files and js files
     // into build/app.js
-    var js = gulp.src(['!./app/**/*_test.js','./app/**/*.js'])
+    var js = gulp.src(['!./app/**/*_test.js','./app/**/*.js'],{base:'./'})
         .pipe(plumber({errorHandler: errorAlert}))
         .pipe(sourcemaps.init());
 
-    var csJs = gulp.src(['!./app/**/*_test.coffee','./app/**/*.coffee'])
+    var csJs = gulp.src(['!./app/**/*_test.coffee','./app/**/*.coffee'],{base:'./'})
         .pipe(plumber({errorHandler: errorAlert}))
         .pipe(sourcemaps.init())
         .pipe(coffee({bare:true, doctype:'html'}));
@@ -40,7 +40,7 @@ gulp.task('appJS', function() {
 gulp.task('wkChartsJs', function() {
     // compile an concatenate wk-charts library:
     //   Coffeescript
-    var csJs = gulp.src('./../wk-charts/app/**/*.coffee')
+    var csJs = gulp.src('./../wk-charts/app/**/*.coffee',{base:'./'})
         .pipe(plumber({errorHandler: errorAlert}))
         .pipe(sourcemaps.init())
         .pipe(coffee({bare:true, doctype:'html'}));
@@ -49,10 +49,10 @@ gulp.task('wkChartsJs', function() {
     var templ = gulp.src('./../wk-charts/app/**/*.jade')
         .pipe(plumber({errorHandler: errorAlert}))
         .pipe(jade({pretty:true, doctype:'html'}))
-        .pipe(tplCache('templates.js',{standalone:true}));
+        .pipe(tplCache({module:'wk.chart'}));
 
     // Javascript components
-    var js = gulp.src('./../wk-charts/app/**/*.js')
+    var js = gulp.src('./../wk-charts/app/**/*.js',{base:'./'})
         .pipe(plumber({errorHandler: errorAlert}))
         .pipe(sourcemaps.init());
 
@@ -64,7 +64,7 @@ gulp.task('wkChartsJs', function() {
 
 gulp.task('wkChartsCss', function() {
     // watch wk-charts project for changes
-    return gulp.src('./../wk-charts/app/**/*.css')
+    return gulp.src('./../wk-charts/app/**/*.css',{base:'./'})
         .pipe(plumber({errorHandler: errorAlert}))
         .pipe(concat('wk-charts.css'))
         .pipe(gulp.dest(buildDir + '/lib'))
@@ -76,11 +76,11 @@ gulp.task('watchWkCharts', function() {
 
 gulp.task('testJS', function() {
     // Compile JS test files. Not compiled.
-    var js = gulp.src(['./app/**/*_test.js'])
+    var js = gulp.src(['./app/**/*_test.js'],{base:'./'})
         .pipe(plumber({errorHandler: errorAlert}))
         .pipe(sourcemaps.init());
 
-    var csJs = gulp.src(['./app/**/*_test.coffee'])
+    var csJs = gulp.src(['./app/**/*_test.coffee'],{base:'./'})
         .pipe(plumber({errorHandler: errorAlert}))
         .pipe(sourcemaps.init())
         .pipe(coffee({bare: true}).on('error', gutil.log));
@@ -96,7 +96,7 @@ gulp.task('templates', function() {
     // jade templates
     var jadeTempl = gulp.src(['!./app/index.jade', './app/**/*.jade'])
         .pipe(plumber({errorHandler: errorAlert}))
-        .pipe(jade({pretty:true, doctype:'html'}).on('error', notify));
+        .pipe(jade({pretty:true, doctype:'html'}));
     // html templates
     var htmlTempl = gulp.src(['!./app.index.html', './app/**/*.html'])
         .pipe(plumber({errorHandler: errorAlert}));
@@ -106,7 +106,7 @@ gulp.task('templates', function() {
         .pipe(markdown());
 
     return es.merge(jadeTempl, htmlTempl, markdownTempl)
-        .pipe(tplCache('templates.js',{standalone:true}))
+        .pipe(tplCache({standalone:true}))
         .pipe(gulp.dest(buildDir + '/js'))
 });
 
@@ -120,10 +120,10 @@ gulp.task('chartData', function() {
 gulp.task('appCSS', function() {
     // concatenate compiled Less and CSS
     // into build/app.css
-    var cssSrc = gulp.src(['./app/**/*.css'])
+    var cssSrc = gulp.src(['./app/**/*.css'],{base:'./'})
         .pipe(plumber({errorHandler: errorAlert}))
         .pipe(sourcemaps.init());
-    var lessSrc = gulp.src(['./app/**/*.less'])
+    var lessSrc = gulp.src(['./app/**/*.less'],{base:'./'})
         .pipe(sourcemaps.init())
         .pipe(plumber({errorHandler: errorAlert}))
         .pipe(less({paths: ['./bower_components/bootstrap/less']}).on('error', notify));
@@ -187,10 +187,10 @@ gulp.task('webserver', function() {
         }));
 });
 
-gulp.task('default', ['webserver', 'appJS', 'testJS', 'templates', 'chartData', 'appCSS', 'index', 'libJS', 'libCSS', 'wkChartsJs', 'wkChartsCss', 'watchWkCharts', 'watch']);
+gulp.task('default', ['webserver', 'appJS', 'templates', 'chartData', 'appCSS', 'index', 'libJS', 'libCSS', 'wkChartsJs', 'wkChartsCss', 'watchWkCharts', 'watch']);
 
 function errorAlert(error){
     notify.onError({title: "Gulp Error", message: "<%= error.message %>", sound: "Sosumi"})(error);
     console.log(error.toString());
     this.emit("end");
-};
+}
