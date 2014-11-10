@@ -32,8 +32,11 @@ table.table.table-condensed.dimension
         td
             select(ng-model="def.domainRange",ng-options="dRange for dRange in domainRanges")
         td Domain
-        td(colspan="3")
+        td
             input(ng-model="def.domain")
+        td Format
+        td
+            input(ng-model="def.format")
 
     tr(ng-show="hasAxis")
         td Show Axis

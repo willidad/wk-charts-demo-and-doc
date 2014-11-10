@@ -100,6 +100,8 @@ angular.module('app').controller 'ChartbuilderLayoutCtrl', ($log, $scope, $state
       def += ' domain-range="' + options.domainRange + '"'
     if options.domain
       def += ' domain="' + options.domain + '"'
+    if options.format
+      def += ' format="' + options.format + '"'
     if options.axis and options.axis isnt 'false'
       def += ' axis'
       if options.axis isnt 'true'
