@@ -20,6 +20,7 @@ angular.module('app').controller 'ChartCtrl', ($log, $scope, $templateCache, $st
     rotation: 0
     label: ''
     showLabel: false
+    areaProperty: ['Chrome', 'Internet Explorer', 'Firefox', 'Safari', 'Opera']
   }
   $scope.chartUrl = "pages/#{menu.url}/charts#{$state.current.url}.html"
   options = $state.current.data.tab.options

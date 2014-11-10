@@ -112,6 +112,10 @@ table.dimension td input[type=radio] {
     width:30px;
 }
 
+
+.height100percent  {
+    height:100%;
+}
 .height80percent {
     height: 80%;
 }
@@ -121,6 +125,17 @@ table.dimension td input[type=radio] {
 .height20percent {
     height: 20%;
 }
+.width75percent {
+    width:75%;
+    height:100%;
+    float:left;
+}
+.width25percent {
+    width:25%;
+    height:100%;
+    float:left;
+}
+
 
 #shapeLegend, #groupLegend {
     position:relative;

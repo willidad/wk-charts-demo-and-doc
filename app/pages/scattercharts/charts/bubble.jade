@@ -1,9 +1,9 @@
-.col-lg-9
+.width75percent
    chart(data="chartData", tooltips, filter="options.year")
       layout(bubble)
          x(property="Average mass (Kg)",domain-range="extent",axis, show-label)
          y(property="Average CO2 emissions (g/Km)",domain-range="extent",axis, show-label)
          color(property="Manufacturer (short name)",values-legend="#mfgLegend")
          size(property="registration" range="{{options.range}}",domain-range="extent")
-.col-lg-3
+.width25percent
    #mfgLegend

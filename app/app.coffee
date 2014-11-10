@@ -1,4 +1,4 @@
-angular.module('app', ['ngSanitize','ui.router','ui.bootstrap','templates', 'wk.chart', 'hljs', 'ui.select','wk.markdown'])
+angular.module('app', ['wk.chart', 'ngSanitize','ui.router','ui.bootstrap','templates', 'hljs', 'ui.select','wk.markdown'])
   .config(($stateProvider, $urlRouterProvider, menu) ->
 
     $urlRouterProvider
@@ -61,14 +61,14 @@ angular.module('app').constant 'menu',
       {url:'horizontal',name:'Horizontal'},
       {url:'vertical',name:'Vertical'},
       {url:'stacked-horizontal',name:'Stacked Horizontal', options:true},
-      {url:'stacked-vertical',name:'Stacked Vertical'}]}
-    {url: 'barcharts', name: 'Bar Charts', tabs:[
-      {url:'hor-simple', name:'Horizontally Simple', options:true},
-      {url:'hor-stacked',name:'Horizontally Stacked', options:true},
-      {url:'hor-clustered', name:'Horizontally Clustered', options:true},
-      {url:'vert-simple', name:'Vertically Simple', options:true},
-      {url:'vert-stacked',name:'Vertically Stacked', options:true},
-      {url:'vert-clustered', name:'Vertically Clustered', options:true}
+      {url:'stacked-vertical',name:'Stacked Vertical', options:true}]}
+    {url: 'barcharts', name: 'Bar and Column Charts', tabs:[
+      {url:'bar', name:'Bar Chart', options:true},
+      {url:'bar-stacked',name:'Stacked Bar', options:true},
+      {url:'bar-clustered', name:'Clustered Bar', options:true},
+      {url:'column', name:'Column Chart', options:true},
+      {url:'column-stacked',name:'Stacked Column', options:true},
+      {url:'column-clustered', name:'Clustered Column', options:true}
     ]},
     {url: 'gauges', name: 'Gauges'},
     {url: 'spidercharts', name: 'Spider Charts'},

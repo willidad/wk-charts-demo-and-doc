@@ -1,7 +1,5 @@
-chart(data="chartData", tooltips)
-   layout(stacked-area="{{options.areaStyle}}")
-      x(property="date", type="time", axis, date-format="%Y%m%d", domain-range="extent")
-      y(type="linear", axis,  domain-range="total")
-      color(type="category10", legend="top-right")
-
-
+chart(data="chartData" tooltips)
+   layout(area-stacked)
+      x(type="time" date-format="%e-%b-%y" property="Date" format="%b-%Y" axis ticks="10")
+      y(type="linear" format="%" axis tick-format="%",property="{{options.areaProperty}}")
+      color(legend="bottom-right")

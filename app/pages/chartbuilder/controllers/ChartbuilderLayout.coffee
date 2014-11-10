@@ -10,13 +10,16 @@ angular.module('app').controller 'ChartbuilderLayoutCtrl', ($log, $scope, $state
   $scope.layoutList =
     [
       {type: 'line', dim:['x','y','color'], prime:'x'},
+      {type: 'line-vertical', dim:['x','y','color'], prime:'y'}
       {type: 'area', dim:['x','y','color'], prime:'x'},
-      {type: 'stacked-bar', dim:['x','y','color'], prime:'x'},
-      {type: 'stacked-area', dim:['x','y','color'], prime:'x'},
-      {type: 'clustered-bar', dim:['x','y','color'], prime:'x'},
-      {type: 'horizontal-area', dim:['x','y','color'], prime:'y'},
+      {type: 'area-stacked', dim:['x','y','color'], prime:'x'},
+      {type: 'area-vertical', dim:['x','y','color'], prime:'y'},
+      {type: 'area-stacked-vertical', dim:['x','y','color'], prime:'y'},
+      {type: 'bars', dim:['x','y','color'], prime:'y'},
+      {type: 'column', dim:['x','y','color'], prime:'x'},
+      {type: 'column-stacked', dim:['x','y','color'], prime:'x'},
+      {type: 'column-clusteres', dim:['x','y','color'], prime:'x'},
       {type: 'pie', dim:['color','size'], prime:'size'},
-      {type: 'simple-bar', dim:['x','y','color'], prime:'x'},
       {type: 'bubble', dim:['x','y','color', 'size'], prime:'x'}
       {type: 'scatter', dim:['x','y','color', 'size', 'shape'], prime:'x'}
       {type: 'spider', dim:['x','y','color'], prime:'x'}
