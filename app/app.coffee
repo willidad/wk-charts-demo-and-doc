@@ -1,4 +1,4 @@
-angular.module('app', ['wk.chart', 'ngSanitize','ui.router','ui.bootstrap','templates', 'hljs', 'ui.select','wk.markdown'])
+angular.module('app', ['wk.chart', 'ngSanitize', 'ngAnimate','ui.router','ui.bootstrap','templates', 'hljs', 'ui.select','wk.markdown'])
   .config(($stateProvider, $urlRouterProvider, menu) ->
 
     $urlRouterProvider
@@ -71,7 +71,9 @@ angular.module('app').constant 'menu',
       {url:'column-clustered', name:'Clustered Column', options:true}
     ]},
     {url: 'gauges', name: 'Gauges'},
-    {url: 'spidercharts', name: 'Spider Charts'},
+    {url: 'spidercharts', name: 'Spider Charts', tabs: [
+      {url:'spider',name:'Spider Chart',options:true}
+    ]},
     {url: 'scattercharts', name: 'Scatter Charts', tabs: [
       {url:'bubble', name:'Bubble Chart', options:true, ctrl:true},
     ]}

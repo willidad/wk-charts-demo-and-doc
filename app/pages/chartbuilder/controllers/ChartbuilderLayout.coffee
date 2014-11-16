@@ -48,6 +48,7 @@ angular.module('app').controller 'ChartbuilderLayoutCtrl', ($log, $scope, $state
       d3.csv("data/pages/#{menu.url}/data/#{name}", (rows) ->
         if rows
           dataRows = rows
+          $scope.chartData = rows
           $scope.data = JSON.stringify(rows, null, 3)
           $scope.record = dataRows[0]
           $scope.dataProperties = _.keys(rows[0])
@@ -79,7 +80,7 @@ angular.module('app').controller 'ChartbuilderLayoutCtrl', ($log, $scope, $state
 
     chartElem.children().remove()
     chartElem.append(compiledChart)
-    chartScope.chartData = dataRows
+    chartScope.chartData = $scope.chartData
 
 
   buildDimension = (name, options) ->

@@ -1,6 +1,7 @@
 angular.module('app').controller 'ChartCtrl', ($log, $scope, $templateCache, $state) ->
 
   menu = $state.current.data.menuItem
+  $scope.chartData = []
 
   $scope.options = {
     areaStyle:'zero'
@@ -21,6 +22,7 @@ angular.module('app').controller 'ChartCtrl', ($log, $scope, $templateCache, $st
     label: ''
     showLabel: false
     areaProperty: ['Chrome', 'Internet Explorer', 'Firefox', 'Safari', 'Opera']
+
   }
   $scope.chartUrl = "pages/#{menu.url}/charts#{$state.current.url}.html"
   options = $state.current.data.tab.options
@@ -30,8 +32,9 @@ angular.module('app').controller 'ChartCtrl', ($log, $scope, $templateCache, $st
 
 
   d3.csv("data/pages/#{menu.url}/data#{$state.current.url}.csv", (rows) ->
+    $scope.data = {chartData: rows, filtered:[]}
     $scope.chartData = rows
-    $scope.data = JSON.stringify(rows, null, 3)
+    $scope.jsonData = JSON.stringify(rows, null, 3)
     $scope.$apply()
   )
 

@@ -113,6 +113,7 @@ table.dimension td input[type=radio] {
 }
 
 
+
 .height100percent  {
     height:100%;
 }
@@ -148,4 +149,16 @@ table.dimension td input[type=radio] {
 .options {
     padding-bottom: 50px;
     overflow-y: scroll;
+}
+
+.dataEditor {
+    overflow-y: scroll;
+    height:400px;
+}
+.dataEditor .narrow {
+    width: 120px;
+}
+
+.dataEditor .checkboxcol {
+    width:24px;
 }

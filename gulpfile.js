@@ -70,8 +70,11 @@ gulp.task('wkChartsCss', function() {
         .pipe(gulp.dest(buildDir + '/lib'))
 });
 
-gulp.task('watchWkCharts', function() {
-    gulp.watch(['./../wk-charts/app/**/*.*'], ['wkChartsJs', 'wkChartsCss'])
+gulp.task('watchWkChartsJs', function() {
+    gulp.watch(['./../wk-charts/app/**/*.js'], ['wkChartsJs'])
+});
+gulp.task('watchWkChartsCss', function() {
+    gulp.watch(['./../wk-charts/app/**/*.css'], ['wkChartsCss'])
 });
 
 gulp.task('testJS', function() {
@@ -126,7 +129,7 @@ gulp.task('appCSS', function() {
     var lessSrc = gulp.src(['./app/**/*.less'],{base:'./'})
         .pipe(sourcemaps.init())
         .pipe(plumber({errorHandler: errorAlert}))
-        .pipe(less({paths: ['./bower_components/bootstrap/less']}).on('error', notify));
+        .pipe(less({paths: ['./bower_components/bootstrap1/less']}).on('error', notify));
 
     return es.merge(cssSrc, lessSrc)
         .pipe(concat('app.css'))
@@ -187,7 +190,7 @@ gulp.task('webserver', function() {
         }));
 });
 
-gulp.task('default', ['webserver', 'appJS', 'templates', 'chartData', 'appCSS', 'index', 'libJS', 'libCSS', 'wkChartsJs', 'wkChartsCss', 'watchWkCharts', 'watch']);
+gulp.task('default', ['webserver', 'appJS', 'templates', 'chartData', 'appCSS', 'index', 'libJS', 'libCSS', 'wkChartsJs', 'wkChartsCss', 'watchWkChartsJs', 'watchWkChartsJs', 'watch']);
 
 function errorAlert(error){
     notify.onError({title: "Gulp Error", message: "<%= error.message %>", sound: "Sosumi"})(error);
