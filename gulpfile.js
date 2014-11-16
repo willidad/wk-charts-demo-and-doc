@@ -71,7 +71,7 @@ gulp.task('wkChartsCss', function() {
 });
 
 gulp.task('watchWkChartsJs', function() {
-    gulp.watch(['./../wk-charts/app/**/*.js'], ['wkChartsJs'])
+    gulp.watch(['./../wk-charts/app/**/*.coffee', './../wk-charts/app/**/*.js'], ['wkChartsJs'])
 });
 gulp.task('watchWkChartsCss', function() {
     gulp.watch(['./../wk-charts/app/**/*.css'], ['wkChartsCss'])
@@ -190,7 +190,7 @@ gulp.task('webserver', function() {
         }));
 });
 
-gulp.task('default', ['webserver', 'appJS', 'templates', 'chartData', 'appCSS', 'index', 'libJS', 'libCSS', 'wkChartsJs', 'wkChartsCss', 'watchWkChartsJs', 'watchWkChartsJs', 'watch']);
+gulp.task('default', ['webserver', 'appJS', 'templates', 'chartData', 'appCSS', 'index', 'libJS', 'libCSS', 'wkChartsJs', 'wkChartsCss', 'watchWkChartsJs', 'watchWkChartsCss', 'watch']);
 
 function errorAlert(error){
     notify.onError({title: "Gulp Error", message: "<%= error.message %>", sound: "Sosumi"})(error);
