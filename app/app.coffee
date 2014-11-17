@@ -54,7 +54,7 @@ angular.module('app').constant 'menu',
   [
     {url: 'home', name: 'Home', page:true},
     {url: 'linecharts', name: 'Line Charts', tabs:[
-      {url:'horizontal',name:'Horizontal', options:true},
+      {url:'horizontal',name:'Horizontal', options:true, ctrl:true},
       {url:'vertical', name:'Vertical', options:true}
     ]},
     {url: 'areacharts', name: 'Area Charts', tabs:[
