@@ -6,6 +6,19 @@ md.
    x | domain-range | extent
    y | domain-range | none
 
+table.table.table-condensed
+   thead
+      tr
+         td padding (%)
+         td outerPadding (%)
+   tbody
+      tr
+         td
+            input(ng-model="options.padding[0]", type="number", min="0", max="30", step="1")
+         td
+            input(ng-model="options.padding[1]", type="number", min="0", max="30", step="1")
+
+md.
    #### Modify Data
    -------
 chart-data-editor(data="data.chartData", filtered="data.filtered")
