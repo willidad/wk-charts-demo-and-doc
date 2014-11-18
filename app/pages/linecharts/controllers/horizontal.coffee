@@ -1,7 +1,7 @@
 angular.module('app').controller 'LinechartsHorizontalCtrl', ($scope, $log, $state, $templateCache) ->
 
   menu = $state.current.data.menuItem
-  $scope.options = {year:2013, range:[10,40]}
+  $scope.options = {markers:false}
 
 
   $scope.chartUrl = "pages/#{menu.url}/charts#{$state.current.url}.html"
