@@ -70,6 +70,10 @@ angular.module('app').constant 'menu',
       {url:'column-stacked',name:'Stacked Column', options:true},
       {url:'column-clustered', name:'Clustered Column', options:true}
     ]},
+    {url:'piecharts', name:'Pie Charts', tabs:[
+      {url:'pie', name:'Pie', options:true},
+      {url:'donat', name:'Donat', options:true}
+    ]},
     {url: 'gauges', name: 'Gauges'},
     {url: 'spidercharts', name: 'Spider Charts', tabs: [
       {url:'spider',name:'Spider Chart',options:true}
