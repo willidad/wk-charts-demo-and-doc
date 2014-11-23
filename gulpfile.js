@@ -13,6 +13,7 @@ var tplCache        = require('gulp-angular-templatecache');
 var jade            = require('gulp-jade');
 var less            = require('gulp-less');
 var markdown        = require('gulp-markdown');
+var bump            = require('gulp-bump');
 var es              = require('event-stream');
 var annotate        = require('gulp-ng-annotate');
 var mainBowerFiles  = require('main-bower-files');
@@ -70,8 +71,21 @@ gulp.task('wkChartsCss', function() {
         .pipe(gulp.dest(buildDir + '/lib'))
 });
 
+gulp.task('wkChartsCopy',['wkChartsJs', 'wkChartsCss', 'wkChartsBumpVersion'], function() {
+    return gulp.src([buildDir + '/lib/**/*.*'])
+        .pipe(plumber({errorHandler: errorAlert}))
+        .pipe(gulp.dest('./../wk-charts/dist/lib'))
+});
+
+gulp.task('wkChartsBumpVersion', function() {
+    return gulp.src('./../wk-charts/bower.json')
+        .pipe(bump())
+        .pipe(gulp.dest('./../wk-charts/'))
+        .pipe(gulp.dest('./../wk-charts/dist'))
+})
+
 gulp.task('watchWkChartsJs', function() {
-    gulp.watch(['./../wk-charts/app/**/*.coffee', './../wk-charts/app/**/*.js'], ['wkChartsJs'])
+    gulp.watch(['./../wk-charts/app/**/*.coffee', './../wk-charts/app/**/*.js'], ['wkChartsJs', 'wkChartsCopy'])
 });
 gulp.task('watchWkChartsCss', function() {
     gulp.watch(['./../wk-charts/app/**/*.css'], ['wkChartsCss'])

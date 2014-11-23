@@ -19,6 +19,7 @@
     "gulp-sourcemaps": "^1.2.7",
     "gulp-util": "~3.0.1",
     "gulp-webserver": "^0.8.7",
+    "gulp-bump": "^0.1.11",
     "highlight": "^0.2.3",
     "jade": "^1.7.0",
     "karma": "^0.12.1",

@@ -1,0 +1,21 @@
+.vh(ng-controller="AbsoluteCtrl")
+    button.btn.btn-default(ng-click="size1()") Size Chart
+    br
+    button.btn.btn-default(ng-click="size2()") Size Chart
+    br
+    button.btn.btn-default(ng-click="size3()") Size Chart
+    br
+    input(ng-model="containerSize.top", placeholder="top")
+    br
+    input(ng-model="containerSize.left", placeholder="left")
+    br
+    input(ng-model="containerSize.width", placeholder="width")
+    br
+    input(ng-model="containerSize.height", placeholder="height")
+    .absoluteContainer
+        .absoluteChartContainer(ng-style="containerSize")
+            chart(data="data",tooltips)
+                layout(bars)
+                    x(axis tick-format=".2s" show-label label="Population" property="population" grid)
+                    y(property="age" type="ordinal" label="Age")
+                    color(type="category20" property="age" values-legend="bottom-right" legend-title="Age")

@@ -3,6 +3,7 @@ angular.module('app').controller 'ChartbuilderLayoutCtrl', ($log, $scope, $state
   menu = $state.current.data.menuItem
   $scope.chartUrl = "pages/#{menu.url}/charts#{$state.current.url}', dim:['x','y','color','size','shape']}"
   $scope.optionsUrl = "pages/#{menu.url}/options#{$state.current.url}.html"
+  $scope.chartData = []
   
 
   $scope.dataList = ['temperatures.csv', 'populationByStateAndAge.csv', 'altersstruktur.csv', 'populationAge.csv','cars-co2-emissions-trends-by-manufacturer.csv', 'browsershare.csv', 'browsershareTransposed.csv','DE Public Spent.csv']
@@ -40,7 +41,7 @@ angular.module('app').controller 'ChartbuilderLayoutCtrl', ($log, $scope, $state
   $scope.options.dataSelected = false
   $scope.options.layoutSelected = false
   dataRows = []
-  $scope.scaleTypes = ['linear', 'time', 'ordinal','category10', 'category20', 'category20b', 'category20b', 'log','pow','sqrt', 'threshold', 'quantize', 'quantile']
+  $scope.scaleTypes = ['linear', 'time', 'ordinal','category10', 'category20', 'category20b', 'category20b', 'log','pow','sqrt', 'threshold', 'quantize', 'quantile', 'hashed']
 
   $scope.$watch 'options.chartFile', (name) ->
     _.assign($scope.options, optionsDefaut)

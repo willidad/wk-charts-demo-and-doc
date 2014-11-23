@@ -99,4 +99,8 @@ angular.module('app').constant 'menu',
     ]},
     {url: 'more', name: 'more'}
     {url: 'chartbuilder', name: 'Chart Builder', tabs:[{url:'layout' , name:'Layout Type and Data', ctrl:true, page:true}]}
+    {url: 'absolute', name: 'position:absolute container', page: true, ctrl:true}
   ]
+
+angular.module('wk.chart').config (wkChartScalesProvider) ->
+  wkChartScalesProvider.colors(['grey', 'green','blue','pink','brown'])

@@ -12,7 +12,7 @@ angular.module('app').directive 'dimension', ($log) ->
 
       scope.def = {property:[], type:undefined , dateFormat:'', exponent:'',range:'', domainRange:'', domain:'', axis:false, ticks:undefined, tickFormat:'', grid:false, showLabel:false, label:'', format:''}
 
-      scope.scaleTypes = ['linear', 'time', 'ordinal','category10', 'category20', 'category20b', 'category20c', 'log','pow','sqrt', 'threshold', 'quantize', 'quantile']
+      scope.scaleTypes = ['linear', 'time', 'ordinal','category10', 'category20', 'category20b', 'category20c', 'log','pow','sqrt', 'threshold', 'quantize', 'quantile', 'hashed', 'colors', 'colorsHashed']
       scope.domainRanges = ['min', 'max', 'extent', 'total']
       scope.showFormat = false
       scope.showExponent = false
