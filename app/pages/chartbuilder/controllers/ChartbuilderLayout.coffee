@@ -4,9 +4,20 @@ angular.module('app').controller 'ChartbuilderLayoutCtrl', ($log, $scope, $state
   $scope.chartUrl = "pages/#{menu.url}/charts#{$state.current.url}', dim:['x','y','color','size','shape']}"
   $scope.optionsUrl = "pages/#{menu.url}/options#{$state.current.url}.html"
   $scope.chartData = []
-  
+  $scope.data = JSON.stringify([], null, 3)
 
-  $scope.dataList = ['temperatures.csv', 'populationByStateAndAge.csv', 'altersstruktur.csv', 'populationAge.csv','cars-co2-emissions-trends-by-manufacturer.csv', 'browsershare.csv', 'browsershareTransposed.csv','DE Public Spent.csv']
+
+  $scope.dataList = [
+    'temperatures.csv',
+    'populationByStateAndAge.csv',
+    'altersstruktur.csv',
+    'populationAge.csv',
+    'cars-co2-emissions-trends-by-manufacturer.csv',
+    'browsershare.csv',
+    'DE Public Spent.csv',
+    'ageRanges.csv'
+    'celonis.csv'
+  ]
 
   $scope.layoutList =
     [
@@ -24,6 +35,7 @@ angular.module('app').controller 'ChartbuilderLayoutCtrl', ($log, $scope, $state
       {type: 'bubble', dim:['x','y','color', 'size'], prime:'x'}
       {type: 'scatter', dim:['x','y','color', 'size', 'shape'], prime:'x'}
       {type: 'spider', dim:['x','y','color'], prime:'x'}
+      {type: 'histogram', dim:['range-x','y','color'], prime:'range-x'}
     ]
   
   $scope.options = {}
@@ -36,6 +48,8 @@ angular.module('app').controller 'ChartbuilderLayoutCtrl', ($log, $scope, $state
     color:{property:'', properties:[], type:'', dateFormat:'', exponent:'',range:'', domainRange:'', domain:'', label:'', legend:false, valueLegend:false, legendTitle:''}
     size:{property:'', properties:[], type:'', dateFormat:'', exponent:'',range:'', domainRange:'', domain:'', label:'', legend:false, valueLegend:false, legendTitle:''}
     shape:{property:'', properties:[], type:'', dateFormat:'', exponent:'',range:'', domainRange:'', domain:'', label:'', legend:false, valueLegend:false, legendTitle:''}
+    'range-x':{property:'', properties:[], type:undefined , dateFormat:'', exponent:'',range:'', domainRange:'', domain:'', axis:false, ticks:undefined, tickFormat:'', grid:false, showLabel:false, label:''}
+    'range-y':{property:'', properties:[], type:undefined , dateFormat:'', exponent:'',range:'', domainRange:'', domain:'', axis:false, ticks:undefined, tickFormat:'', grid:false, showLabel:false, label:''}
   }
   _.assign($scope.options, optionsDefaut)
   $scope.options.dataSelected = false
@@ -97,6 +111,10 @@ angular.module('app').controller 'ChartbuilderLayoutCtrl', ($log, $scope, $state
 
     if options.property and options.property.length > 0
       def += ' property="' + options.property + '"'
+    if options.lower and options.lower.length > 0
+      def += ' lower-property="' + options.lower + '"'
+    if options.upper and options.upper.length > 0
+      def += ' upper-property="' + options.upper + '"'
     if options.properties and options.properties.length > 0
       def += ' property="' + options.properties  + '"'
     if options.range

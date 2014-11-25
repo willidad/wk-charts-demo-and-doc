@@ -1,0 +1,6 @@
+chart(data="data.filtered")
+   layout(column-histogram, labels="{{options.labels}}")
+      range-x(axis, lower-property="CLASS_BOUNDS_LOWER", show-label, label="Days", ticks="15")
+      y(axis, property="CLASS_COUNT", format="d")
+      color(property="CLASS_BOUNDS_LOWER", type="ordinal", range="#aec7e8,#1f77b4")
+

@@ -74,6 +74,10 @@ angular.module('app').constant 'menu',
       {url:'pie', name:'Pie', options:true},
       {url:'donat', name:'Donat', options:true}
     ]},
+    {url:'histograms', name:'Histograms', tabs:[
+      {url:'colFixed', name:'Fixed-width Column', options:true},
+      {url:'colVariable', name:'Variable-width Column', options:true}
+    ]},
     {url: 'gauges', name: 'Gauges'},
     {url: 'spidercharts', name: 'Spider Charts', tabs: [
       {url:'spider',name:'Spider Chart',options:true}

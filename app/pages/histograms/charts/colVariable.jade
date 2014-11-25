@@ -1,0 +1,7 @@
+chart(data="data.filtered")
+   layout(column-histogram, labels="{{options.labels}}")
+      range-x(axis, lower-property="from", upper-property="to")
+      y(axis, property="population",tick-format=".2s", format=".2s")
+      color(property="from")
+
+

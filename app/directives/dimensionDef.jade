@@ -1,8 +1,20 @@
 table.table.table-condensed.dimension
     tr.dimension-header
         td(colspan="6") {{name}} Dimension {{primary}}
-    tr
+    tr(ng-show="isRange")
+        td Lower
         td(colspan="2")
+            ui-select(ng-model="def.lower")
+                ui-select-match(placeholder="Select Lower Property...") {{$select.selected}}
+                ui-select-choices(repeat="prop in dataProperties | filter:$select.search") {{prop}}
+        td Upper
+        td(colspan="2")
+            ui-select(ng-model="def.upper")
+                ui-select-match(placeholder="Select Upper Property...") {{$select.selected}}
+                ui-select-choices(repeat="prop in dataProperties | filter:$select.search") {{prop}}
+
+    tr
+        td(colspan="2", ng-hide="isRange")
             ui-select(ng-hide="isPrimary", multiple,ng-model="def.properties")
                 ui-select-match(placeholder="Select Properties...") {{$item}}
                 ui-select-choices(repeat="prop in dataProperties | filter:$select.search") {{prop}}

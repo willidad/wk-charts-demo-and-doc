@@ -10,13 +10,14 @@ angular.module('app').directive 'dimension', ($log) ->
       primary: '@'
     link: (scope, element, attrs) ->
 
-      scope.def = {property:[], type:undefined , dateFormat:'', exponent:'',range:'', domainRange:'', domain:'', axis:false, ticks:undefined, tickFormat:'', grid:false, showLabel:false, label:'', format:''}
+      scope.def = {property:[], lower:undefined, upper:undefined, type:undefined , dateFormat:'', exponent:'',range:'', domainRange:'', domain:'', axis:false, ticks:undefined, tickFormat:'', grid:false, showLabel:false, label:'', format:''}
 
       scope.scaleTypes = ['linear', 'time', 'ordinal','category10', 'category20', 'category20b', 'category20c', 'log','pow','sqrt', 'threshold', 'quantize', 'quantile', 'hashed', 'colors', 'colorsHashed']
-      scope.domainRanges = ['min', 'max', 'extent', 'total']
+      scope.domainRanges = ['min', 'max', 'extent', 'total', 'rangeMin', 'rangeMax', 'rangeExtent']
       scope.showFormat = false
       scope.showExponent = false
-      isXY = scope.name is 'x' or scope.name is 'y'
+      scope.isRange = scope.name is 'range-x' or scope.name is 'range-y'
+      isXY = scope.name is 'x' or scope.name is 'y' or scope.name is 'range-x' or scope.name is 'range-y'
       scope.hasAxis = isXY
       scope.hasLegend = not isXY
       scope.showRange = not isXY

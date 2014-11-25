@@ -32,6 +32,7 @@ angular.module('app').directive 'chartDataEditor', ($log) ->
                 </div>'
 
     link: (scope, element, attrs) ->
+      scope.columns = []
       scope.checkedRow = []
       scope.checkedCol = []
       scope.do20 = true
