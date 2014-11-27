@@ -180,3 +180,8 @@ table.dimension td input[type=radio] {
     border-color:green;
 
 }
+
+.custom-tooltip {
+    border-style: solid;
+    border-width: 8px;
+}
