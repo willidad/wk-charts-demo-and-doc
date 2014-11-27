@@ -81,7 +81,7 @@ gulp.task('wkChartsBumpVersion', function() {
     return gulp.src('./../wk-charts/bower.json')
         .pipe(bump())
         .pipe(gulp.dest('./../wk-charts/'))
-        .pipe(gulp.dest('./../wk-charts/dist'))
+        //.pipe(gulp.dest('./../wk-charts/dist'))
 })
 
 gulp.task('watchWkChartsJs', function() {

@@ -1,4 +1,30 @@
 md.
+   #### Options
+table.table.table-condensed
+   thead
+      tr
+         th Scope Variable
+         th Value
+         th Remarks
+   tbody
+      tr
+         td options.labels
+         td
+            input(type="checkbox", ng-model="options.labels")
+         td
+            md if true, show data labels for each segment
+
+      tr
+         td
+         td padding (%)
+         td outerPadding (%)
+      tr
+         td options.padding
+         td
+            input(ng-model="options.padding[0]", type="number", min="0", max="30", step="1")
+         td
+            input(ng-model="options.padding[1]", type="number", min="0", max="30", step="1")
+md.
    #### Defaults
 
    axis | Attribute | Default Value
@@ -6,18 +32,6 @@ md.
    x | domain-range | none
    y | domain-range | extent
 
-table.table.table-condensed
-   thead
-      tr
-         td padding (%)
-         td outerPadding (%)
-   tbody
-      tr
-         td
-            input(ng-model="options.padding[0]", type="number", min="0", max="30", step="1")
-         td
-            input(ng-model="options.padding[1]", type="number", min="0", max="30", step="1")
-md.
    #### Modify Data
    -------
 chart-data-editor(data="data.chartData", filtered="data.filtered")

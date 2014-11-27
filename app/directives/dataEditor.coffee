@@ -4,31 +4,33 @@ angular.module('app').directive 'chartDataEditor', ($log) ->
     scope:
       data: '='
       filtered: '='
-    template: '<div>
+    template: '<div style="height:100%;">
                   <button class="btn btn-default" ng-click="update()">Update Data</button>
-                  <table class="table table-condensed dataEditor">
-                    <thead>
-                      <tr>
-                        <th>
-                          <input type="checkbox" ng-model="do20">
-                        </th>
-                        <th ng-repeat="colname in columns " class="narrow">
-                          <input type="checkbox" ng-model="checkedCol[$index]">
-                          {{colname}}
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr ng-repeat="row in data">
-                        <td class="checkboxcol">
-                          <input type="checkbox" ng-model="checkedRow[$index]">
-                        </td>
-                        <td ng-repeat="colname in columns">
-                          <input ng-model="row[colname]", class="narrow">
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <div class="vertical-scroll-box">
+                    <table class="table table-condensed dataEditor">
+                      <thead>
+                        <tr>
+                          <th>
+                            <input type="checkbox" ng-model="do20">
+                          </th>
+                          <th ng-repeat="colname in columns " class="narrow">
+                            <input type="checkbox" ng-model="checkedCol[$index]">
+                            {{colname}}
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr ng-repeat="row in data">
+                          <td class="checkboxcol">
+                            <input type="checkbox" ng-model="checkedRow[$index]">
+                          </td>
+                          <td ng-repeat="colname in columns">
+                            <input ng-model="row[colname]", class="narrow">
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>'
 
     link: (scope, element, attrs) ->

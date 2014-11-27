@@ -2,4 +2,12 @@ html {height:100%;}
 body {height:100%;}
 body { padding-top: 70px; }
 body { padding-bottom: 70px; }
+.content {
+    height:calc(100vh - 120px);
+    overflow:hidden
+}
+.vertical-scroll-box {
+    overflow-y: scroll;
+    height:100%
+}
 

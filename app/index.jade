@@ -13,7 +13,7 @@ html(lang='en', ng-app='app')
         .container-fluid
             div(ui-view="top")
             div.col-lg-2(ui-view="left")
-            div.col-lg-10(ui-view="content")
+            div.col-lg-10.content(ui-view="content")
             div(ui-view="footer")
 
         script(src='js/vendor.js')

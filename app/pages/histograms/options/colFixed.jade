@@ -1,31 +1,33 @@
-md.
-   #### Options
-table.table.table-condensed
-   thead
-      tr
-         th Scope Variable
-         th Value
-         th Remarks
-   tbody
-      tr
-         td options.labels
-         td
-            input(type="checkbox", ng-model="options.labels")
-         td
-            md if true, show data labels for each pie segment
+div(style="height:50%")
+   md.
+      #### Options
+   table.table.table-condensed
+      thead
+         tr
+            th Scope Variable
+            th Value
+            th Remarks
+      tbody
+         tr
+            td options.labels
+            td
+               input(type="checkbox", ng-model="options.labels")
+            td
+               md if true, show data labels for each segment
 
-md.
-   #### Defaults
+   md.
+      #### Defaults
 
-   axis | Attribute | Default Value
-   ---- | --------- | ------------
-   range-x | domain-range | rangeExtent
-   y | domain-range | extent
-   color | domain-range | none
+      axis | Attribute | Default Value
+      ---- | --------- | ------------
+      range-x | domain-range | rangeExtent
+      y | domain-range | extent
+      color | domain-range | none
 
-pre {{options.xBrushDomain}}
+   pre {{options.xBrushDomain}}
 
-md.
-   #### Modify Data
-   -------
-chart-data-editor(data="data.chartData", filtered="data.filtered")
+   md.
+      #### Modify Data
+      -------
+div(style="height:calc(50% - 45px);")
+   chart-data-editor(data="data.chartData", filtered="data.filtered")

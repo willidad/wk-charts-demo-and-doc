@@ -1,5 +1,5 @@
 chart(data="data.filtered", tooltips)
-   layout(column, padding="{{options.padding}}")
+   layout(column, padding="{{options.padding}}", labels="{{options.labels}}")
       x(property="age", type="ordinal", label="Age")
       y(axis, tick-format=".2s", show-label, label="Population", property="population")
       color(type="category20", property="age", values-legend="top-left", legend-title="Age")
