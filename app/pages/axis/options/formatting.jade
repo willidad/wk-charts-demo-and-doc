@@ -1,0 +1,22 @@
+md.
+   #### Options
+table.table.table-condensed
+   thead
+      tr
+         th Scope Variable
+         th Value
+         th Remarks
+   tbody
+      tr
+         td options.labels
+         td
+            input(type="checkbox", ng-model="options.labels")
+         td
+            md if true, show data labels for each segment
+
+pre {{options.formatObj}}
+
+md.
+   #### Modify Data
+   -------
+chart-data-editor(data="data.chartData", filtered="data.filtered")

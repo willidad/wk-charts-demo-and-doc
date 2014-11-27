@@ -90,7 +90,8 @@ angular.module('app').constant 'menu',
     {url: 'scales', name: 'Scales', tabs:[{url:'quantitative', name:'Quantitative', ctrl:true}, {url:'time', name:'Time', options:true}, {url:'ordinal', name:'Ordinal', ctrl:true},{url:'threshold', name:'Threshold', options:true},{url:'quantize', name:'Quantize'}, {url:'quantile', name:'Quantile'}]},
     {url: 'axis', name: 'Axis Styling', tabs:[
       {url:'xaxis', name:'X-Axis', options:true},
-      {url:'yaxis', name:'y-Axis'}
+      {url:'yaxis', name:'y-Axis'},
+      {url:'formatting', name:'Custom Axis Formatting', options:true, ctrl:true}
     ]},
     {url: 'legend', name: 'Legends', tabs:[{url:'layer', name:'Layer Legends'},{url:'data', name:'Data Legends'}]},
     {url: 'combocharts', name: 'Combocharts'},
