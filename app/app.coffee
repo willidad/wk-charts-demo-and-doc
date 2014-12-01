@@ -58,7 +58,7 @@ angular.module('app').constant 'menu',
       {url:'vertical', name:'Vertical', options:true}
     ]},
     {url: 'areacharts', name: 'Area Charts', tabs:[
-      {url:'horizontal',name:'Horizontal'},
+      {url:'horizontal',name:'Horizontal', options:true},
       {url:'vertical',name:'Vertical'},
       {url:'stacked-horizontal',name:'Stacked Horizontal', options:true},
       {url:'stacked-vertical',name:'Stacked Vertical', options:true}]}
@@ -107,5 +107,6 @@ angular.module('app').constant 'menu',
     {url: 'absolute', name: 'position:absolute container', page: true, ctrl:true}
   ]
 
-angular.module('wk.chart').config (wkChartScalesProvider) ->
+angular.module('wk.chart').config (wkChartScalesProvider, wkChartLocaleProvider) ->
   wkChartScalesProvider.colors(['grey', 'green','blue','pink','brown'])
+  wkChartLocaleProvider.setLocale('de_DE')
