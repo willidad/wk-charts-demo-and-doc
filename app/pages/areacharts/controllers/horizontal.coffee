@@ -1,4 +1,4 @@
-angular.module('app').controller 'LinechartsHorizontalCtrl', ($scope, $log, $state, $templateCache) ->
+angular.module('app').controller 'AreachartsHorizontalCtrl', ($scope, $log, $state, $templateCache) ->
 
   menu = $state.current.data.menuItem
   $scope.options = {markers:false}
@@ -23,15 +23,15 @@ angular.module('app').controller 'LinechartsHorizontalCtrl', ($scope, $log, $sta
   $scope.chartCode = template
 
   $scope.left = () ->
-    $scope.data.filtered = $scope.data.chartData.slice(50)
+    $scope.data.filtered = $scope.data.chartData.slice(10)
     $scope.jsonData = JSON.stringify($scope.data.filtered, null, 3)
 
   $scope.right = () ->
-    $scope.data.filtered = $scope.data.chartData.slice(0, $scope.data.chartData.length - 50)
+    $scope.data.filtered = $scope.data.chartData.slice(0, $scope.data.chartData.length - 10)
     $scope.jsonData = JSON.stringify($scope.data.filtered, null, 3)
 
   $scope.center = () ->
-    $scope.data.filtered = $scope.data.chartData.slice(50, 300)
+    $scope.data.filtered = $scope.data.chartData.slice(10, $scope.data.chartData.length - 20)
     $scope.jsonData = JSON.stringify($scope.data.filtered, null, 3)
 
   $scope.reset = () ->
@@ -41,19 +41,6 @@ angular.module('app').controller 'LinechartsHorizontalCtrl', ($scope, $log, $sta
 
   $scope.cut = () ->
     left = $scope.data.chartData.map((d) -> d)
-    left.splice(100,110)
+    left.splice(20,10)
     $scope.data.filtered = left
 
-  shift = 0
-
-  $scope.shiftRight = () ->
-    if shift < 200
-      shift += 5
-    $scope.data.filtered = $scope.data.chartData.slice(100 + shift, 110 + shift)
-    $scope.jsonData = JSON.stringify($scope.data.filtered, null, 3)
-
-  $scope.shiftLeft = () ->
-    if shift > -70
-      shift -= 5
-    $scope.data.filtered = $scope.data.chartData.slice(100 + shift, 110 + shift)
-    $scope.jsonData = JSON.stringify($scope.data.filtered, null, 3)
