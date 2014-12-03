@@ -55,11 +55,11 @@ angular.module('app').constant 'menu',
     {url: 'home', name: 'Home', page:true},
     {url: 'linecharts', name: 'Line Charts', tabs:[
       {url:'horizontal',name:'Horizontal', options:true, ctrl:true},
-      {url:'vertical', name:'Vertical', options:true}
+      {url:'vertical', name:'Vertical', options:true, ctrl:true}
     ]},
     {url: 'areacharts', name: 'Area Charts', tabs:[
       {url:'horizontal',name:'Horizontal', options:true, ctrl:true},
-      {url:'vertical',name:'Vertical'},
+      {url:'vertical',name:'Vertical', options:true, ctrl:true},
       {url:'stacked-horizontal',name:'Stacked Horizontal', options:true},
       {url:'stacked-vertical',name:'Stacked Vertical', options:true}]}
     {url: 'barcharts', name: 'Bar and Column Charts', tabs:[
@@ -101,6 +101,8 @@ angular.module('app').constant 'menu',
       {url:'selection', name:'Individual Object Selection', options:true},
       {url:'applybrush', name:'Applying Brush to Chart', options:true},
       {url:'multi', name:'Brushing Multiple Charts', ctrl:true}
+      {url:'vertical', name:'Brushing Vertical Axis'}
+
     ]},
     {url: 'more', name: 'more'}
     {url: 'chartbuilder', name: 'Chart Builder', tabs:[{url:'layout' , name:'Layout Type and Data', ctrl:true, page:true}]}
