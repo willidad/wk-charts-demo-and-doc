@@ -1,5 +1,2 @@
-
-axis | Attribute | Default Value
----- | --------- | ------------
-x | domain-range | extent
-y | domain-range | extent
+Welcome to the WK Charts Demo and documentation site
+-----------

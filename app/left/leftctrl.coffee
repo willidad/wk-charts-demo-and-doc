@@ -6,5 +6,5 @@ angular.module 'app'
       $scope.initial[i] = if m.tabs then ".#{m.tabs[0].url}" else ''
     $scope.menuItems = menu
 
-    $scope.isActive = (idx) ->
-      if idx is $state.current.data?.pageIdx then 'active' else ''
+    $scope.isActive = (url) ->
+      if url is $state.current.name or url is $state.current.parent then 'active' else ''

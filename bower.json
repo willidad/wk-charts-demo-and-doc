@@ -27,7 +27,9 @@
     "d3": "~3.4.11",
     "lodash": "~2.4.1",
     "github-markdown-css": "~1.2.0",
-    "marked": "~0.3.2"
+    "marked": "~0.3.2",
+    "codemirror": "^4.8.0",
+    "angular-ui-codemirror": "~0.1.6"
   },
   "overrides": {
     "jquery": {
@@ -50,6 +52,21 @@
     "marked": {
       "main": [
         "lib/marked.js"
+      ]
+    },
+    "codemirror": {
+      "main": [
+        "lib/codemirror.js",
+        "mode/javascript/javascript.js",
+        "mode/css/css.js",
+        "mode/xml/xml.js",
+        "mode/htmlmixed/htmlmixed.js",
+        "mode/jade/jade.js",
+        "lib/codemirror.css",
+        "addon/hint/show-hint.js",
+        "addon/hint/xml-hint.js",
+        "addon/hint/html-hint.js",
+        "addon/hint/show-hint.css"
       ]
     }
   },

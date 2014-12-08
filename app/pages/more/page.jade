@@ -1,0 +1,31 @@
+.col-lg-6(ng-init="filtered=[]")
+    .height50percent
+        label Chart {{chartName}}
+        .btn-group(dropdown)
+            button.btn.btn-default.dropdown-toggle(type="button") Open Chart&nbsp;
+                span.caret
+            ul.dropdown-menu
+                li(ng-repeat="file in fileList")
+                    a(href, ng-click="openChart(file)") {{file}}
+
+        button.btn.btn-default(ng-click="saveChart(chartName)") Save Chart
+        button.btn.btn-default(ng-click="saveChartAs()") Save Chart As
+        button.btn.btn-default(ng-click="deleteChart()") Delete Chart
+        br
+        button.btn.btn-default(ng-click="compile(chart)") Update Chart
+        ui-codemirror(ui-codemirror-opts="options", ng-model="chart.code", ui-refresh="refreshCntr")
+    .compiled-chart.height50percent
+.col-lg-6
+    label Chart Data
+
+    //.btn-group(dropdown)
+        button.btn.btn-default.dropdown-toggle(type="button") Open Data&nbsp;
+            span.caret
+        ul.dropdown-menu
+            li(ng-repeat="file in fileList")
+                a(href, ng-click="openDatat(file)") {{file}}
+
+    button.btn.btn-default(ng-click="addData()") Add Data
+    //button.btn.btn-default(ng-click="saveDataAs()") Save Sata As
+    //button.btn.btn-default(ng-click="deleteData()") Delete Data
+    chart-data-editor(data="chart.data", filtered="filtered")

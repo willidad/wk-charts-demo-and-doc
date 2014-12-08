@@ -1,4 +1,4 @@
-angular.module('app', ['wk.chart', 'ngSanitize', 'ngAnimate','ui.router','ui.bootstrap','templates', 'hljs', 'ui.select','wk.markdown'])
+angular.module('app', ['wk.chart', 'ngSanitize', 'ngAnimate','ui.router','ui.bootstrap','templates', 'hljs', 'ui.select','wk.markdown', 'ui.codemirror'])
   .config(($stateProvider, $urlRouterProvider, menu) ->
 
     $urlRouterProvider
@@ -11,6 +11,7 @@ angular.module('app', ['wk.chart', 'ngSanitize', 'ngAnimate','ui.router','ui.boo
     for i in [0..menu.length - 1]
       pName = menu[i].url
       pPath = if menu[i].page then pName else 'default'
+      pCtrl = if menu[i].ctrl then camelCase(pName) + 'Ctrl' else 'PageCtrl'
 
       view =
         views:
@@ -22,7 +23,7 @@ angular.module('app', ['wk.chart', 'ngSanitize', 'ngAnimate','ui.router','ui.boo
             controller: 'LeftCtrl'
           'content':
             templateUrl: "pages/#{pPath}/page.html"
-            controller: "PageCtrl"
+            controller: pCtrl
           'footer':
             templateUrl: 'footer/footer.html'
             controller: 'FooterCtrl'
@@ -44,6 +45,7 @@ angular.module('app', ['wk.chart', 'ngSanitize', 'ngAnimate','ui.router','ui.boo
               {
                 templateUrl:  page
                 url: '/' + tab
+                parent: pName
                 controller: ctrl
                 data: {pageIdx:i, chartIdx:j,  menuItem:menu[i], tab:menu[i].tabs[j]}
               })
@@ -101,11 +103,10 @@ angular.module('app').constant 'menu',
       {url:'selection', name:'Individual Object Selection', options:true},
       {url:'applybrush', name:'Applying Brush to Chart', options:true},
       {url:'multi', name:'Brushing Multiple Charts', ctrl:true}
-      {url:'vertical', name:'Brushing Vertical Axis'}
+      {url:'vertical', name:'Vertical Axis Brushing'}
 
     ]},
-    {url: 'more', name: 'more'}
-    {url: 'chartbuilder', name: 'Chart Builder', tabs:[{url:'layout' , name:'Layout Type and Data', ctrl:true, page:true}]}
+    {url: 'more', name: 'Chartbuilder and more charts', page:true, ctrl:true}
     {url: 'absolute', name: 'position:absolute container', page: true, ctrl:true}
   ]
 

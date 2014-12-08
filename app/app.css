@@ -7,7 +7,7 @@ body { padding-bottom: 70px; }
     overflow:hidden
 }
 .vertical-scroll-box {
-    overflow-y: scroll;
-    height:100%
+    overflow: scroll;
+    height:calc(100% - 34px)
 }
 

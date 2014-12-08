@@ -1,5 +1,5 @@
 .leftArea
     ul.nav.nav-pills.nav-stacked
-        li(ng-repeat="item in menuItems",ng-class="isActive($index)")
+        li(ng-repeat="item in menuItems",ng-class="isActive('{{item.url}}')")
             a(ui-sref="{{item.url}}{{initial[$index]}}") {{item.name}}
             //{{initial[$index]}}

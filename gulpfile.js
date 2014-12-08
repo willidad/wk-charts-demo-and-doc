@@ -17,8 +17,8 @@ var bump            = require('gulp-bump');
 var es              = require('event-stream');
 var annotate        = require('gulp-ng-annotate');
 var mainBowerFiles  = require('main-bower-files');
-var webserver       = require('gulp-webserver');
-
+//var webserver       = require('gulp-webserver');
+var lifereload      = require('gulp-livereload');
 
 gulp.task('appJS', function() {
     // concatenate compiled .coffee files and js files
@@ -191,7 +191,7 @@ gulp.task('watch',function() {
     gulp.watch(['./app/**/*.csv'], ['chartData']);
     gulp.watch(['./bower_components/**/.*.*'], ['libJS', 'libCss'])
 });
-
+/*
 gulp.task('webserver', function() {
     gulp.src(buildDir + '/')
         .pipe(webserver({
@@ -203,8 +203,15 @@ gulp.task('webserver', function() {
             open: false
         }));
 });
+*/
 
-gulp.task('default', ['webserver', 'appJS', 'templates', 'chartData', 'appCSS', 'index', 'libJS', 'libCSS', 'wkChartsJs', 'wkChartsCss', 'watchWkChartsJs', 'watchWkChartsCss', 'watch']);
+gulp.task('lifereload', function() {
+    var server = lifereload();
+    gulp.watch([buildDir + '/**/*']).on('change', function(file) {
+        server.changed(file.path);
+    });
+});
+gulp.task('default', ['lifereload', 'appJS', 'templates', 'chartData', 'appCSS', 'index', 'libJS', 'libCSS', 'wkChartsJs', 'wkChartsCss', 'watchWkChartsJs', 'watchWkChartsCss', 'watch']);
 
 function errorAlert(error){
     notify.onError({title: "Gulp Error", message: "<%= error.message %>", sound: "Sosumi"})(error);
