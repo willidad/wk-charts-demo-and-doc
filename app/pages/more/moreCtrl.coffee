@@ -1,4 +1,4 @@
-angular.module('app').controller 'MoreCtrl', ($log, $scope, $compile, $rootScope, $http, $modal, wkChartScales) ->
+angular.module('app').controller 'MoreCtrl', ($log, $scope, $compile, $rootScope, $http, $modal, $cookies, wkChartScales) ->
 
   bool = ['', 'true', 'false']
   dimensions = ["x", "y", "color", "size", "shape", "range-x", "range-y"]
@@ -139,7 +139,7 @@ angular.module('app').controller 'MoreCtrl', ($log, $scope, $compile, $rootScope
       inner = CodeMirror.innerMode(cm.getMode(), tok.state).state;
       return inner.tagName
     )
-
+  #---------------------------------------------------------------------------------------------------------------------
   # read file list
   getFileList = () ->
     $log.log 'loading file list'
@@ -156,7 +156,6 @@ angular.module('app').controller 'MoreCtrl', ($log, $scope, $compile, $rootScope
   # compile and append the chart
 
 
-
   $scope.compile = (chart) ->
     # remove current chart markup
     $scope.chart = emptyChart # ensure data gets cleaned
@@ -170,9 +169,7 @@ angular.module('app').controller 'MoreCtrl', ($log, $scope, $compile, $rootScope
     $scope.chart = chart
     return null # do not return a dom node from event handler! Will get Angular exception otherwise
 
-  $scope.fileList = ['f1','f2','f3']
-  getFileList()
-  $scope.refreshCntr = 0
+
 
   $scope.openChart = (name) ->
     $log.log 'reading', name
@@ -180,6 +177,7 @@ angular.module('app').controller 'MoreCtrl', ($log, $scope, $compile, $rootScope
       if status is 200
         $scope.compile(data)
         $scope.chartName = name
+        $cookies.lastLoaded = name
       else
         $log.error data,status
         $scope.chart = {code:'', data: {}, scopeVars: {}}
@@ -269,3 +267,11 @@ angular.module('app').controller 'MoreCtrl', ($log, $scope, $compile, $rootScope
         $log.log 'data', value
         $scope.chart.data = value
       )
+
+  # init
+
+  $scope.fileList = ['f1','f2','f3']
+  getFileList()
+  $scope.refreshCntr = 0
+  if $cookies.lastLoaded
+    $scope.openChart($cookies.lastLoaded)
