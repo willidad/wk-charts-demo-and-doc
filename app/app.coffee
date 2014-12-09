@@ -1,4 +1,4 @@
-angular.module('app', ['wk.chart', 'ngSanitize', 'ngAnimate','ui.router','ui.bootstrap','templates', 'hljs', 'ui.select','wk.markdown', 'ui.codemirror'])
+angular.module('app', ['wk.chart', 'ngSanitize', 'ngAnimate', 'ngCookies', 'ui.router','ui.bootstrap','templates', 'hljs', 'ui.select','wk.markdown', 'ui.codemirror'])
   .config(($stateProvider, $urlRouterProvider, menu) ->
 
     $urlRouterProvider
