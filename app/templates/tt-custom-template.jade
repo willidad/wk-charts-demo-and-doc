@@ -1,7 +1,7 @@
-table.table.table-condensed.custom-tooltip(ng-style="{'border-color':ttData.color}")
+table.table.table-condensed.custom-tooltip(ng-style="{'border-color':map.color()}")
     tr
         td Days
-        td {{ttData.data.CLASS_BOUNDS_LOWER}} to {{ttData.data.CLASS_BOUNDS_UPPER}}
-        td Units : {{ttData.data.CLASS_COUNT}}
+        td {{ttData.CLASS_BOUNDS_LOWER}} to {{ttData.CLASS_BOUNDS_UPPER}}
+        td Units : {{ttData.CLASS_COUNT}}
 
 

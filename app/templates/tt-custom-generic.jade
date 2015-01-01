@@ -1,4 +1,13 @@
-pre(ng-style="{'background-color':ttData.color}") {{ttData}}
+table.table.table-condensed
+    thead
+        tr
+            th {{labels.color}}
+            th {{labels.y}}
+    tbody
+        tr(ng-repeat="prop in properties.color()", ng-style="{'color':scale.color(prop)}")
+            td {{prop}}
+            td {{ttData[prop] | number:1}}
+
 
 
 
