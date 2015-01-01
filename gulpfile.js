@@ -17,8 +17,11 @@ var bump            = require('gulp-bump');
 var es              = require('event-stream');
 var annotate        = require('gulp-ng-annotate');
 var mainBowerFiles  = require('main-bower-files');
-//var webserver       = require('gulp-webserver');
 var lifereload      = require('gulp-livereload');
+var Dgeni           = require('dgeni')
+//var del             = require('del');
+//var bower           = require('bower');
+//var runSequence     = require('run-sequence');
 
 gulp.task('appJS', function() {
     // concatenate compiled .coffee files and js files
@@ -71,7 +74,7 @@ gulp.task('wkChartsCss', function() {
         .pipe(gulp.dest(buildDir + '/lib'))
 });
 
-gulp.task('wkChartsCopy',['wkChartsJs', 'wkChartsCss', 'wkChartsBumpVersion'], function() {
+gulp.task('wkChartsCopy',['wkChartsJs', 'wkChartsCss'], function() {
     return gulp.src([buildDir + '/lib/**/*.*'])
         .pipe(plumber({errorHandler: errorAlert}))
         .pipe(gulp.dest('./../wk-charts/dist/lib'))
@@ -82,7 +85,7 @@ gulp.task('wkChartsBumpVersion', function() {
         .pipe(bump())
         .pipe(gulp.dest('./../wk-charts/'))
         //.pipe(gulp.dest('./../wk-charts/dist'))
-})
+});
 
 gulp.task('watchWkChartsJs', function() {
     gulp.watch(['./../wk-charts/app/**/*.coffee', './../wk-charts/app/**/*.js'], ['wkChartsJs', 'wkChartsCopy'])
@@ -191,19 +194,6 @@ gulp.task('watch',function() {
     gulp.watch(['./app/**/*.csv'], ['chartData']);
     gulp.watch(['./bower_components/**/.*.*'], ['libJS', 'libCss'])
 });
-/*
-gulp.task('webserver', function() {
-    gulp.src(buildDir + '/')
-        .pipe(webserver({
-            host:'0.0.0.0',
-            port:3333,
-            livereload: true,
-            directoryListing: false,
-            fallback: 'index.html',
-            open: false
-        }));
-});
-*/
 
 gulp.task('lifereload', function() {
     var server = lifereload();

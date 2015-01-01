@@ -97,18 +97,7 @@ angular.module('app').controller 'MoreCtrl', ($log, $scope, $compile, $rootScope
     color: scaleAttrs
   };
 
-  $scope.options = {
-    lineNumbers:true
-    mode:'text/html'
-    extraKeys:  {
-      "'<'": completeAfter,
-      "'/'": completeIfAfterLt,
-      "' '": completeIfInTag,
-      "'='": completeIfInTag,
-      "Ctrl-Space": "autocomplete"
-    }
-    hintOptions: {schemaInfo: tags}
-  }
+
 
   emptyChart = $scope.chart = {
     code: ''
@@ -139,6 +128,19 @@ angular.module('app').controller 'MoreCtrl', ($log, $scope, $compile, $rootScope
       inner = CodeMirror.innerMode(cm.getMode(), tok.state).state;
       return inner.tagName
     )
+
+  $scope.options = {
+    lineNumbers:true
+    mode:'text/html'
+    extraKeys:  {
+      "'<'": completeAfter,
+      "'/'": completeIfAfterLt,
+      "' '": completeIfInTag,
+      "'='": completeIfInTag,
+      "Ctrl-Space": "autocomplete"
+    }
+    hintOptions: {schemaInfo: tags}
+  }
   #---------------------------------------------------------------------------------------------------------------------
   # read file list
   getFileList = () ->
