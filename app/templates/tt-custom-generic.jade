@@ -1,8 +1,10 @@
 table.table.table-condensed
     thead
         tr
-            th {{labels.color}}
-            th {{labels.y}}
+            th(colspan="2") {{value.x() | date:'d MMM yyyy'}}
+        tr
+            th {{label.color}}
+            th {{label.y}}
     tbody
         tr(ng-repeat="prop in properties.color()", ng-style="{'color':scale.color(prop)}")
             td {{prop}}
