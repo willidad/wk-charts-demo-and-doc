@@ -41,43 +41,22 @@ gulp.task('appJS', function() {
         .pipe(gulp.dest(buildDir + '/js'))
 });
 
-gulp.task('wkChartsJs', function() {
-    // compile an concatenate wk-charts library:
-    //   Coffeescript
-    var csJs = gulp.src('./../wk-charts/app/**/*.coffee',{base:'./'})
+gulp.task('wkChartsCopyJs', function() {
+    return gulp.src(['./../wk-charts/dist/lib/*.js', './../wk-charts/dist/lib/**/*.map'])
         .pipe(plumber({errorHandler: errorAlert}))
-        .pipe(sourcemaps.init())
-        .pipe(coffee({bare:true, doctype:'html'}));
-
-    // Jade templates
-    var templ = gulp.src('./../wk-charts/app/**/*.jade')
-        .pipe(plumber({errorHandler: errorAlert}))
-        .pipe(jade({pretty:true, doctype:'html'}))
-        .pipe(tplCache({module:'wk.chart'}));
-
-    // Javascript components
-    var js = gulp.src('./../wk-charts/app/**/*.js',{base:'./'})
-        .pipe(plumber({errorHandler: errorAlert}))
-        .pipe(sourcemaps.init());
-
-    return es.merge(csJs, js, templ)
-        .pipe(concat('wk-charts.js'))
-        .pipe(sourcemaps.write())
         .pipe(gulp.dest(buildDir + '/lib'))
 });
 
-gulp.task('wkChartsCss', function() {
-    // watch wk-charts project for changes
-    return gulp.src('./../wk-charts/app/**/*.css',{base:'./'})
+gulp.task('wkChartsCopyCss', function() {
+    return gulp.src(['./../wk-charts/dist/lib/*.css'])
         .pipe(plumber({errorHandler: errorAlert}))
-        .pipe(concat('wk-charts.css'))
         .pipe(gulp.dest(buildDir + '/lib'))
 });
 
-gulp.task('wkChartsCopy',['wkChartsJs', 'wkChartsCss'], function() {
-    return gulp.src([buildDir + '/lib/**/*.*'])
+gulp.task('wkChartsCopyDocs', function() {
+    return gulp.src(['./../wk-charts/dist/docs/**/*.*'])
         .pipe(plumber({errorHandler: errorAlert}))
-        .pipe(gulp.dest('./../wk-charts/dist/lib'))
+        .pipe(gulp.dest(buildDir + '/lib/docs'))
 });
 
 gulp.task('wkChartsBumpVersion', function() {
@@ -85,13 +64,6 @@ gulp.task('wkChartsBumpVersion', function() {
         .pipe(bump())
         .pipe(gulp.dest('./../wk-charts/'))
         //.pipe(gulp.dest('./../wk-charts/dist'))
-});
-
-gulp.task('watchWkChartsJs', function() {
-    gulp.watch(['./../wk-charts/app/**/*.coffee', './../wk-charts/app/**/*.js'], ['wkChartsJs', 'wkChartsCopy'])
-});
-gulp.task('watchWkChartsCss', function() {
-    gulp.watch(['./../wk-charts/app/**/*.css'], ['wkChartsCss'])
 });
 
 gulp.task('testJS', function() {
@@ -131,11 +103,10 @@ gulp.task('templates', function() {
 });
 
 gulp.task('chartData', function() {
-    return gulp.src(['./app/**/*.csv'])
+    return gulp.src(['./app/**/*'])
         .pipe(plumber({errorHandler: errorAlert}))
         .pipe(gulp.dest('./build/data'))
 });
-
 
 gulp.task('appCSS', function() {
     // concatenate compiled Less and CSS
@@ -192,7 +163,10 @@ gulp.task('watch',function() {
     gulp.watch(['./app/**/*.less', './app/**/*.css'], ['appCSS']);
     gulp.watch(['./app/index.jade', './app/index.html'], ['index']);
     gulp.watch(['./app/**/*.csv'], ['chartData']);
-    gulp.watch(['./bower_components/**/.*.*'], ['libJS', 'libCss'])
+    gulp.watch(['./bower_components/**/.*.*'], ['libJS', 'libCss']);
+    gulp.watch(['./../wk-charts/dist/lib/*.js'], ['wkChartsCopyJs']);
+    gulp.watch(['./../wk-charts/dist/lib/*.css'], ['wkChartsCopyCss']);
+    return gulp.watch(['./../wk-charts/dist/docs/**/*.html'], ['wkChartsCopyDocs'])
 });
 
 gulp.task('lifereload', function() {
@@ -201,7 +175,7 @@ gulp.task('lifereload', function() {
         server.changed(file.path);
     });
 });
-gulp.task('default', ['lifereload', 'appJS', 'templates', 'chartData', 'appCSS', 'index', 'libJS', 'libCSS', 'wkChartsJs', 'wkChartsCss', 'watchWkChartsJs', 'watchWkChartsCss', 'watch']);
+gulp.task('default', ['lifereload', 'appJS', 'templates', 'chartData', 'appCSS', 'index', 'libJS', 'libCSS', 'wkChartsCopyJs', 'wkChartsCopyCss', 'wkChartsCopyDocs', 'watch']);
 
 function errorAlert(error){
     notify.onError({title: "Gulp Error", message: "<%= error.message %>", sound: "Sosumi"})(error);

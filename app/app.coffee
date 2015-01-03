@@ -85,10 +85,22 @@ angular.module('app').constant 'menu',
       {url:'spider',name:'Spider Chart',options:true}
     ]},
     {url: 'scattercharts', name: 'Scatter Charts', tabs: [
-      {url:'bubble', name:'Bubble Chart', options:true, ctrl:true},
+      {url:'bubble', name:'Bubble Chart', options:true, ctrl:true}
+      {url:'icon', name:'Icon Chart', options:true}
     ]}
-    {url: 'maps', name: 'Maps'},
-    {url: 'dimensions', name: 'Dimensions', tabs:[{url:'x', name:'Horizontal'},{url:'y', name:'Vertical'},{url:'Color', name:'Color'},{url:'size', name:'Size'},{url:'shape', name:'Shape'}]},
+    {url: 'maps', name: 'Maps', tabs:[
+      {url:'de', name:'Germany Map', options:true, ctrl:true}
+      {url:'world', name:'World Map Orthogrphic', options:true, ctrl:true}
+      {url:'worldMercator', name:'World Map Mercator', options:true, ctrl:true}
+    ]},
+    {url: 'dimensions', name: 'Dimensions', tabs:[
+      {url:'x', name:'Horizontal'},
+      {url:'rangeX', name:'Horizontal Range'},
+      {url:'y', name:'Vertical'},
+      {url:'rangeY', name:'Vertical Range'},
+      {url:'Color', name:'Color'},
+      {url:'size', name:'Size'},
+      {url:'shape', name:'Shape'}]},
     {url: 'scales', name: 'Scales', tabs:[{url:'quantitative', name:'Quantitative', ctrl:true}, {url:'time', name:'Time', options:true}, {url:'ordinal', name:'Ordinal', ctrl:true},{url:'threshold', name:'Threshold', options:true},{url:'quantize', name:'Quantize'}, {url:'quantile', name:'Quantile'}]},
     {url: 'axis', name: 'Axis Styling', tabs:[
       {url:'xaxis', name:'X-Axis', options:true},

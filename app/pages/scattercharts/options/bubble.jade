@@ -1,3 +1,5 @@
+ng-include(src="'./lib/docs/layout/bubble.html'", autoscroll="true")
+
 md.
     This bubble chart shows the co2 emission of cars in Europe by manufacturer. The bubble color represents the manufacturer,
     the size of the bubble represents the number of cars registered in the year.
@@ -5,7 +7,6 @@ md.
 
     #### Select Year
     -----
-
 btn-group
     label.btn.btn-default(ng-model="options.year", btn-radio="2011") 2011
     label.btn.btn-default(ng-model="options.year", btn-radio="2012") 2012

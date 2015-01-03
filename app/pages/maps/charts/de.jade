@@ -1,0 +1,4 @@
+chart(data="genList", deep-watch, tooltips)
+   layout(geo-map, geojson="de", projection="projection")
+      color(type="threshold",property="status", range="lightblue,green,yellow,orange,red", domain="{{threshold}}")
+

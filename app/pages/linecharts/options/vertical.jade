@@ -1,32 +1,14 @@
+ng-include(src="'./lib/docs/layout/lineVertical.html'", autoscroll="true")
 md.
-   #### Options
-table.table.table-condensed
-   thead
-      tr
-         th Scope Variable
-         th Value
-         th Remarks
-   tbody
-      tr
-         td options.markers
-         td
-            input(type="checkbox", ng-model="options.markers")
-         td
-            markdown if true, show markers for each data point on chart
-md.
-   #### Defaults
-
-   axis | Type | Attribute | Default Value
-   ---- | ---- |:---------:| ------------
-   x | linear | domain-range | extent
-   y | linear | domain-range | extent
-   color | category20 | -- | --
-
-   #### Modify Data
-   -------
-
+   ### Play with the chart
+br
 button.btn.btn-normal(ng-click="left()") trunkate bottom
 button.btn.btn-normal(ng-click="right()") trunkate top
 button.btn.btn-normal(ng-click="center()") trunkate both
 button.btn.btn-normal(ng-click="cut()") cut center
 button.btn.btn-normal(ng-click="reset()") reset
+br
+br
+button.btn.btn-primary(ng-click="options.markers = !options.markers") {{options.markers? 'Hide ' : 'Show '}}Markers
+pre(style="display:inline;") options.markers = {{options.markers}}
+

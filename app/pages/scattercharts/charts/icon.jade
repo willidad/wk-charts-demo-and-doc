@@ -1,0 +1,10 @@
+.width75percent
+   chart(data="chartData", tooltips, deep-watch)
+      layout(scatter)
+         x(axis, property="x", type="linear", show-label, label="abc", grid, domain="0,200")
+         y(axis, property="y", type="linear", grid, domain="0,100")
+         color(property="group", type="category10", values-legend="top-left",legend-title="Group Values")
+         size(property="size", range="10,50", domain-range="extent")
+         shape(property="shape", values-legend="#shapeLegend", label="Shape Values",legend-title="Shape Values")
+.width25percent
+   #shapeLegend

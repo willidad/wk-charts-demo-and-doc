@@ -1,6 +1,6 @@
 chart(data="data.filtered", tooltips)
    layout(line-vertical, markers="{{options.markers}}")
       y(type="ordinal", property="Altersgruppe", axis, show-label, label="Altersgruppe", grid, brush)
-      x(property="maennlich,weiblich,diff", axis, tick-format=".2s", domain-range="extent", legend, grid)
+      x(property="maennlich,weiblich,differenz", axis, tick-format=".2s", domain-range="extent", legend, grid)
       color(type="category10")
 
