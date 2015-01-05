@@ -1,5 +1,5 @@
 chart(data="chartData", tooltips, deep-watch)
-    layout(scatter, brush, selected-domain="options.domain")
+    layout(scatter, brush, selected-domain="options.domain", selected-domain-change="domainChange(domain)")
         x(axis, property="x", show-label, label="abc", grid)
         y(axis, property="y",grid)
         color(property="group", label="Scatter Group Values")

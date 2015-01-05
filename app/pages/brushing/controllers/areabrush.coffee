@@ -28,3 +28,6 @@ angular.module('app').controller 'BrushingAreabrushCtrl', ($log, $scope, $state,
 
   $scope.chartData = randomData(5,50)
   $scope.data = JSON.stringify($scope.chartData,null,3)
+
+  $scope.domainChange = (domain) ->
+    $scope.eventData = domain

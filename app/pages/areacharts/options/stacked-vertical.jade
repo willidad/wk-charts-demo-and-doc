@@ -1,1 +1,12 @@
 ng-include(src="'./lib/docs/layout/areaStackedVertical.html'", autoscroll="true")
+
+md.
+    #### play with example
+    ------
+    select the area style
+select(ng-model="options.areaStyle")
+    option zero
+    option silhouette
+    option expand
+    option wiggle
+pre(style="display:inline;") options.areaStyle = {{options.areaStyle}}

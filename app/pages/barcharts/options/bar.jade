@@ -1,5 +1,8 @@
 ng-include(src="'./lib/docs/layout/bars.html'", autoscroll="true")
 
+button.btn.btn-primary(ng-click="options.labels = !options.labels") {{options.labels? 'Hide ' : 'Show '}}Labels
+pre(style="display:inline;") options.labels = {{options.labels}}
+
 md.
    #### Modify Data
    -------
