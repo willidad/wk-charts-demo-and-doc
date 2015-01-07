@@ -9,7 +9,7 @@
 .height20percent
    chart(data="chartData", class="show-brush-handles")
       layout(line)
-         x(axis, brush="b3", type="time", property="date", date-format="%d.%m.%Y", selected-domain="options.domain")
+         x(axis, brush="b3", type="time", property="date", date-format="%d.%m.%Y", selected-domain="options.domain", clear-brush="options.clearBrush")
          y(property="close", domain-range="max")
          color()
 

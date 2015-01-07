@@ -8,6 +8,8 @@ angular.module('app').controller 'BrushingMultiCtrl', ($scope, $log, $state, $te
 
   $scope.chartCode = template
 
+  $scope.options = {}
+
   dateFormat = d3.time.format("%d.%m.%Y")
 
   d3.csv("data/pages/#{menu.url}/data#{$state.current.url}.csv", (rows) ->

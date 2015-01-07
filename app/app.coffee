@@ -30,12 +30,13 @@ angular.module('app', ['wk.chart', 'ngSanitize', 'ngAnimate', 'ngCookies', 'ui.r
         url: "/#{menu[i].url}"
       $stateProvider.state("#{pName}", view)
       if menu[i].tabs
+        chartCtrl = if menu[i].chartCtrl then menu[i].chartCtrl else 'ChartCtrl'
         for j in [0 .. menu[i].tabs.length - 1]
           tab = menu[i].tabs[j].url
           if menu[i].tabs[j].ctrl
             ctrl = camelCase(pName) + camelCase(tab) + 'Ctrl'
           else
-            ctrl = 'ChartCtrl'
+            ctrl = chartCtrl
           if menu[i].tabs[j].page
             page = "pages/#{pName}/chart.html"
           else
@@ -54,17 +55,17 @@ angular.module('app', ['wk.chart', 'ngSanitize', 'ngAnimate', 'ngCookies', 'ui.r
 
 angular.module('app').constant 'menu',
   [
-    {url: 'home', name: 'Home', page:true},
-    {url: 'linecharts', name: 'Line Charts', tabs:[
+    {group:'home', url: 'home', name: 'Home', page:true},
+    {group:'charts',url: 'linecharts', name: 'Line Charts', tabs:[
       {url:'horizontal',name:'Horizontal', options:true, ctrl:true},
       {url:'vertical', name:'Vertical', options:true, ctrl:true}
     ]},
-    {url: 'areacharts', name: 'Area Charts', tabs:[
+    {group:'charts',url: 'areacharts', name: 'Area Charts', tabs:[
       {url:'horizontal',name:'Horizontal', options:true, ctrl:true},
       {url:'vertical',name:'Vertical', options:true, ctrl:true},
       {url:'stacked-horizontal',name:'Stacked Horizontal', options:true},
       {url:'stacked-vertical',name:'Stacked Vertical', options:true}]}
-    {url: 'barcharts', name: 'Bar and Column Charts', tabs:[
+    {group:'charts',url: 'barcharts', name: 'Bar and Column Charts', tabs:[
       {url:'bar', name:'Bar Chart', options:true},
       {url:'bar-stacked',name:'Stacked Bar', options:true},
       {url:'bar-clustered', name:'Clustered Bar', options:true},
@@ -72,54 +73,59 @@ angular.module('app').constant 'menu',
       {url:'column-stacked',name:'Stacked Column', options:true},
       {url:'column-clustered', name:'Clustered Column', options:true}
     ]},
-    {url:'piecharts', name:'Pie Charts', tabs:[
+    {group:'charts',url:'piecharts', name:'Pie Charts', tabs:[
       {url:'pie', name:'Pie', options:true},
       {url:'donat', name:'Donat', options:true}
     ]},
-    {url:'histograms', name:'Histograms', tabs:[
+    {group:'charts',url:'histograms', name:'Histograms', tabs:[
       {url:'colFixed', name:'Fixed-width Column', options:true},
       {url:'colVariable', name:'Variable-width Column', options:true}
     ]},
-    {url: 'gauges', name: 'Gauges'},
-    {url: 'spidercharts', name: 'Spider Charts', tabs: [
+    {group:'charts',url: 'gauges', name: 'Gauges'},
+    {group:'charts',url: 'spidercharts', name: 'Spider Charts', tabs: [
       {url:'spider',name:'Spider Chart',options:true}
     ]},
-    {url: 'scattercharts', name: 'Scatter Charts', tabs: [
+    {group:'charts',url: 'scattercharts', name: 'Scatter Charts', tabs: [
       {url:'bubble', name:'Bubble Chart', options:true, ctrl:true}
       {url:'icon', name:'Icon Chart', options:true}
     ]}
-    {url: 'maps', name: 'Maps', tabs:[
+    {group:'charts',url: 'maps', name: 'Georgraphic Maps', tabs:[
       {url:'de', name:'Germany Map', options:true, ctrl:true}
       {url:'world', name:'World Map Orthogrphic', options:true, ctrl:true}
       {url:'worldMercator', name:'World Map Mercator', options:true, ctrl:true}
     ]},
-    {url: 'dimensions', name: 'Dimensions', tabs:[
-      {url:'x', name:'Horizontal'},
-      {url:'rangeX', name:'Horizontal Range'},
-      {url:'y', name:'Vertical'},
-      {url:'rangeY', name:'Vertical Range'},
-      {url:'Color', name:'Color'},
-      {url:'size', name:'Size'},
-      {url:'shape', name:'Shape'}]},
-    {url: 'scales', name: 'Scales', tabs:[{url:'quantitative', name:'Quantitative', ctrl:true}, {url:'time', name:'Time', options:true}, {url:'ordinal', name:'Ordinal', ctrl:true},{url:'threshold', name:'Threshold', options:true},{url:'quantize', name:'Quantize'}, {url:'quantile', name:'Quantile'}]},
-    {url: 'axis', name: 'Axis Styling', tabs:[
+    {group:'charts',url: 'dimensions', name: 'Dimensions', chartCtrl:'DimensionsCtrl', tabs:[
+      {url:'x', name:'Horizontal', options:true, page:true},
+      {url:'rangeX', name:'Horizontal Range', options:true, page:true},
+      {url:'y', name:'Vertical', options:true, page:true},
+      {url:'rangeY', name:'Vertical Range', options:true, page:true},
+      {url:'color', name:'Color', options:true, page:true},
+      {url:'size', name:'Size', options:true, page:true},
+      {url:'shape', name:'Shape', options:true, page:true}]},
+    {group:'general',url: 'scales', name: 'Scales', tabs:[{url:'quantitative', name:'Quantitative', ctrl:true}, {url:'time', name:'Time', options:true}, {url:'ordinal', name:'Ordinal', ctrl:true},{url:'threshold', name:'Threshold', options:true},{url:'quantize', name:'Quantize'}, {url:'quantile', name:'Quantile'}]},
+    {group:'general',url: 'axis', name: 'Axis Styling', tabs:[
       {url:'xaxis', name:'X-Axis', options:true},
       {url:'yaxis', name:'y-Axis'},
       {url:'formatting', name:'Custom Axis Formatting', options:true, ctrl:true}
     ]},
-    {url: 'legend', name: 'Legends', tabs:[{url:'layer', name:'Layer Legends'},{url:'data', name:'Data Legends'}]},
-    {url: 'combocharts', name: 'Combocharts'},
-    {url: 'brushing', name: 'Brushing and Selection', tabs:[
-      {url:'axisbrush', name:'Axis Brushing', options:true},
-      {url:'areabrush', name:'Area Brushing', ctrl: true},
-      {url:'selection', name:'Individual Object Selection', options:true},
-      {url:'applybrush', name:'Applying Brush to Chart', options:true},
-      {url:'multi', name:'Brushing Multiple Charts', ctrl:true}
-      {url:'vertical', name:'Vertical Axis Brushing'}
-
+    {group:'general',url: 'legend', name: 'Legends', tabs:[{url:'layer', name:'Layer Legends'},{url:'data', name:'Data Legends'}]},
+    {group:'more',url: 'combocharts', name: 'Combocharts'},
+    {group:'behavior',url: 'tooltips', name: 'Tooltips', chartCtrl:'TooltipsCtrl', tabs:[
+      {url:'tooltips', name:'Tooltips', options:true, page:true}
     ]},
-    {url: 'more', name: 'Chartbuilder and more charts', page:true, ctrl:true}
-    {url: 'absolute', name: 'position:absolute container', page: true, ctrl:true}
+    {group:'behavior',url: 'selection', name: 'Selection', tabs:[
+      {url:'selection', name:'Individual Object Selection', options:true}
+    ]},
+    {group:'behavior',url: 'brushing', name: 'Brushing', tabs:[
+      {url:'axisbrush', name:'Axis Brushing', options:true},
+      {url:'areabrush', name:'Area Brushing', options:true, ctrl: true},
+      {url:'applybrush', name:'Applying Brush to Chart', options:true},
+      {url:'multi', name:'Brushing Multiple Charts', options:true, ctrl:true}
+      {url:'vertical', name:'Vertical Axis Brushing', options:true}
+    ]},
+    {group:'behavior',url: 'zoom', name: 'Pan and Zoom'},
+    {group:'more',url: 'more', name: 'Chartbuilder and more charts', page:true, ctrl:true}
+    {group:'more',url: 'absolute', name: 'position:absolute container', page: true, ctrl:true}
   ]
 
 angular.module('wk.chart').config (wkChartScalesProvider, wkChartLocaleProvider) ->

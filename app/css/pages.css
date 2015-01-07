@@ -10,6 +10,10 @@
     height:50%;
 }
 
+.content-height {
+    height: calc(100vh - 160px);
+}
+
 .col-lg-6 {
     height: calc(100vh - 160px);
 }
