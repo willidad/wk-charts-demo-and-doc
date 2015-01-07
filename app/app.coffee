@@ -112,6 +112,7 @@ angular.module('app').constant 'menu',
     {group:'more',url: 'combocharts', name: 'Combocharts'},
     {group:'behavior',url: 'tooltips', name: 'Tooltips', chartCtrl:'TooltipsCtrl', tabs:[
       {url:'tooltips', name:'Tooltips', options:true, page:true}
+      {url:'custom', name:'Custom Tooltips', options:true, page:true}
     ]},
     {group:'behavior',url: 'selection', name: 'Selection', tabs:[
       {url:'selection', name:'Individual Object Selection', options:true}
