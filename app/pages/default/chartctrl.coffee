@@ -25,6 +25,7 @@ angular.module('app').controller 'ChartCtrl', ($log, $scope, $templateCache, $st
     padding:[10,0]
     labels:false
     clearBrush: null
+    clearSelection: null
 
   }
   $scope.chartUrl = "pages/#{menu.url}/charts#{$state.current.url}.html"
