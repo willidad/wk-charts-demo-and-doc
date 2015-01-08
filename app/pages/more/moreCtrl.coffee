@@ -157,6 +157,7 @@ angular.module('app').controller 'MoreCtrl', ($log, $scope, $compile, $rootScope
 
   # compile and append the chart
 
+  currentChart = emptyChart
 
   $scope.compile = (chart) ->
     # remove current chart markup
@@ -177,6 +178,7 @@ angular.module('app').controller 'MoreCtrl', ($log, $scope, $compile, $rootScope
     $log.log 'reading', name
     $http.get('/chart/' + name).success((data,status) ->
       if status is 200
+        currentChart = data
         $scope.compile(data)
         $scope.chartName = name
         $cookies.lastLoaded = name
@@ -270,6 +272,29 @@ angular.module('app').controller 'MoreCtrl', ($log, $scope, $compile, $rootScope
         $scope.chart.data = value
       )
 
+  $scope.showInModal = () ->
+    template = '<div class="modal-header"><button class="btn btn-primary" ng-click="compile()">Compile</button></div>
+    <div class="modal-body"><div class="modal-compiled-chart" style="height:500px;"></div></div>
+    <div class="modal-footer"></div>'
+
+    dialog = $modal.open({
+      size:'lg'
+      template:template
+      resolve: {
+        chart: () -> return currentChart
+      }
+      controller: ($scope, $modalInstance, $compile, chart) ->
+        $scope.compile = () ->
+          $scope.chart = emptyChart # ensure data gets cleaned
+          chartElem = angular.element(document.querySelector('.modal-compiled-chart'))
+          chartElem.children().remove()
+          code = chart.code
+          compiledChart = $compile(code)($scope)
+          $scope.chart = chart
+          $scope.filtered = chart.data
+          chartElem.append(compiledChart)
+
+    })
   # init
 
   $scope.fileList = ['f1','f2','f3']
