@@ -302,3 +302,7 @@ angular.module('app').controller 'MoreCtrl', ($log, $scope, $compile, $rootScope
   $scope.refreshCntr = 0
   if $cookies.lastLoaded
     $scope.openChart($cookies.lastLoaded)
+
+  $scope.scaleMapFn = (value) ->
+    $log.log 'scaleMapFn called. value:', value
+    return 'red'
