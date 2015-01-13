@@ -7,11 +7,15 @@ var express = require('express');
 var serveStatic = require('serve-static');
 var serveIndex = require('serve-index');
 var bodyParser = require('body-parser');
+var compress = require('compression');
 
 var app = express();
+app.use(compress());
 app.use(serveStatic(dest));
 app.use('/dir', serveIndex('./', {'icons': true}));
 app.use(bodyParser.json());
+
+app.set('port', (process.env.PORT || 3333));
 
 app.get('/list', function(req, res) {
     fs.readdir('./charts', function(err, data) {
@@ -83,4 +87,6 @@ app.delete('/chart/:name', function(req, res) {
     })
 
 });
-app.listen(3333);
+app.listen(app.get('port'), function() {
+    console.log("Node app is running at localhost:" + app.get('port'));
+});
