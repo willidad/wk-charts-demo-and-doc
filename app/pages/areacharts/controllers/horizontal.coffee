@@ -3,13 +3,11 @@ angular.module('app').controller 'AreachartsHorizontalCtrl', ($scope, $log, $sta
   menu = $state.current.data.menuItem
   $scope.options = {markers:false}
 
-
   $scope.chartUrl = "pages/#{menu.url}/charts#{$state.current.url}.html"
   options = $state.current.data.tab.options
   if options
     $scope.optionsUrl = "pages/#{menu.url}/options#{$state.current.url}.html"
   $log.log $scope.chartUrl, $scope.optionsUrl
-
 
   d3.csv("data/pages/#{menu.url}/data#{$state.current.url}.csv", (rows) ->
     $scope.data = {chartData: rows, filtered:rows}

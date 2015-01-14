@@ -1,6 +1,7 @@
 // file name and directory definitions
 
 var buildDir = './build';
+var heroku = './../heroku';
 
 var gulp            = require('gulp');
 var plumber         = require('gulp-plumber');
@@ -15,12 +16,16 @@ var less            = require('gulp-less');
 var markdown        = require('gulp-markdown');
 var bump            = require('gulp-bump');
 var es              = require('event-stream');
-var annotate        = require('gulp-ng-annotate');
 var mainBowerFiles  = require('main-bower-files');
 var bower           = require('gulp-bower');
 var lifereload      = require('gulp-livereload');
 var del             = require('del');
 var runSequence     = require('run-sequence');
+var gulpif              = require('gulp-if');
+var annotate        = require('gulp-ng-annotate');
+var uglify          = require('gulp-uglify');
+var minifycss       = require('gulp-minify-css');
+var minifyhtml      = require('gulp-minify-html');
 
 gulp.task('bower-update', function() {
     return bower({ cmd: 'update'});
@@ -52,7 +57,9 @@ gulp.task('appJS', function() {
 
     return es.merge(js,csJs)
         .pipe(concat('app.js'))
-        .pipe(sourcemaps.write())
+        //.pipe(annotate())
+        //.pipe(uglify())
+        .pipe(sourcemaps.write('./maps'))
         .pipe(gulp.dest(buildDir + '/js'))
         .pipe(lifereload())
 });
@@ -78,13 +85,6 @@ gulp.task('wkChartsCopyDocs', function() {
         .pipe(lifereload())
 });
 
-gulp.task('wkChartsBumpVersion', function() {
-    return gulp.src('./../wk-charts/bower.json')
-        .pipe(bump())
-        .pipe(gulp.dest('./../wk-charts/'));
-        //.pipe(gulp.dest('./../wk-charts/dist'))
-});
-
 gulp.task('testJS', function() {
     // Compile JS test files. Not compiled.
     var js = gulp.src(['./app/**/*_test.js'],{base:'./'})
@@ -107,17 +107,23 @@ gulp.task('templates', function() {
     // jade templates
     var jadeTempl = gulp.src(['!./app/index.jade', './app/**/*.jade'])
         .pipe(plumber({errorHandler: errorAlert}))
+        .pipe(sourcemaps.init())
         .pipe(jade({pretty:true, doctype:'html'}));
     // html templates
     var htmlTempl = gulp.src(['!./app.index.html', './app/**/*.html'])
-        .pipe(plumber({errorHandler: errorAlert}));
+        .pipe(plumber({errorHandler: errorAlert}))
+        .pipe(sourcemaps.init());
     // markdown templates
     var markdownTempl = gulp.src(['./app/**/*.md'])
         .pipe(plumber({errorHandler: errorAlert}))
+        .pipe(sourcemaps.init())
         .pipe(markdown());
 
     return es.merge(jadeTempl, htmlTempl, markdownTempl)
         .pipe(tplCache({standalone:true}))
+        //.pipe(annotate())
+        //.pipe(uglify())
+        .pipe(sourcemaps.write('./maps'))
         .pipe(gulp.dest(buildDir + '/js'))
         .pipe(lifereload())
 });
@@ -141,18 +147,21 @@ gulp.task('appCSS', function() {
 
     return es.merge(cssSrc, lessSrc)
         .pipe(concat('app.css'))
-        .pipe(sourcemaps.write())
+        .pipe(minifycss())
+        .pipe(sourcemaps.write('./maps'))
         .pipe(gulp.dest(buildDir + '/css'))
         .pipe(lifereload())
 });
 
 gulp.task('libJS', function() {
     return gulp.src(mainBowerFiles({filter:/\.js$/}),{base:'./'})
-      .pipe(plumber({errorHandler: errorAlert}))
-      .pipe(sourcemaps.init())
-      .pipe(concat('vendor.js'))
-      .pipe(sourcemaps.write())
-      .pipe(gulp.dest(buildDir + '/js'))
+        .pipe(plumber({errorHandler: errorAlert}))
+        .pipe(sourcemaps.init())
+        .pipe(concat('vendor.js'))
+        //.pipe(annotate())
+        //.pipe(uglify())
+        .pipe(sourcemaps.write('./maps'))
+        .pipe(gulp.dest(buildDir + '/js'))
 });
 
 gulp.task('libCSS', function() {
@@ -191,12 +200,18 @@ gulp.task('watch',function() {
     gulp.watch(['./../wk-charts/dist/docs/**/*.html'], ['wkChartsCopyDocs']); // copy chart docs on change
 });
 
-gulp.task('default', function() {
-    runSequence('cleanBuildDir', ['buildLib', 'appJS', 'appCSS', 'templates', 'wkChartsCopyJs', 'wkChartsCopyCss', 'wkChartsCopyDocs', 'index', 'chartData'])
+gulp.task('default', function(done) {
+    runSequence('cleanBuildDir', ['buildLib', 'buildApp'], done)
 });
 
+gulp.task('buildApp', function(done) {
+    runSequence(['appJS', 'appCSS', 'templates', 'wkChartsCopyJs', 'wkChartsCopyCss', 'wkChartsCopyDocs', 'index', 'chartData'], done)
+})
+
 function errorAlert(error){
-    notify.onError({title: "Gulp Error", message: "<%= error.message %>", sound: "Sosumi"})(error);
-    console.log(error.toString());
+    if (error) {
+        notify.onError({title: "Gulp Error", message: "<%= error.message %>", sound: "Sosumi"})(error);
+        console.log(error.toString());
+    }
     this.emit("end");
 }
