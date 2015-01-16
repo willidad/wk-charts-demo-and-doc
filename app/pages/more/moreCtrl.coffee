@@ -54,6 +54,7 @@ angular.module('app').controller 'MoreCtrl', ($log, $scope, $compile, $rootScope
       ticks: ['']
       'rotate-tick-labels':[]
       'grid': bool
+      reverse:bool
       label: ['']
       'show-label': bool
       legend: legendPositions
