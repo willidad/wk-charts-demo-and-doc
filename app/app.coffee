@@ -129,7 +129,7 @@ angular.module('app').constant 'menu',
       {url:'multi', name:'Brushing Multiple Charts', options:true, ctrl:true}
       {url:'vertical', name:'Vertical Axis Brushing', options:true}
     ]},
-    {group:'behavior',url: 'zoom', name: 'Pan and Zoom'},
+    {group:'more',url: 'model', name: 'ChartModel', page:true, ctrl:true},
     {group:'more',url: 'more', name: 'Chartbuilder and more charts', page:true, ctrl:true}
     {group:'more',url: 'absolute', name: 'position:absolute container', page: true, ctrl:true}
   ]
