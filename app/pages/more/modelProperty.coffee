@@ -19,8 +19,5 @@ angular.module('app').directive 'propertyElement', ($log) ->
       value:'='
       name:'@'
     template: template
-    link: (scope, iElement, iAttr) ->
-      scope.$watch 'value', (val) ->
-        $log.log val
   }
 
