@@ -5,16 +5,7 @@
         tr(ng-repeat="(name, prop) in dimension.getDescriptor().properties")
             td {{name}}
             td
-                span(ng-if="prop.type == 'enum'")
-                    select(ng-model="dimension[name]", ng-options="item for item in prop.values")
-                span(ng-switch="prop")
-                    input(ng-switch-when="boolean", ng-model="dimension[name]", type='checkbox', placeholder="{{prop}}")
-                    input(ng-switch-when="number", ng-model="dimension[name]", type='number', placeholder="{{prop}}")
-                    input(ng-switch-when="string",ng-model="dimension[name]", placeholder="{{prop}}")
-                    input(ng-switch-when="list",ng-model="dimension[name]", placeholder="{{prop}}")
-                    input(ng-switch-when="scope variable",ng-model="dimension[name]", placeholder="{{prop}}")
-                    input(ng-switch-when="scope event",ng-model="dimension[name]", placeholder="{{prop}}")
-                    input(ng-switch-when="callback",ng-model="dimension[name]", placeholder="{{prop}}")
+                property-element(descriptor="prop", value="dimension", name="{{name}}")
     table.table.table-condensed(ng-repeat="decorator in dimension.getDescriptor().decorators")
         tr
             td {{decorator.name}}
@@ -23,32 +14,11 @@
         tr(ng-if="dimension[decorator.key]")
             td {{decorator.name}}
             td
-                span(ng-if="decorator.value.type == 'enum'")
-                    select(ng-model="dimension[name]", ng-options="item for item in decorator.value.values")
-                span(ng-switch="decorator.value")
-                    input(ng-switch-when="boolean", ng-model="dimension[name]", type='checkbox', placeholder="{{prop}}")
-                    input(ng-switch-when="number", ng-model="dimension[name]", type='number', placeholder="{{prop}}")
-                    input(ng-switch-when="string",ng-model="dimension[name]", placeholder="{{prop}}")
-                    input(ng-switch-when="list",ng-model="dimension[name]", placeholder="{{prop}}")
-                    input(ng-switch-when="scope variable",ng-model="dimension[name]", placeholder="{{prop}}")
-                    input(ng-switch-when="scope event",ng-model="dimension[name]", placeholder="{{prop}}")
-                    input(ng-switch-when="callback",ng-model="dimension[name]", placeholder="{{prop}}")
+                property-element(descriptor="decorator.value", value="dimension", name="{{decorator.name}}")
         tr(ng-repeat="(name, prop) in decorator.properties", ng-if="dimension[decorator.key]")
             td {{name}}
             td
-                span(ng-if="prop.type == 'enum'")
-                    select(ng-model="dimension[name]", ng-options="item for item in prop.values")
-                span(ng-switch="prop")
-                    input(ng-switch-when="boolean", ng-model="dimension[name]", type='checkbox', placeholder="{{prop}}")
-                    input(ng-switch-when="number", ng-model="dimension[name]", type='number', placeholder="{{prop}}")
-                    input(ng-switch-when="string",ng-model="dimension[name]", placeholder="{{prop}}")
-                    input(ng-switch-when="list",ng-model="dimension[name]", placeholder="{{prop}}")
-                    input(ng-switch-when="scope variable",ng-model="dimension[name]", placeholder="{{prop}}")
-                    input(ng-switch-when="scope event",ng-model="dimension[name]", placeholder="{{prop}}")
-                    input(ng-switch-when="callback",ng-model="dimension[name]", placeholder="{{prop}}")
-
-
-
+                property-element(descriptor="prop", value="dimension", name="{{name}}")
 
 .modal-footer
     button.btn.btn-default(ng-click="$close()") O.K.

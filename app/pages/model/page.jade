@@ -9,10 +9,8 @@ chart-generator(properties="chartModel", markup="chartMarkup")
     table.table.table-condensed
         tr(ng-repeat="(name, prop) in chartModel.getDescriptor().properties")
             td {{name}}
-            td(ng-switch="prop")
-                input(ng-switch-when="boolean", ng-model="chartModel[name]", type='checkbox', placeholder="{{prop}}")
-                input(ng-switch-when="number", ng-model="chartModel[name]", type='number', placeholder="{{prop}}")
-                input(ng-switch-default,ng-model="chartModel[name]", placeholder="{{prop}}")
+            td
+                property-element(descriptor="prop", value="chartModel", name="{{name}}")
 
     table.table.table-condensed(ng-repeat="decorator in chartModel.getDescriptor().decorators")
         tr
@@ -24,9 +22,7 @@ chart-generator(properties="chartModel", markup="chartMarkup")
         tr(ng-repeat="(name, prop) in decorator.properties", ng-if="chartModel[decorator.key]")
             td {{name}}
             td(ng-switch="prop")
-                input(ng-switch-when="boolean", ng-model="chartModel[name]", type='checkbox', placeholder="{{prop}}")
-                input(ng-switch-when="number", ng-model="chartModel[name]", type='number', placeholder="{{prop}}")
-                input(ng-switch-default,ng-model="chartModel[name]", placeholder="{{prop}}")
+                property-element(descriptor="prop", value="chartModel", name="{{name}}")
             td  {{prop}}
     table.table.table-condensed
         tr
