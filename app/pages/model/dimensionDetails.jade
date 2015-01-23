@@ -1,12 +1,12 @@
 .modal-header
     h3.modal-titel Details for Dimension {{name}}
 .modal-body
-    table.table.table-condensed
+    table.property-table
         tr(ng-repeat="(name, prop) in dimension.getDescriptor().properties")
             td {{name}}
             td
                 property-element(descriptor="prop", value="dimension", name="{{name}}")
-    table.table.table-condensed(ng-repeat="decorator in dimension.getDescriptor().decorators")
+    table.property-table(ng-repeat="decorator in dimension.getDescriptor().decorators")
         tr
             td {{decorator.name}}
             td

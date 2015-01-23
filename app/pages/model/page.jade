@@ -5,78 +5,89 @@ chart-generator(properties="chartModel", markup="chartMarkup")
     pre(style="width:100%;height:300px;") {{chartMarkup}}
 
     pre(style="width:100%;height:500px;") {{modelJson}}
-.col-lg-6.scroll
-    table.table.table-condensed
+form.col-lg-6.scroll
+    table.property-table
+        tr.highlight
+            td.highlight(colspan="3") Chart
+
         tr(ng-repeat="(name, prop) in chartModel.getDescriptor().properties")
             td {{name}}
             td
                 property-element(descriptor="prop", value="chartModel", name="{{name}}")
+            td
 
-    table.table.table-condensed(ng-repeat="decorator in chartModel.getDescriptor().decorators")
+    table.property-table(ng-repeat="decorator in chartModel.getDescriptor().decorators")
         tr
             td {{decorator.name}}
-            td(colspan="2")
+            td
                 input(type="checkbox", ng-model="chartModel[decorator.key]")
             td
 
-        tr(ng-repeat="(name, prop) in decorator.properties", ng-if="chartModel[decorator.key]")
+        tr.lowlight(ng-repeat="(name, prop) in decorator.properties", ng-if="chartModel[decorator.key]")
             td {{name}}
             td(ng-switch="prop")
                 property-element(descriptor="prop", value="chartModel", name="{{name}}")
             td  {{prop}}
-    table.table.table-condensed
-        tr
+    table.property-table
+        tr.lowlight
             td Add a shared Dimension
             td
                 select(ng-model="dimension", ng-options="item for item in chartModel.availableDimensions()", placeholder="select Dimension")
             td
-                botton.btn.btn-primary(ng-click="chartModel.addDimension(dimension)", ng-disabled="!dimension") add {{dimension}}
-    table.table.table-condensed
-        tr
-            th
-            th Property
-            th Type
-            th axis
-            th legend
-            th Label
-            th
-        tr(ng-repeat="(name, prop) in chartModel.dimensions")
+                botton.btn.btn-primary(ng-click="chartModel.addDimension(dimension)", ng-disabled="!dimension")
+                    i.fa.fa-plus
+    table.property-table
+        thead
+            tr(ng-if="chartModel.dimensions | hasproperties")
+                th
+                th Property
+                th Type
+                th axis
+                th
+                th
+        tbody
+            tr(ng-repeat="(name, prop) in chartModel.dimensions")
 
-            td {{name}}
+                td {{name}}
+                td
+                    input(ng-model="prop.property")
+                td
+                    select(ng-model="prop.type", ng-options="item for item in prop.acceptedValues('type')")
+                td
+                    input(ng-model="prop.axis$set", type="checkbox", ng-if="name=='x' || name=='y' || name=='rangeX' || name=='rangeY'")
+                td
+                    input(ng-model="prop.legend$set", type="checkbox", ng-if="name=='color' || name=='size' || name=='shape'")
+                td
+                    button.btn.btn-default(ng-click="showDimensionDetails(name, prop)") ...more
+                td
+                    button.btn.btn-danger(ng-click="chartModel.removeDimension(name)")
+                        i.fa.fa-trash-o
+            tr.lowlight
+                td Add a Layout
+                td
+                    select(ng-model="layout", ng-options="item for item in chartModel.availableLayouts()")
+                td
+                    botton.btn.btn-primary(ng-click="chartModel.addLayout(layout)", ng-disabled="!layout")
+                        i.fa.fa-plus
+    table.property-table(ng-repeat="layout in chartModel.layouts")
+        tr.highlight
+            td Layout
+            td.highlight {{layout.layout}}
+            td(colspan="3")
             td
-                input(ng-model="prop.property")
+                button.btn.btn-default(ng-click="showLayoutDetails(layout.name, layout)") ...more
             td
-                select(ng-model="prop.type", ng-options="item for item in prop.acceptedValues('type')")
-            td
-                input(ng-model="prop.axis$set", type="checkbox", ng-if="name=='x' || name=='y' || name=='rangeX' || name=='rangeY'")
-            td
-                input(ng-model="prop.legend$set", type="checkbox", ng-if="name=='color' || name=='size' || name=='shape'")
-            td
-                input(ng-model="prop.label")
-            td
-                button.btn.btn-default(ng-click="showDimensionDetails(name, prop)") ...more
-            td
-                button.btn.btn-danger(ng-click="chartModel.removeDimension(name)") x {{name}}
+                button.btn.btn-danger(ng-click="chartModel.removeLayout(layout)")
+                    i.fa.fa-trash-o
         tr
-            td Add a Layout
-            td
-                select(ng-model="layout", ng-options="item for item in chartModel.availableLayouts()")
-            td
-                botton.btn.btn-primary(ng-click="chartModel.addLayout(layout)", ng-disabled="!layout") add {{layout}}
-    table.table.table-condensed(ng-repeat="layout in chartModel.layouts")
-        tr
-            td {{layout.layout}}
-            td
-                button.btn.btn-danger(ng-click="chartModel.removeLayout(layout)") delete {{layout.name}}
-            td
-                button.btn.btn-default(ng-click="showLayoutDetails(layout.name, layout)") ...more {{layout.name}}
-        tr
-            th
+            th Dimension
             th Property
             th Type
             th axis
             th legend
-            th Label
+            th
+            th
+            th
         tr(ng-repeat="(name, prop) in layout.dimensions")
 
             td {{name}}
@@ -88,11 +99,11 @@ chart-generator(properties="chartModel", markup="chartMarkup")
                 input(ng-model="prop.axis$set", type="checkbox", ng-if="name=='x' || name=='y' || name=='rangeX' || name=='rangeY'")
             td
                 input(ng-model="prop.legend$set", type="checkbox", ng-if="name=='color' || name=='size' || name=='shape'")
-            td
-                input(ng-model="prop.label")
+
             td
                 button.btn.btn-default(ng-click="showDimensionDetails(name, prop)") ...more
             td
-                button.btn.btn-danger(ng-click="layout.removeDimension(name)") x {{name}}
+                button.btn.btn-danger(ng-click="layout.removeDimension(name)")
+                    i.fa.fa-trash-o
 
 

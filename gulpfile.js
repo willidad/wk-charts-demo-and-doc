@@ -28,6 +28,7 @@ var uglify          = require('gulp-uglify');
 var minifycss       = require('gulp-minify-css');
 var minifyhtml      = require('gulp-minify-html');
 var path            = require('path');
+var flatten         = require('gulp-flatten');
 
 gulp.task('bower-update', function() {
     return bower({ cmd: 'update'});
@@ -173,6 +174,12 @@ gulp.task('libCSS', function() {
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(buildDir + '/css'));
 });
+
+gulp.task('libFonts', function() {
+    return gulp.src(['./bower_components/**/*.ttf','./bower_components/**/*.woff','./bower_components/**/*.eot','./bower_components/**/*.svg'],{base:'./'})
+        .pipe(flatten())
+        .pipe(gulp.dest(buildDir + '/fonts'))
+})
 
 gulp.task('index', function() {
     var indexHtml = gulp.src(['app/index.html']);

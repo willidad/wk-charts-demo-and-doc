@@ -187,3 +187,72 @@ table.dimension td input[type=radio] {
     border-style: solid;
     border-width: 8px;
 }
+
+.ng-invalid {
+    border-color: red;
+}
+
+select, input {
+    width:100%;
+}
+
+.property-table {
+    width:100%;
+    border-collapse: collapse;
+}
+.property-table > tbody > tr {
+    border-bottom: 1px solid #a9a9a9;
+}
+
+.property-table > tbody > tr > td,
+.property-table > tbody > tr > th,
+.property-table > thead > tr > td
+{
+    padding: 3px 8px 3px 8px;
+}
+.property-table > tbody > tr > td.highlight {
+    font-size: 1.5em;
+}
+.property-table > tbody > tr.highlight {
+    background-color: #f5f5f5;
+}
+.property-table > tbody > tr.lowlight {
+    background-color: #F8F8F8;
+}
+
+.property-table > thead > tr {
+    border-bottom: 2px solid #a9a9a9;
+    border-top: 1px solid #a9a9a9;
+}
+
+.property-table > tbody > tr > td:first-child {
+    width:150px;
+}
+
+.property-table > tbody > tr > td:nth-child(2) {
+    width:150px;
+}
+
+.property-table > tbody >tr >td select {
+    width:180px;
+}
+.property-table > tbody >tr >td input {
+    width:180px;
+}
+.property-table > tbody >tr >td input[type=checkbox] {
+    width:30px;
+}
+.property-table > td {
+      width:200px;
+  }
+
+property-element {
+    width:200px;
+}
+
+.modal-body > .property-table > tbody > tr > td:first-child {
+    width:30%
+}
+.modal-body > .property-table > tbody > tr > td:last-child {
+    width:70%
+}
