@@ -151,6 +151,10 @@ table.dimension td input[type=radio] {
     width: 120px;
 }
 
+.dataEditor .very-narrow {
+    width: 30px;
+}
+
 .dataEditor .checkboxcol {
     width:24px;
 }

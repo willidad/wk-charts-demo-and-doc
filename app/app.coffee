@@ -63,8 +63,8 @@ angular.module('app').constant 'menu',
     {group:'charts',url: 'areacharts', name: 'Area Charts', tabs:[
       {url:'horizontal',name:'Horizontal', options:true, ctrl:true},
       {url:'vertical',name:'Vertical', options:true, ctrl:true},
-      {url:'stacked-horizontal',name:'Stacked Horizontal', options:true},
-      {url:'stacked-vertical',name:'Stacked Vertical', options:true}]}
+      {url:'stackedHorizontal',name:'Stacked Horizontal', options:true, ctrl:true},
+      {url:'stackedVertical',name:'Stacked Vertical', options:true, ctrl:true}]}
     {group:'charts',url: 'barcharts', name: 'Bar and Column Charts', tabs:[
       {url:'bar', name:'Bar Chart', options:true},
       {url:'bar-stacked',name:'Stacked Bar', options:true},

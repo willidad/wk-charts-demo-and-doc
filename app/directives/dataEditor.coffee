@@ -11,7 +11,7 @@ angular.module('app').directive 'chartDataEditor', ($log) ->
                       <thead>
                         <tr>
                           <th>
-                            <input type="checkbox" ng-model="do20">
+                            <input type="checkbox" ng-model="do20" class="very-narrow">
                           </th>
                           <th ng-repeat="colname in columns " class="narrow">
                             <input type="checkbox" ng-model="checkedCol[$index]">
