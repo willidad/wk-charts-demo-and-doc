@@ -1,4 +1,4 @@
-angular.module('app').controller 'MoreCtrl', ($log, $scope, $compile, $rootScope, $http, $modal, $cookies, wkChartScales) ->
+angular.module('app').controller 'MoreCtrl', ($log, $scope, $compile, $rootScope, $http, $modal, $cookies, wkChartScales, $sanitize) ->
 
   bool = ['', 'true', 'false']
   dimensions = ["x", "y", "color", "size", "shape", "range-x", "range-y"]
@@ -282,7 +282,7 @@ angular.module('app').controller 'MoreCtrl', ($log, $scope, $compile, $rootScope
       size:'lg'
       template:template
       resolve: {
-        chart: () -> return currentChart
+        chart: () -> return $sanitize(currentChart)
       }
       controller: ($scope, $modalInstance, $compile, chart) ->
         $scope.compile = () ->
@@ -294,6 +294,7 @@ angular.module('app').controller 'MoreCtrl', ($log, $scope, $compile, $rootScope
           $scope.chart = chart
           $scope.filtered = chart.data
           chartElem.append(compiledChart)
+          return false
 
     })
   # init

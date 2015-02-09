@@ -8,6 +8,7 @@ var serveStatic = require('serve-static');
 var serveIndex = require('serve-index');
 var bodyParser = require('body-parser');
 var compress = require('compression');
+var glob = require('glob');
 
 var app = express();
 app.use(compress());
@@ -22,6 +23,32 @@ app.get('/list', function(req, res) {
         if(err) {
             if(err.code == "ENOENT") {
                 res.status(404).send('Data File "' + name + '.csv" does not exist')
+            } else {
+                res.status(500).send(JSON.stringify(err))
+            }
+        } else {
+            res.send(data)
+        }
+    })
+});
+app.get('/allcsv', function(req,res) {
+    var Glob = glob.Glob
+    var mg = new Glob('./app/pages/**/*.csv', function(err, list) {
+        if(err) {
+            res.status(500).send(JSON.stringify(err))
+        } else {
+            res.send(list)
+        }
+    })
+});
+app.get('/app/pages/:page/data/:file', function(req, res) {
+    var page = req.params.page;
+    var file = req.params.file;
+    var fName = './app/pages/' + page + '/data/' + file;
+    fs.readFile(fName, {encoding:'utf8'}, function(err, data) {
+        if(err) {
+            if(err.code == "ENOENT") {
+                res.status(404).send('Data File "' + fName + '" does not exist')
             } else {
                 res.status(500).send(JSON.stringify(err))
             }

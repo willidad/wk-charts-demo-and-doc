@@ -1,0 +1,6 @@
+chart(data="data.filtered",tooltips,header="Monatl. Temperatur 2014",sub-header="Quelle: www.wetter.de")
+   layout(range-area-vertical,markers="{{options.markers}}")
+      y(axis,property="Monat",type="ordinal", reverse)
+      x(property="Minimum,Maximum",axis,label="Temperatur (C)", show-label)
+      color(type="category20c")
+

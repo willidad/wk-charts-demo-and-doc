@@ -1,6 +1,6 @@
-chart(data="data.filtered",tooltips,title="Monatl. Temperatur 2014",subtitle="Quelle: www.wetter.de")
-   layout(range-area)
+chart(data="data.filtered",tooltips,header="Monatl. Temperatur 2014",sub-header="Quelle: www.wetter.de")
+   layout(range-area markers="{{options.markers}}")
       x(axis,property="Monat",type="ordinal")
-      range-y(lower-property="Minimum",upper-property="Maximum",axis,label="Temperatur (C)", show-label)
+      y(property="Minimum,Maximum",axis,label="Temperatur (C)", show-label)
       color(type="category20c")
 

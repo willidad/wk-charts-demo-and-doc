@@ -6,6 +6,7 @@ angular.module('app').directive 'chartDataEditor', ($log) ->
       filtered: '='
     template: '<div style="height:100%;">
                   <button class="btn btn-default" ng-click="update()">Update Data</button>
+                  <button class="btn btn-default" ng-click="shuffle()">Shuffle Data</button>
                   <div class="vertical-scroll-box">
                     <table class="table table-condensed dataEditor">
                       <thead>
@@ -65,6 +66,9 @@ angular.module('app').directive 'chartDataEditor', ($log) ->
               r[c] = d[c]
           return r
         ).filter((d,i) -> scope.checkedRow[i])
+
+      scope.shuffle = () ->
+        scope.filtered = _.shuffle(scope.filtered)
 
       scope.$watch 'do20', (val) ->
         for i in [0..19]
