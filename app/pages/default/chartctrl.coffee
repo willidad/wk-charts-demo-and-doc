@@ -14,7 +14,7 @@ angular.module('app').controller 'ChartCtrl', ($log, $scope, $templateCache, $st
     colorScale:'category20'
     colorRange:'#1f77b4,#ff7f0e,blue,yellow,orange,brown, red'
     thresholdRange:'red, yellow,lightblue,green'
-    thresholdDomain:'-1,1,4'
+    thresholdDomain:'-0.01,0.01,0.04'
     markers:false
     year:2013
     axis:'false'
