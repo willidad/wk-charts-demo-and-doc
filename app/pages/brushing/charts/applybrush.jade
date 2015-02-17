@@ -5,7 +5,7 @@
       layout(area)
          y(axis, type="linear", property="close", domain-range="max", show-label, label="Close ($)")
       layout(line)
-         y(axis="right", property="volume", domain-range="max", show-label, label="Volume", tick-format=".2s")
+         y(right, axis, property="volume", domain-range="max", show-label, label="Volume", tick-format=".2s")
 .height20percent
    chart(data="chartData", class="show-brush-handles")
       layout(line)
