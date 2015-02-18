@@ -2,9 +2,12 @@ h2 Chart model experiment
 
 chart-generator(properties="chartModel", markup="chartMarkup")
 .col-lg-6
-    pre(style="width:100%;height:300px;") {{chartMarkup}}
 
-    pre(style="width:100%;height:500px;") {{modelJson}}
+        pre.scroll(style="width:100%;height:150px;") {{chartMarkup}}
+
+        pre.scroll(style="width:100%;height:150px;") {{modelJson}}
+        .height50percent
+            chart-display(code="chartMarkup")
 form.col-lg-6.scroll
     button.btn.btn-primary(ng-click="selectDataFile()") Select a Data File
     span  {{fileName}}
