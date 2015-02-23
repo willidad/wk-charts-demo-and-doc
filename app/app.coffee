@@ -132,6 +132,7 @@ angular.module('app').constant 'menu',
     {group:'more',url: 'model', name: 'ChartModel', page:true, ctrl:true},
     {group:'more',url: 'more', name: 'Chartbuilder and more charts', page:true, ctrl:true}
     {group:'more',url: 'absolute', name: 'position:absolute container', page: true, ctrl:true}
+    {group:'more',url: 'chartTest', name: 'Chart Tester', page:true, ctrl:true}
   ]
 
 angular.module('wk.chart').config (wkChartScalesProvider, wkChartLocaleProvider) ->

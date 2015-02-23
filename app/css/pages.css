@@ -260,3 +260,6 @@ property-element {
 .modal-body > .property-table > tbody > tr > td:last-child {
     width:70%
 }
+.nav > li > a {
+    padding-top: 6px;
+}
