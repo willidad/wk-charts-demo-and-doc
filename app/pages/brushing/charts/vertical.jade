@@ -7,6 +7,6 @@
 .width25percent
    chart(data="chartData", class="show-brush-handles")
       layout(area-vertical)
-         y(axis, type="ordinal", property="Altersgruppe", brush="bVert", clear-brush="options.clearBrush")
+         y(axis, type="ordinal", property="Altersgruppe", brush="bVert", brush-extent="options.brushExtent")
          x(property="maennlich,weiblich")
          color(type="category10")

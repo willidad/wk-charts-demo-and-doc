@@ -29,15 +29,20 @@ angular.module('app').controller 'ChartTestCtrl', ($log, $scope, $compile, $root
   }
 
   currentChart = emptyChart
+  chartScope = undefined
 
   $scope.compile = (chart) ->
     # remove current chart markup
     $scope.chart = emptyChart # ensure data gets cleaned
     chartElem = angular.element(document.querySelector('.compiled-chart'))
     chartElem.children().remove()
+    if chartScope
+      chartScope.$destroy()
+    chartScope = $scope.$new(false)
+
     code = chart.code
-    $log.log 'compile-scope', $scope.$id
-    compiledChart = $compile(code)($scope)
+    $log.log 'compile-scope', chartScope.$id
+    compiledChart = $compile(code)(chartScope)
     $scope.chart = chart
     $scope.filtered = chart.data
     chartElem.append(compiledChart)

@@ -15,5 +15,5 @@
    chart(data="chartData", class="show-brush-handles")
       layout(area)
          y(property="msft", layer-property="close", ticks="3")
-         x(axis, brush="b1", type="time", property="date", clear-brush="options.clearBrush")
+         x(axis, brush="b1", type="time", property="date", brush-extent="options.brushExtent")
          color(type="category10")
