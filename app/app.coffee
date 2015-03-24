@@ -77,7 +77,8 @@ angular.module('app').constant 'menu',
       {url:'area-horizontal',name:'Range Area Horizontal', options:true},
       {url:'area-vertical',name:'Range Area Vertical', options:true},
       {url:'column',name:'Range Columns', options:true},
-      {url:'bars',name:'Range Bars', options:true}]}
+      {url:'bars',name:'Range Bars', options:true},
+      {url:'boxplot',name:'Box and Whisker Chart', options:true}]}
     {group:'charts',url:'piecharts', name:'Pie Charts', tabs:[
       {url:'pie', name:'Pie', options:true},
       {url:'donat', name:'Donat', options:true}
