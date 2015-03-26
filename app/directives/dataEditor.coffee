@@ -54,7 +54,8 @@ angular.module('app').directive 'chartDataEditor', ($log) ->
               r = {}
               for c, i in scope.columns
                 if scope.checkedCol[i]
-                  r[c] = d[c]
+                  r[c] = if d[c].match /^\{.*\}$/ then scope.$eval(d[c]) else d[c]
+                  $log.log(r[c])
               return r
             ).filter((d,i) -> scope.checkedRow[i])
 

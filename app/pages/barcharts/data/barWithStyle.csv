@@ -1,0 +1,8 @@
+age,population,style
+Under 5 Years,310504,{fill:"url(#lgrad-1f77b4)", mask:"url(#stripes)"}
+5 to 13 Years,552339,green
+14 to 17 Years,259034,blue
+18 to 24 Years,450818,orange
+25 to 44 Years,1231572,yellow
+45 to 64 Years,1215966,pink
+65 Years and Over,641667,lightblue
