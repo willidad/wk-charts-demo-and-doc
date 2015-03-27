@@ -21,12 +21,12 @@ angular.module('app').directive 'chartDataEditor', ($log) ->
                         </tr>
                       </thead>
                       <tbody>
-                        <tr ng-repeat="row in data">
+                        <tr ng-repeat="row in data" class="data-row">
                           <td class="checkboxcol">
                             <input type="checkbox" ng-model="checkedRow[$index]">
                           </td>
                           <td ng-repeat="colname in columns">
-                            <input ng-model="row[colname]" class="narrow">
+                            <input ng-model="row[colname]" class="narrow" ng-class="colname">
                           </td>
                         </tr>
                       </tbody>
@@ -54,7 +54,7 @@ angular.module('app').directive 'chartDataEditor', ($log) ->
               r = {}
               for c, i in scope.columns
                 if scope.checkedCol[i]
-                  r[c] = if d[c].match /^\{.*\}$/ then scope.$eval(d[c]) else d[c]
+                  r[c] = if typeof d[c] is 'string' and d[c].match /^\{.*\}$/ then scope.$eval(d[c]) else d[c]
                   $log.log(r[c])
               return r
             ).filter((d,i) -> scope.checkedRow[i])
@@ -64,9 +64,11 @@ angular.module('app').directive 'chartDataEditor', ($log) ->
           r = {}
           for c, i in scope.columns
             if scope.checkedCol[i]
-              r[c] = d[c]
+              r[c] = if d[c].match /^\{.*\}$/ then scope.$eval(d[c]) else d[c]
           return r
         ).filter((d,i) -> scope.checkedRow[i])
+        $log.log scope.filtered
+
 
       scope.shuffle = () ->
         scope.filtered = _.shuffle(scope.filtered)

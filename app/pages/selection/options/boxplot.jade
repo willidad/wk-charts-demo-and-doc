@@ -1,0 +1,4 @@
+ng-include(src="'./lib/docs/behavior/selection.html'")
+button.btn.btn-warning(ng-click="options.selection = []") Clear Selection
+div(hljs language="json", source='options.selection | stringify', class="data-block")
+

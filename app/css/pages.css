@@ -263,3 +263,7 @@ property-element {
 .nav > li > a {
     padding-top: 6px;
 }
+
+.narrow.style {
+    width:300px;
+}

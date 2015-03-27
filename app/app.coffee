@@ -121,7 +121,8 @@ angular.module('app').constant 'menu',
       {url:'custom', name:'Custom Tooltips', options:true, page:true}
     ]},
     {group:'behavior',url: 'selection', name: 'Selection', tabs:[
-      {url:'selection', name:'Individual Object Selection', options:true}
+      {url:'selection', name:'Pie Selection', options:true}
+      {url:'boxplot', name:'Boxplot Selection', options:true}
     ]},
     {group:'behavior',url: 'brushing', name: 'Brushing', tabs:[
       {url:'axisbrush', name:'Axis Brushing', options:true},
