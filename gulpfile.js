@@ -138,6 +138,12 @@ gulp.task('chartData', function() {
         .pipe(gulp.dest('build/data/pages'))
 });
 
+gulp.task('dataFiles', function() {
+    return gulp.src(['app/dataFiles/*'])
+        .pipe(plumber({errorHandler: errorAlert}))
+        .pipe(gulp.dest('build/dataFiles'))
+})
+
 gulp.task('appCSS', function() {
     // concatenate compiled Less and CSS
     // into build/app.css
@@ -202,7 +208,7 @@ gulp.task('watch',function() {
     gulp.watch(['!app/index.jade', '!app/index.html', 'app/**/*.jade', 'app/**/*.html', 'app/**/*.md'], ['templates']); //application templates
     gulp.watch(['app/**/*.less', 'app/**/*.css'], ['appCSS']); // application css
     gulp.watch(['app/index.jade', 'app/index.html'], ['index']); // index file
-    gulp.watch(['app/pages/**/data/*.csv'], ['chartData']); // examples data files
+    gulp.watch(['app/pages/**/data/*.csv', 'app/dataFiles/.*'], ['chartData', 'dataFiles']); // examples data files
     gulp.watch([path.join(libDir,'/lib/wk-charts.js')], ['wkChartsCopyJs']); // copy chart library on change
     gulp.watch([path.join(libDir,'/lib/wk-charts.css')], ['wkChartsCopyCss']); // copy chart css on change
     gulp.watch([path.join(libDir,'/dist/docs/**/*.html')], ['wkChartsCopyDocs']); // copy chart docs on change

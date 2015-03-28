@@ -32,16 +32,17 @@ angular.module('app').controller 'ModelCtrl', ($scope, $log, $modal, $http) ->
       size:'lg'
       resolve:{
         fileList: () ->
-          return $http.get('/allcsv')
+          return $http.get('/dataFiles')
       }
     })
 
     modalInstance.result.then((result) ->
       $scope.fileName = result
-      d3.csv(result, (data) ->
+      d3.csv('dataFiles/' + result, (data) ->
         $scope.chartData = data
         $log.log data
-        $scope.dataProperties = _.keys($scope.chartData)
+        $scope.dataProperties = _.keys($scope.chartData[0])
+        $scope.chartModel.data = 'chartData'
       )
     )
   emptyChart = $scope.chart = {

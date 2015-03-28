@@ -31,9 +31,9 @@ app.get('/list', function(req, res) {
         }
     })
 });
-app.get('/allcsv', function(req,res) {
+app.get('/dataFiles', function(req,res) {
     var Glob = glob.Glob
-    var mg = new Glob('./app/pages/**/*.csv', function(err, list) {
+    var mg = new Glob('*.csv', {cwd:'./app/dataFiles/'}, function(err, list) {
         if(err) {
             res.status(500).send(JSON.stringify(err))
         } else {

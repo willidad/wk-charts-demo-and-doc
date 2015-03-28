@@ -1,4 +1,4 @@
-h2 Chart model experiment
+h2 Chart Model Builder
 
 chart-generator(properties="chartModel", markup="chartMarkup")
 .col-lg-6
@@ -11,7 +11,7 @@ chart-generator(properties="chartModel", markup="chartMarkup")
 form.col-lg-6.scroll
     button.btn.btn-primary(ng-click="selectDataFile()") Select a Data File
     span  {{fileName}}
-    button.btn.btn-primary(ng-click="showChart(chartMarkup)") Show Chart
+    //button.btn.btn-primary(ng-click="showChart(chartMarkup)") Show Chart
     table.property-table
         tr.highlight
             td.highlight(colspan="3") Chart
@@ -88,7 +88,7 @@ form.col-lg-6.scroll
                         i.fa.fa-trash-o
             tr
                 td
-                    input(ng-model="property")
+                    select(ng-model="property", ng-options="item for item in dataProperties")
                 td
                     select(ng-model="dimName", ng-options="item for item in chartModel.availableDimensions()")
                 td

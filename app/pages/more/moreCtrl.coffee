@@ -309,7 +309,7 @@ angular.module('app').controller 'MoreCtrl', ($log, $scope, $compile, $rootScope
     $log.log 'scaleMapFn called. value:', value
     return 'red'
 
-  $scope.colorFn = (data, domain) ->
+  $scope.colorFn = (data) ->
     $log.log data
     col = {
       Einnahmen: {color:'url(#rgrad-1f77b4)', mask:'url(#stripes)'}
