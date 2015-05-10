@@ -31,13 +31,16 @@ app.get('/list', function(req, res) {
         }
     })
 });
-app.get('/dataFiles', function(req,res) {
-    var Glob = glob.Glob
-    var mg = new Glob('*.csv', {cwd:'./app/dataFiles/'}, function(err, list) {
+app.get('/dataFiles', function(req, res) {
+    fs.readdir('build/dataFiles', function(err, data) {
         if(err) {
-            res.status(500).send(JSON.stringify(err))
+            if(err.code == "ENOENT") {
+                res.status(404).send('Data File .csv" does not exist')
+            } else {
+                res.status(500).send(JSON.stringify(err))
+            }
         } else {
-            res.send(list)
+            res.send(data)
         }
     })
 });
