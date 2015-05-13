@@ -1,0 +1,27 @@
+.modal-header
+    h3.modal-titel Details for Dimension {{name}}
+.modal-body
+    table.property-table
+        tr(ng-repeat="(name, prop) in dimension.getDescriptor().properties")
+            td {{name}}
+            td
+                property-element(descriptor="prop", value="dimension", name="{{name}}")
+    table.property-table(ng-repeat="decorator in dimension.getDescriptor().decorators")
+        tr
+            td {{decorator.name}}
+            td
+                input(ng-model="dimension[decorator.key]", type="checkbox")
+        tr(ng-if="dimension[decorator.key]")
+            td {{decorator.name}}
+            td
+                property-element(descriptor="decorator.value", value="dimension", name="{{decorator.name}}")
+        tr(ng-repeat="(name, prop) in decorator.properties", ng-if="dimension[decorator.key]")
+            td {{name}}
+            td
+                property-element(descriptor="prop", value="dimension", name="{{name}}")
+
+.modal-footer
+    button.btn.btn-default(ng-click="$close()") O.K.
+
+
+

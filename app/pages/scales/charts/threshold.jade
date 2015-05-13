@@ -1,6 +1,6 @@
-chart(data="chartData")
+chart(data="chartData" tooltips)
    layout(column)
       x(axis, type='ordinal', property="Product")
-      y(axis, property="Market Growth", format="%", domain-range="extent")
+      y(axis, property="Market Growth", tick-format="%", format="%", domain-range="extent")
       color(type="threshold", property="Market Growth", range="{{options.thresholdRange}}", domain="{{options.thresholdDomain}}")
 

@@ -1,0 +1,19 @@
+.col-lg-6(ng-init="filtered=[]")
+    .height50percent
+        label Chart
+        //ui-select(ng-model="chartName" ng-change="openChart(chartName)" style="width:45%;display:inline-block;")
+            ui-select-match(placeholder="chart...") {{$select.selected}}
+            ui-select-choices(repeat="file in fileList | filter:$select.search") {{file}}
+        p {{chartName}} ({{chartIdx}} of {{fileList.length}})
+        br
+        button.btn.btn-default(ng-click="compile(chart)") Update Chart
+        button.btn.btn-default(ng-click="next()") Next Chart
+        button.btn.btn-default(ng-click="previous()") Previous Chart
+        //ui-codemirror(ui-codemirror-opts="options", ng-model="chart.code", ui-refresh="refreshCntr")
+    .compiled-chart.height50percent
+.col-lg-6
+
+
+    //button.btn.btn-default(ng-click="addData()") Add Data
+    //button.btn.btn-warning(ng-click="showInModal()") Show chart in Modal Window
+    //chart-data-editor(data="chart.data", filtered="filtered")

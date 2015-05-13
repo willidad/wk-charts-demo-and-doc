@@ -1,0 +1,10 @@
+ng-include(src="'./lib/docs/layout/rangeArea.html'", autoscroll="true")
+
+button.btn.btn-primary(ng-click="options.markers = !options.markers") {{options.markers? 'Hide ' : 'Show '}}Markers
+pre(style="display:inline;") options.markers = {{options.markers}}
+
+md.
+    #### Modify Data
+    -------
+chart-data-editor(data="data.chartData", filtered="data.filtered")
+

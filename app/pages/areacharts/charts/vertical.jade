@@ -1,5 +1,5 @@
-chart(data="data.filtered", tooltips, title="Alterspyramide Deutschland", subtitle="Stand 31.12.2013")
-   layout(area-vertical)
+chart(data="data.filtered", tooltips, header="Alterspyramide Deutschland", sub-header="Stand 31.12.2013")
+   layout(area-vertical, markers="{{options.markers}}")
       y(axis, type="ordinal", property="Altersgruppe", show-label, label="Alter")
       x(property="maennlich,weiblich,differenz", axis, tick-format=".2s", domain-range="extent", legend, grid)
       color(type="category10")

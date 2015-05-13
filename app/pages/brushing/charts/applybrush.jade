@@ -5,11 +5,11 @@
       layout(area)
          y(axis, type="linear", property="close", domain-range="max", show-label, label="Close ($)")
       layout(line)
-         y(axis="right", property="volume", domain-range="max", show-label, label="Volume", tick-format=".2s")
+         y(right, axis, property="volume", domain-range="max", show-label, label="Volume", tick-format=".2s")
 .height20percent
    chart(data="chartData", class="show-brush-handles")
       layout(line)
-         x(axis, brush="b3", type="time", property="date", date-format="%d.%m.%Y", selected-domain="options.domain", clear-brush="options.clearBrush")
+         x(axis, brush="b3", type="time", property="date", date-format="%d.%m.%Y", selected-domain="options.domain", brush-extent="options.brushExtent")
          y(property="close", domain-range="max")
          color()
 

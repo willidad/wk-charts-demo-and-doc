@@ -1,0 +1,8 @@
+.modal-header
+    h3.modal-titel Select a data file
+.modal-body
+    .scroll
+        ul.list-group
+            li.list-group-item(ng-repeat="file in fileList", ng-click="fileSelected(file)") {{file}}
+.modal-footer
+    button.btn.btn-default(ng-click="reject()") Cancel

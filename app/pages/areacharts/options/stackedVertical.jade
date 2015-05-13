@@ -1,0 +1,25 @@
+ng-include(src="'./lib/docs/layout/areaStackedVertical.html'", autoscroll="true")
+
+md.
+    #### play with example
+    ------
+    select the area style
+div
+    span
+        select(ng-model="options.areaStyle", style="width:150px;")
+            option zero
+            option silhouette
+            option expand
+            option wiggle
+    span
+        pre(style="display:inline;") options.areaStyle = {{options.areaStyle}}
+
+button.btn.btn-primary(ng-click="options.markers = !options.markers") {{options.markers? 'Hide ' : 'Show '}}Markers
+md.
+    #### Modify Data
+    -------
+button.btn.btn-normal(ng-click="left()") trunkate bottom
+button.btn.btn-normal(ng-click="right()") trunkate top
+button.btn.btn-normal(ng-click="center()") trunkate both
+button.btn.btn-normal(ng-click="cut()") cut center
+button.btn.btn-normal(ng-click="reset()") reset

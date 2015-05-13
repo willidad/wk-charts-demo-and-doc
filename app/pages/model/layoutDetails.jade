@@ -1,0 +1,27 @@
+.modal-header
+    h3.modal-titel Details for Layout {{name}}
+.modal-body
+    table.property-table
+        tr(ng-repeat="(name, prop) in layout.getDescriptor().properties")
+            td {{name}}
+            td
+                property-element(descriptor="prop", value="layout", name="{{name}}")
+    table.property-table(ng-repeat="decorator in layout.getDescriptor().decorators")
+        tr
+            td {{decorator.name}}
+            td
+                input(ng-model="layout[decorator.key]", type="checkbox")
+        tr(ng-if="layout[decorator.key] && decorator.value")
+            td {{decorator.name}}
+            td(ng-if="decorator.value")
+                property-element(descriptor="decorator.value", value="layout", name="{{decorator.name}}")
+        tr(ng-repeat="(name, prop) in decorator.properties", ng-if="layout[decorator.key]")
+            td {{name}}
+            td
+                property-element(descriptor="prop", value="layout", name="{{name}}")
+
+.modal-footer
+    button.btn.btn-default(ng-click="$close()") O.K.
+
+
+

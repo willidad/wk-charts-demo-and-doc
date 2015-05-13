@@ -3,7 +3,6 @@ angular.module('app').controller 'AreachartsVerticalCtrl', ($scope, $log, $state
   menu = $state.current.data.menuItem
   $scope.options = {markers:false}
 
-
   $scope.chartUrl = "pages/#{menu.url}/charts#{$state.current.url}.html"
   options = $state.current.data.tab.options
   if options

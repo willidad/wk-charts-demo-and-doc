@@ -1,5 +1,6 @@
 chart(data="data.filtered", tooltips)
-   layout(pie, labels="{{options.labels}}")
+   layout(pie, labels="{{options.labels}}", selection)
       size(property="population", format=".2s")
+      y(property="age")
       color(property="age", values-legend)
 

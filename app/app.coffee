@@ -63,8 +63,8 @@ angular.module('app').constant 'menu',
     {group:'charts',url: 'areacharts', name: 'Area Charts', tabs:[
       {url:'horizontal',name:'Horizontal', options:true, ctrl:true},
       {url:'vertical',name:'Vertical', options:true, ctrl:true},
-      {url:'stacked-horizontal',name:'Stacked Horizontal', options:true},
-      {url:'stacked-vertical',name:'Stacked Vertical', options:true}]}
+      {url:'stackedHorizontal',name:'Stacked Horizontal', options:true, ctrl:true},
+      {url:'stackedVertical',name:'Stacked Vertical', options:true, ctrl:true}]}
     {group:'charts',url: 'barcharts', name: 'Bar and Column Charts', tabs:[
       {url:'bar', name:'Bar Chart', options:true},
       {url:'bar-stacked',name:'Stacked Bar', options:true},
@@ -73,6 +73,12 @@ angular.module('app').constant 'menu',
       {url:'column-stacked',name:'Stacked Column', options:true},
       {url:'column-clustered', name:'Clustered Column', options:true}
     ]},
+    {group:'charts',url: 'rangecharts', name: 'Range Charts', tabs:[
+      {url:'area-horizontal',name:'Range Area Horizontal', options:true},
+      {url:'area-vertical',name:'Range Area Vertical', options:true},
+      {url:'column',name:'Range Columns', options:true},
+      {url:'bars',name:'Range Bars', options:true},
+      {url:'boxplot',name:'Box and Whisker Chart', options:true}]}
     {group:'charts',url:'piecharts', name:'Pie Charts', tabs:[
       {url:'pie', name:'Pie', options:true},
       {url:'donat', name:'Donat', options:true}
@@ -115,7 +121,8 @@ angular.module('app').constant 'menu',
       {url:'custom', name:'Custom Tooltips', options:true, page:true}
     ]},
     {group:'behavior',url: 'selection', name: 'Selection', tabs:[
-      {url:'selection', name:'Individual Object Selection', options:true}
+      {url:'selection', name:'Pie Selection', options:true}
+      {url:'boxplot', name:'Boxplot Selection', options:true}
     ]},
     {group:'behavior',url: 'brushing', name: 'Brushing', tabs:[
       {url:'axisbrush', name:'Axis Brushing', options:true},
@@ -124,9 +131,10 @@ angular.module('app').constant 'menu',
       {url:'multi', name:'Brushing Multiple Charts', options:true, ctrl:true}
       {url:'vertical', name:'Vertical Axis Brushing', options:true}
     ]},
-    {group:'behavior',url: 'zoom', name: 'Pan and Zoom'},
+    {group:'more',url: 'model', name: 'ChartModel', page:true, ctrl:true},
     {group:'more',url: 'more', name: 'Chartbuilder and more charts', page:true, ctrl:true}
     {group:'more',url: 'absolute', name: 'position:absolute container', page: true, ctrl:true}
+    {group:'more',url: 'chartTest', name: 'Chart Tester', page:true, ctrl:true}
   ]
 
 angular.module('wk.chart').config (wkChartScalesProvider, wkChartLocaleProvider) ->

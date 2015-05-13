@@ -1,0 +1,100 @@
+h2 Chart Model Builder
+
+chart-generator(properties="chartModel", markup="chartMarkup")
+.col-lg-6
+
+        pre.scroll(style="width:100%;height:150px;") {{chartMarkup}}
+
+        pre.scroll(style="width:100%;height:150px;") {{modelJson}}
+        .height50percent
+            chart-display(code="chartMarkup")
+form.col-lg-6.scroll
+    button.btn.btn-primary(ng-click="selectDataFile()") Select a Data File
+    span  {{fileName}}
+    //button.btn.btn-primary(ng-click="showChart(chartMarkup)") Show Chart
+    table.property-table
+        tr.highlight
+            td.highlight(colspan="3") Chart
+
+        tr(ng-repeat="(name, prop) in chartModel.getDescriptor().properties")
+            td {{name}}
+            td
+                property-element(descriptor="prop", value="chartModel", name="{{name}}")
+            td
+
+    table.property-table(ng-repeat="decorator in chartModel.getDescriptor().decorators")
+        tr
+            td {{decorator.name}}
+            td
+                input(type="checkbox", ng-model="chartModel[decorator.key]")
+            td
+
+        tr.lowlight(ng-repeat="(name, prop) in decorator.properties", ng-if="chartModel[decorator.key]")
+            td {{name}}
+            td(ng-switch="prop")
+                property-element(descriptor="prop", value="chartModel", name="{{name}}")
+            td  {{prop}}
+    table.property-table
+        tr.lowlight
+            td Add a shared Dimension
+            td
+                select(ng-model="dimension", ng-options="item for item in chartModel.availableDimensions()", placeholder="select Dimension")
+            td
+                botton.btn.btn-primary(ng-click="chartModel.addDimension(dimension)", ng-disabled="!dimension")
+                    i.fa.fa-plus
+    table.property-table
+        thead
+            tr(ng-if="chartModel.dimensions | hasproperties")
+                th
+                th Property
+                th Type
+                th axis
+                th
+                th
+        tbody
+            tr(ng-repeat="(name, prop) in chartModel.dimensions")
+
+                td {{name}}
+                td
+                    input(ng-model="prop.property")
+                td
+                    select(ng-model="prop.type", ng-options="item for item in prop.acceptedValues('type')")
+                td
+                    input(ng-model="prop.axis", type="checkbox", ng-if="name=='x' || name=='y' || name=='x top'|| name=='y right'")
+                td
+                    input(ng-model="prop.legend$set", type="checkbox", ng-if="name=='color' || name=='size' || name=='shape'")
+                td
+                    button.btn.btn-default(ng-click="showDimensionDetails(name, prop)") ...more
+                td
+                    button.btn.btn-danger(ng-click="chartModel.removeDimension(name)")
+                        i.fa.fa-trash-o
+    table.property-table
+        thead
+            tr
+                th Property
+                th Dimension
+                th Layout
+                th
+                th
+        tbody
+            tr(ng-repeat="prop in chartModel.properties")
+                td {{prop.property}}
+                td {{prop.dimName}}
+                td {{prop.layout.layout}}
+                td
+                    button.btn.btn-default(ng-click="showDimensionDetails(prop.dim, prop.dimension)") ...more
+                td
+                    botton.btn.btn-danger(ng-click="chartModel.removeProperty(prop.property, prop.dimName, prop.layout.layoutName)", ng-disabled="!layout")
+                        i.fa.fa-trash-o
+            tr
+                td
+                    select(ng-model="property", ng-options="item for item in dataProperties")
+                td
+                    select(ng-model="dimName", ng-options="item for item in chartModel.availableDimensions()")
+                td
+                    select(ng-model="layout", ng-options="item for item in chartModel.availableLayouts()")
+                td
+                    botton.btn.btn-primary(ng-click="chartModel.addProperty(property, dimName, layout)", ng-disabled="!dimName||!layout||!property")
+                        i.fa.fa-plus
+
+

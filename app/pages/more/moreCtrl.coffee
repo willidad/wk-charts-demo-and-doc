@@ -1,4 +1,4 @@
-angular.module('app').controller 'MoreCtrl', ($log, $scope, $compile, $rootScope, $http, $modal, $cookies, wkChartScales) ->
+angular.module('app').controller 'MoreCtrl', ($log, $scope, $compile, $rootScope, $http, $modal, $cookies, wkChartScales, $sanitize) ->
 
   bool = ['', 'true', 'false']
   dimensions = ["x", "y", "color", "size", "shape", "range-x", "range-y"]
@@ -54,6 +54,7 @@ angular.module('app').controller 'MoreCtrl', ($log, $scope, $compile, $rootScope
       ticks: ['']
       'rotate-tick-labels':[]
       'grid': bool
+      reverse:bool
       label: ['']
       'show-label': bool
       legend: legendPositions
@@ -281,7 +282,7 @@ angular.module('app').controller 'MoreCtrl', ($log, $scope, $compile, $rootScope
       size:'lg'
       template:template
       resolve: {
-        chart: () -> return currentChart
+        chart: () -> return $sanitize(currentChart)
       }
       controller: ($scope, $modalInstance, $compile, chart) ->
         $scope.compile = () ->
@@ -293,6 +294,7 @@ angular.module('app').controller 'MoreCtrl', ($log, $scope, $compile, $rootScope
           $scope.chart = chart
           $scope.filtered = chart.data
           chartElem.append(compiledChart)
+          return false
 
     })
   # init
@@ -306,3 +308,43 @@ angular.module('app').controller 'MoreCtrl', ($log, $scope, $compile, $rootScope
   $scope.scaleMapFn = (value) ->
     $log.log 'scaleMapFn called. value:', value
     return 'red'
+
+  $scope.colorFn = (data) ->
+    $log.log data
+    col = {
+      Einnahmen: {color:'url(#rgrad-1f77b4)', mask:'url(#stripes)'}
+      Ausgaben: {color:'url(#rgrad-ff7f0e)'}
+      Saldo: {color:'url(#rgrad-2ca02c)'}
+      'New York': {color:'url(#rgrad-1f77b4)', mask:'url(#stripes)'}
+      'San Francisco': {color:'url(#rgrad-ff7f0e)', 'stroke-width':4, 'stroke-dasharray':'4.4'}
+      Austin: {color:'url(#rgrad-2ca02c)'}
+      maennlich: {color:'url(#rgrad-1f77b4)', stroke:'black',mask:'url(#stripes)'}
+      weiblich: {color:'url(#rgrad-ff7f0e)', 'stroke-width':4, 'stroke-dasharray':'4.4'}
+      differenz: {color:'url(#rgrad-2ca02c)',mask:'url(#smallDots)'}
+      'Under 5 Years': {color:'url(#rgrad-1f77b4)', mask:'url(#stripes)'}
+      '5 to 13 Years': {color:'url(#rgrad-ff7f0e)'}
+      '14 to 17 Years': {color:'url(#rgrad-2ca02c)'}
+      '18 to 24 Years': {color:'url(#rgrad-ffbb78)', mask:'url(#stripes)'}
+      '25 to 44 Years': {color:'url(#rgrad-98df8a)', 'stroke-width':4, 'stroke-dasharray':'4.4'}
+      '45 to 64 Years': {color:'url(#rgrad-ff9896)'}
+      '65 Years and Over': {color:'url(#rgrad-c49c94)', stroke:'url(#rgrad-1f77b4)',mask:'url(#stripes)'}
+      low: {color:'url(#rgrad-1f77b4)', mask:'url(#stripes)'}
+      high: {color:'url(#rgrad-ff7f0e)'}
+      average: {color:'url(#rgrad-2ca02c)'}
+    }
+    return col[data]
+
+  $scope.colorFnLine = (data, domain) ->
+    $log.log data
+    col = {
+      Einnahmen: {color:'url(#rgrad-1f77b4)', mask:'url(#stripes)'}
+      Ausgaben: {color:'url(#rgrad-ff7f0e)'}
+      Saldo: {color:'url(#rgrad-2ca02c)'}
+      'New York': {color:'url(#rgrad-1f77b4)', mask:'url(#stripes)'}
+      'San Francisco': {color:'url(#rgrad-ff7f0e)', 'stroke-width':4, 'stroke-dasharray':'4.4'}
+      Austin: {color:'url(#rgrad-2ca02c)'}
+      maennlich: {color:'url(#rgrad-1f77b4)',mask:'url(#stripes)'}
+      weiblich: {color:'url(#rgrad-ff7f0e)', 'stroke-width':4, 'stroke-dasharray':'4.4'}
+      differenz: {color:'url(#rgrad-2ca02c)'}
+    }
+    return col[data]

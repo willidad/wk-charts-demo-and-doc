@@ -1,0 +1,5 @@
+chart(data="data.filtered",tooltips header="Monatl. Temperatur 2014",sub-header="Quelle: www.wetter.de")
+   layout(box-plot padding="70,10")
+      x(axis,property="Monat",type="ordinal")
+      y(property="Min,qLow,Med,qHigh,Max",axis,label="Temperatur (C)",show-label)
+      color(type="category20c")

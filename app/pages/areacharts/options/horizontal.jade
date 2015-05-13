@@ -9,3 +9,7 @@ button.btn.btn-normal(ng-click="center()") truncate both
 button.btn.btn-normal(ng-click="cut()") cut center
 button.btn.btn-normal(ng-click="reset()") reset
 
+br
+br
+button.btn.btn-primary(ng-click="options.markers = !options.markers") {{options.markers? 'Hide ' : 'Show '}}Markers
+pre(style="display:inline;") options.markers = {{options.markers}}
