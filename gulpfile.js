@@ -67,7 +67,7 @@ gulp.task('appJS', function() {
 });
 
 gulp.task('wkChartsCopyJs', function() {
-    return gulp.src([path.join(libDir, '/lib/wk-charts.js'), path.join(libDir, '/lib/**/*.map')])
+    return gulp.src([path.join(libDir, '/lib/js/wk.chart.js'), path.join(libDir, '/lib/js/wk.chart.templates.js'), path.join(libDir, '/lib/js/wk.chart.js.map')])
         .pipe(plumber({errorHandler: errorAlert}))
         .pipe(gulp.dest(buildDir + '/lib'))
         .pipe(lifereload())
@@ -75,7 +75,7 @@ gulp.task('wkChartsCopyJs', function() {
 });
 
 gulp.task('wkChartsCopyCss', function() {
-    return gulp.src([path.join(libDir, '/lib/wk-charts.css')])
+    return gulp.src([path.join(libDir, '/lib/css/wk-charts.css'), path.join(libDir, '/lib/css/wk-charts.css.map')])
         .pipe(plumber({errorHandler: errorAlert}))
         .pipe(gulp.dest(buildDir + '/lib'))
         .pipe(lifereload())
@@ -209,8 +209,8 @@ gulp.task('watch',function() {
     gulp.watch(['app/**/*.less', 'app/**/*.css'], ['appCSS']); // application css
     gulp.watch(['app/index.jade', 'app/index.html'], ['index']); // index file
     gulp.watch(['app/pages/**/data/*.csv', 'app/dataFiles/.*'], ['chartData', 'dataFiles']); // examples data files
-    gulp.watch([path.join(libDir,'/lib/wk-charts.js')], ['wkChartsCopyJs']); // copy chart library on change
-    gulp.watch([path.join(libDir,'/lib/wk-charts.css')], ['wkChartsCopyCss']); // copy chart css on change
+    gulp.watch([path.join(libDir,'/lib/js/*.js')], ['wkChartsCopyJs']); // copy chart library on change
+    gulp.watch([path.join(libDir,'/lib/css/*.css')], ['wkChartsCopyCss']); // copy chart css on change
     gulp.watch([path.join(libDir,'/dist/docs/**/*.html')], ['wkChartsCopyDocs']); // copy chart docs on change
 });
 
